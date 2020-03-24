@@ -25,6 +25,6 @@ services:
       - YAPB_ENABLED
       - YAPB_PASSWORD
       - CSDM_MODE
-    restart: always
+      - STEAM_ID
     ports:
       - "27015:27015/udp"

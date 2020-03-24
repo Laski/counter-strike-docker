@@ -46,13 +46,17 @@ if [ -n "${ADMIN_NAME}" ] && [ -n "${ADMIN_PASSWORD}" ]; then
     echo "rcon_password \"${ADMIN_PASSWORD}\"" >> "${HLDS}/cstrike/server.cfg"
 fi
 
+# Add Steam ID as admin
+echo "\"${STEAM_ID}\" \"\"  \"abcdefghijklmnopqrstu\" \"ce\"" >> "${HLDS}/cstrike/addons/amxmodx/configs/users.ini"
+
+
 # Set Server Password
 if [ -n ${SERVER_PASSWORD} ]; then
     echo "sv_password \"${SERVER_PASSWORD}\"" >> "${HLDS}/cstrike/server.cfg"
 fi
 
 # Enable AMX Plugins
-# echo "restmenu.amxx             ; Restrict Weapons" >> "${HLDS}/cstrike/addons/amxmodx/configs/plugins.ini"
+echo "restmenu.amxx             ; Restrict Weapons" >> "${HLDS}/cstrike/addons/amxmodx/configs/plugins.ini"
 # echo "deathbeams.amxx           ; Death Beams" >> "${HLDS}/cstrike/addons/amxmodx/configs/plugins.ini"
 # echo "hsonly.amxx               ; HeadShot Only" >> "${HLDS}/cstrike/addons/amxmodx/configs/plugins.ini"
 
@@ -66,19 +70,6 @@ if [ "${YAPB_ENABLED}" -eq 1 ];then
     echo "linux addons/yapb/bin/yapb.so" >> "${HLDS}/cstrike/addons/metamod/plugins.ini"
     echo "yb_password \"${YAPB_PASSWORD}\"" >> "${HLDS}/cstrike/addons/yapb/conf/yapb.cfg"
     echo "amxx_yapbmenu.amxx      ; YAPB Menu" >> "${HLDS}/cstrike/addons/amxmodx/configs/plugins.ini"
-fi
-
-# Enable CSDM
-if [ "${CSDM_MODE}" -ge 1 ]; then
-     echo 'csdm_active "1"' >> "${HLDS}/cstrike/server.cfg"
-     sed -ri 's/^menus =.*/menus = ps/; s/^autoitems =.*/autoitems = g/' "${HLDS}/cstrike/addons/amxmodx/configs/csdm.cfg"
-else
-    echo 'csdm_active "0"' >> "${HLDS}/cstrike/server.cfg"
-fi
-
-if [ "${CSDM_MODE}" -ge 2 ]; then
-     echo 'csdm_ffa_enable "1"' >> "${HLDS}/cstrike/server.cfg"
-     echo 'mp_freeforall "1"' >> "${HLDS}/cstrike/server.cfg"
 fi
 
 set > "${CONFIG_FILE}"

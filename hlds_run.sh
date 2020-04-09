@@ -24,6 +24,8 @@ CSDM_MODE="${CSDM_MODE:-0}"
 
 OPTIONS=( "-game" "${GAME}" "+maxplayers" "${MAXPLAYERS}" "+map" "${START_MAP}" "+hostname" "\"${SERVER_NAME}\"")
 
+# Clear previous admins
+rm "${HLDS}/cstrike/addons/amxmodx/configs/users.ini"
 
 if [ -z "${RESTART_ON_FAIL}" ]; then
     OPTIONS+=('-norestart')
@@ -46,8 +48,10 @@ if [ -n "${ADMIN_NAME}" ] && [ -n "${ADMIN_PASSWORD}" ]; then
     echo "rcon_password \"${ADMIN_PASSWORD}\"" >> "${HLDS}/cstrike/server.cfg"
 fi
 
-# Add Steam ID as admin
+# Add Steam IDs as admins
 echo "\"${STEAM_ID}\" \"\"  \"abcdefghijklmnopqrstu\" \"ce\"" >> "${HLDS}/cstrike/addons/amxmodx/configs/users.ini"
+echo "\"${STEAM_ID_2}\" \"\"  \"fu\" \"ce\"" >> "${HLDS}/cstrike/addons/amxmodx/configs/users.ini"
+echo "\"${STEAM_ID_3}\" \"\"  \"fu\" \"ce\"" >> "${HLDS}/cstrike/addons/amxmodx/configs/users.ini"
 
 
 # Set Server Password

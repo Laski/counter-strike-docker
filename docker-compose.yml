@@ -21,5 +21,7 @@ services:
       - YAPB_PASSWORD
       - CSDM_MODE
       - STEAM_ID
+      - STEAM_ID_2
+      - STEAM_ID_3
     ports:
       - "27015:27015/udp"

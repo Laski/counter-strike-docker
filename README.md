@@ -10,16 +10,10 @@ Build & run
     $ cp example.env .env
     ```
 
-2. Build image with HLDS Server. It includes raw Steam HLDS + Metamod + DProto + AMX MOD X:
-
-    ```
-    $ docker-compose build hlds
-    ```
-
-3. Build custom server image based on hlds image. It includes maps, configuration and the other customization stuff:
+2. Build custom server:
  
     ```
-    $ docker-compose build server
+    $ docker-compose build
     ```
     
 4. Edit `.env` configuration variables if needed (see image entrypoint file `hlds_run.sh` if you want to figure out how variables are used).
@@ -27,7 +21,7 @@ Build & run
 5. Start your server:
 
     ```
-    $ docker-compose up -d server
+    $ docker-compose up -d
     ```
 
 6. Enjoy ;)

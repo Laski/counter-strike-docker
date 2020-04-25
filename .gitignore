@@ -4,3 +4,6 @@
 
 temp
 docker-compose.override.yml
+csdata/
+backup/
+

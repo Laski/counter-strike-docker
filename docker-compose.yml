@@ -25,3 +25,13 @@ services:
       - STEAM_ID_3
     ports:
       - "27015:27015/udp"
+    volumes:
+      - csdata:/opt/hlds/cstrike
+
+
+volumes:
+  csdata:
+    driver_opts:
+      type: none
+      device: ${PWD}/csdata
+      o: bind

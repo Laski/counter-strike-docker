@@ -1,0 +1,26 @@
+version: "2"
+
+networks:
+  web:
+    external: true
+
+services:
+  csstats:
+    build: .
+    container_name: cs-stats
+    ports:
+      - 5000:5000
+    restart: always
+    volumes:
+    - ../csdata/addons/amxmodx/data/csstats.dat:/app/csstats.dat:ro
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=web"
+      - "traefik.http.routers.csstats.rule=Host(`stats.laski.dev`)"
+      - "traefik.http.routers.csstats.entrypoints=https"
+      - "traefik.http.routers.csstats.tls.certresolver=dnschallenge"
+      - "traefik.http.services.csstats.loadbalancer.server.port=5000"
+      # apply the secure-headers middleware
+      - "traefik.http.routers.csstats.middlewares=secure-headers"
+    networks:
+      - web

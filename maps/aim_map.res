@@ -1,0 +1,10 @@
+sound/misc/kenny1.wav
+sound/misc/cracker1.wav
+sound/misc/shot1.wav
+sound/misc/revenge1.wav
+sound/misc/doh.wav
+sound/misc/nam1.wav
+sound/misc/kickass1.wav
+sound/misc/Beat1.wav
+sound/misc/Beat2.wav
+maps/aim_map.res

@@ -76,10 +76,10 @@ print '<table id="statsTable" class="display" style="width:50%"><thead>
 <th>Headshots</th>
 <th>Score (kills-deaths)</th>
 <th>Accuracy (hits/shots)</th>
-<th>Lethality (kills/shots)</th>
+<th>Lethality (kills/hits)</th>
 <th>Aim (headshots/hits)</th>
 <th>Bombs defused</th>
-<th>Explosions caused</th>
+<th>Bombs planted</th>
 <th>Yuta level</th>
 </tr>
 </thead><tbody>';
@@ -87,8 +87,11 @@ print '<table id="statsTable" class="display" style="width:50%"><thead>
 for ($i = 0; $i <= $#players; $i++) {
     my %player = %{$players[$i]};
     my @stats = @{$player{hits}};
-    if ($player{shots} > 0) {
-        $player{lethality} = sprintf("%.3f", $player{kills} / $player{shots});
+    if ($player{deaths} < 100) {
+        next;
+    }
+    if ($player{hits} > 0) {
+        $player{lethality} = sprintf("%.3f", $player{kills} / $player{hits});
     }
     if ($player{shots} > 0) {
         $player{accuracy} = sprintf("%.3f", $player{hits} / $player{shots});
@@ -96,7 +99,7 @@ for ($i = 0; $i <= $#players; $i++) {
     if ($player{hits} > 0) {
         $player{hsratio} = sprintf("%.3f", $player{hs} / $player{hits});
     }
-    $player{yuta} = $player{defuses} - $player{explosions};
+    $player{yuta} = $player{defuses} - $player{plants};
 
     $player{score} = $player{kills} - $player{deaths};
     $player{rank} = $i + 1;
@@ -114,7 +117,7 @@ for ($i = 0; $i <= $#players; $i++) {
     <td>" . $player{lethality} . "</td>
     <td>" . $player{hsratio} . "</td>
     <td>" . $player{defuses} . "</td>
-    <td>" . $player{explosions} . "</td>
+    <td>" . $player{plants} . "</td>
     <td>" . $player{yuta} . "</td>
     ";
     print '</tr>';

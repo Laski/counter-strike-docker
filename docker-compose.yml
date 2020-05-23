@@ -27,7 +27,7 @@ services:
       - "27015:27015/udp"
     volumes:
       - csdata:/opt/hlds/cstrike
-
+    restart: always
 
 volumes:
   csdata:

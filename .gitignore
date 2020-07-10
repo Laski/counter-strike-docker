@@ -7,3 +7,6 @@ docker-compose.override.yml
 csdata/
 backup/
 
+.mypy_cache/
+.vscode/
+log_parser_goyo.py

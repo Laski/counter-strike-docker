@@ -1,2 +1,5 @@
 csstats.dat
 stats.html
+logs/*
+# keep one logfile for testing
+!logs/L0409001.log

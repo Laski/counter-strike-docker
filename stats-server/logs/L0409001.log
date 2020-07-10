@@ -1,0 +1,594 @@
+L 04/09/2020 - 20:47:30: Log file started (file "logs/L0409001.log") (game "cstrike") (version "48/1.1.2.7/Stdio/8308")
+L 04/09/2020 - 20:47:30: Loading map "awp_india"
+L 04/09/2020 - 20:47:30: Server cvars start
+L 04/09/2020 - 20:47:30: Server cvar "_tutor_bomb_viewable_check_interval" = "0.5"
+L 04/09/2020 - 20:47:30: Server cvar "_tutor_debug_level" = "0"
+L 04/09/2020 - 20:47:30: Server cvar "_tutor_examine_time" = "0.5"
+L 04/09/2020 - 20:47:30: Server cvar "_tutor_hint_interval_time" = "10.0"
+L 04/09/2020 - 20:47:30: Server cvar "_tutor_look_angle" = "10"
+L 04/09/2020 - 20:47:30: Server cvar "_tutor_look_distance" = "200"
+L 04/09/2020 - 20:47:30: Server cvar "_tutor_message_character_display_time_coefficient" = "0.07"
+L 04/09/2020 - 20:47:30: Server cvar "_tutor_message_minimum_display_time" = "1"
+L 04/09/2020 - 20:47:30: Server cvar "_tutor_message_repeats" = "5"
+L 04/09/2020 - 20:47:30: Server cvar "_tutor_view_distance" = "1000"
+L 04/09/2020 - 20:47:30: Server cvar "allow_spectators" = "1"
+L 04/09/2020 - 20:47:30: Server cvar "amx_client_languages" = "1"
+L 04/09/2020 - 20:47:30: Server cvar "amx_nextmap" = "awp_india"
+L 04/09/2020 - 20:47:30: Server cvar "amx_timeleft" = "00:00"
+L 04/09/2020 - 20:47:30: Server cvar "amxmodx_version" = "1.8.2"
+L 04/09/2020 - 20:47:30: Server cvar "coop" = "0"
+L 04/09/2020 - 20:47:30: Server cvar "deathmatch" = "1"
+L 04/09/2020 - 20:47:30: Server cvar "decalfrequency" = "0"
+L 04/09/2020 - 20:47:30: Server cvar "edgefriction" = "2"
+L 04/09/2020 - 20:47:30: Server cvar "hostage_debug" = "0"
+L 04/09/2020 - 20:47:30: Server cvar "hostage_stop" = "0"
+L 04/09/2020 - 20:47:30: Server cvar "humans_join_team" = "any"
+L 04/09/2020 - 20:47:30: Server cvar "max_queries_sec" = "3.0"
+L 04/09/2020 - 20:47:30: Server cvar "max_queries_sec_global" = "30"
+L 04/09/2020 - 20:47:30: Server cvar "max_queries_window" = "60"
+L 04/09/2020 - 20:47:30: Server cvar "metamod_version" = "1.20"
+L 04/09/2020 - 20:47:30: Server cvar "mp_allowmonsters" = "0"
+L 04/09/2020 - 20:47:30: Server cvar "mp_autokick" = "0"
+L 04/09/2020 - 20:47:30: Server cvar "mp_autokick_timeout" = "-1"
+L 04/09/2020 - 20:47:30: Server cvar "mp_autoteambalance" = "1"
+L 04/09/2020 - 20:47:30: Server cvar "mp_buytime" = "5"
+L 04/09/2020 - 20:47:30: Server cvar "mp_c4timer" = "45"
+L 04/09/2020 - 20:47:30: Server cvar "mp_chattime" = "5"
+L 04/09/2020 - 20:47:30: Server cvar "mp_consistency" = "1"
+L 04/09/2020 - 20:47:30: Server cvar "mp_fadetoblack" = "0"
+L 04/09/2020 - 20:47:30: Server cvar "mp_flashlight" = "1"
+L 04/09/2020 - 20:47:30: Server cvar "mp_footsteps" = "1"
+L 04/09/2020 - 20:47:30: Server cvar "mp_forcecamera" = "0"
+L 04/09/2020 - 20:47:30: Server cvar "mp_forcechasecam" = "0"
+L 04/09/2020 - 20:47:30: Server cvar "mp_fragsleft" = "0"
+L 04/09/2020 - 20:47:30: Server cvar "mp_freezetime" = "2"
+L 04/09/2020 - 20:47:30: Server cvar "mp_friendlyfire" = "0"
+L 04/09/2020 - 20:47:30: Server cvar "mp_ghostfrequency" = "0.1"
+L 04/09/2020 - 20:47:30: Server cvar "mp_hostagepenalty" = "0"
+L 04/09/2020 - 20:47:30: Server cvar "mp_infinite_ammo" = "0"
+L 04/09/2020 - 20:47:30: Server cvar "mp_kickpercent" = "1"
+L 04/09/2020 - 20:47:30: Server cvar "mp_limitteams" = "0"
+L 04/09/2020 - 20:47:30: Server cvar "mp_logdetail" = "3"
+L 04/09/2020 - 20:47:30: Server cvar "mp_logfile" = "1"
+L 04/09/2020 - 20:47:30: Server cvar "mp_logmessages" = "1"
+L 04/09/2020 - 20:47:30: Server cvar "mp_mapvoteratio" = "1"
+L 04/09/2020 - 20:47:30: Server cvar "mp_maxrounds" = "0"
+L 04/09/2020 - 20:47:30: Server cvar "mp_mirrordamage" = "0"
+L 04/09/2020 - 20:47:30: Server cvar "mp_playerid" = "1"
+L 04/09/2020 - 20:47:30: Server cvar "mp_roundtime" = "5"
+L 04/09/2020 - 20:47:30: Server cvar "mp_scoreboard_showhealth" = "3"
+L 04/09/2020 - 20:47:30: Server cvar "mp_scoreboard_showmoney" = "3"
+L 04/09/2020 - 20:47:30: Server cvar "mp_startmoney" = "800"
+L 04/09/2020 - 20:47:30: Server cvar "mp_timeleft" = "0"
+L 04/09/2020 - 20:47:30: Server cvar "mp_timelimit" = "20"
+L 04/09/2020 - 20:47:30: Server cvar "mp_tkpunish" = "0"
+L 04/09/2020 - 20:47:30: Server cvar "mp_windifference" = "1"
+L 04/09/2020 - 20:47:30: Server cvar "mp_winlimit" = "0"
+L 04/09/2020 - 20:47:30: Server cvar "pausable" = "1"
+L 04/09/2020 - 20:47:30: Server cvar "sv_accelerate" = "5"
+L 04/09/2020 - 20:47:30: Server cvar "sv_aim" = "0"
+L 04/09/2020 - 20:47:30: Server cvar "sv_airaccelerate" = "10"
+L 04/09/2020 - 20:47:30: Server cvar "sv_allowupload" = "1"
+L 04/09/2020 - 20:47:30: Server cvar "sv_alltalk" = "0"
+L 04/09/2020 - 20:47:30: Server cvar "sv_bounce" = "1"
+L 04/09/2020 - 20:47:30: Server cvar "sv_cheats" = "0"
+L 04/09/2020 - 20:47:30: Server cvar "sv_clienttrace" = "1"
+L 04/09/2020 - 20:47:30: Server cvar "sv_contact" = ""
+L 04/09/2020 - 20:47:30: Server cvar "sv_friction" = "4"
+L 04/09/2020 - 20:47:30: Server cvar "sv_gravity" = "800"
+L 04/09/2020 - 20:47:30: Server cvar "sv_logblocks" = "0"
+L 04/09/2020 - 20:47:30: Server cvar "sv_maxrate" = "25000"
+L 04/09/2020 - 20:47:30: Server cvar "sv_maxspeed" = "320"
+L 04/09/2020 - 20:47:30: Server cvar "sv_minrate" = "2500"
+L 04/09/2020 - 20:47:30: Server cvar "sv_password" = "pibes"
+L 04/09/2020 - 20:47:30: Server cvar "sv_proxies" = "2"
+L 04/09/2020 - 20:47:30: Server cvar "sv_restart" = "0"
+L 04/09/2020 - 20:47:30: Server cvar "sv_restartround" = "0"
+L 04/09/2020 - 20:47:30: Server cvar "sv_stepsize" = "18"
+L 04/09/2020 - 20:47:30: Server cvar "sv_stopspeed" = "75"
+L 04/09/2020 - 20:47:30: Server cvar "sv_uploadmax" = "0.5"
+L 04/09/2020 - 20:47:30: Server cvar "sv_voiceenable" = "1"
+L 04/09/2020 - 20:47:30: Server cvar "sv_wateraccelerate" = "10"
+L 04/09/2020 - 20:47:30: Server cvar "sv_waterfriction" = "1"
+L 04/09/2020 - 20:47:30: Server cvars end
+L 04/09/2020 - 20:47:30: Server cvar "sv_maxspeed" = "900"
+L 04/09/2020 - 20:47:30: Server cvar "pausable" = "0"
+L 04/09/2020 - 20:47:30: Server cvar "amx_nextmap" = "de_dust2"
+L 04/09/2020 - 20:47:31: Started map "awp_india" (CRC "534917220")
+L 04/09/2020 - 20:47:34: "Rubimaister<2><STEAM_0:0:538627351><>" entered the game
+L 04/09/2020 - 20:47:34: "Rocho<6><STEAM_0:1:86787335><>" entered the game
+L 04/09/2020 - 20:47:34: World triggered "Round_Start"
+L 04/09/2020 - 20:47:35: "Mcd.<4><STEAM_0:1:538382878><>" entered the game
+L 04/09/2020 - 20:47:38: "Payvon<1><STEAM_0:1:539551953><>" entered the game
+L 04/09/2020 - 20:47:39: "Rubimaister<2><STEAM_0:0:538627351><>" joined team "TERRORIST"
+L 04/09/2020 - 20:47:42: "Payvon<1><STEAM_0:1:539551953><>" joined team "CT"
+L 04/09/2020 - 20:47:43: World triggered "Game_Commencing"
+L 04/09/2020 - 20:47:43: World triggered "Game_Commencing" (CT "0") (T "0")
+L 04/09/2020 - 20:47:43: World triggered "Round_End"
+L 04/09/2020 - 20:47:45: "Mcd.<4><STEAM_0:1:538382878><>" joined team "CT"
+L 04/09/2020 - 20:47:48: World triggered "Round_Start"
+L 04/09/2020 - 20:47:50: "Rocho<6><STEAM_0:1:86787335><>" joined team "TERRORIST"
+L 04/09/2020 - 20:47:59: "Mcd.<4><STEAM_0:1:538382878><CT>" attacked "Rubimaister<2><STEAM_0:0:538627351><TERRORIST>" with "awp" (damage "106") (damage_armor "2") (health "-6") (armor "98")
+L 04/09/2020 - 20:47:59: "Mcd.<4><STEAM_0:1:538382878><CT>" killed "Rubimaister<2><STEAM_0:0:538627351><TERRORIST>" with "awp"
+L 04/09/2020 - 20:48:24: "Laski<3><STEAM_0:0:53940642><>" entered the game
+L 04/09/2020 - 20:48:27: "triple_de_miga<7><STEAM_0:0:479244024><>" connected, address "131.225.37.9:27005"
+L 04/09/2020 - 20:48:27: "triple_de_miga<7><STEAM_0:0:479244024><>" STEAM USERID validated
+L 04/09/2020 - 20:48:28: "Rocho<6><STEAM_0:1:86787335><TERRORIST>" attacked "Payvon<1><STEAM_0:1:539551953><CT>" with "knife" (damage "55") (damage_armor "5") (health "45") (armor "95")
+L 04/09/2020 - 20:48:28: "Payvon<1><STEAM_0:1:539551953><CT>" attacked "Rocho<6><STEAM_0:1:86787335><TERRORIST>" with "knife" (damage "55") (damage_armor "5") (health "45") (armor "95")
+L 04/09/2020 - 20:48:29: "Payvon<1><STEAM_0:1:539551953><CT>" attacked "Rocho<6><STEAM_0:1:86787335><TERRORIST>" with "knife" (damage "221") (damage_armor "20") (health "-176") (armor "75")
+L 04/09/2020 - 20:48:29: "Payvon<1><STEAM_0:1:539551953><CT>" killed "Rocho<6><STEAM_0:1:86787335><TERRORIST>" with "knife"
+L 04/09/2020 - 20:48:29: Team "CT" triggered "CTs_Win" (CT "1") (T "0")
+L 04/09/2020 - 20:48:29: World triggered "Round_End"
+L 04/09/2020 - 20:48:34: "triple_de_miga<7><STEAM_0:0:479244024><>" entered the game
+L 04/09/2020 - 20:48:36: World triggered "Round_Start"
+L 04/09/2020 - 20:48:37: "Rocho<6><STEAM_0:1:86787335><TERRORIST>" say "en la jeta"
+L 04/09/2020 - 20:48:37: "triple_de_miga<7><STEAM_0:0:479244024><>" joined team "TERRORIST"
+L 04/09/2020 - 20:48:38: "Laski<3><STEAM_0:0:53940642><>" joined team "TERRORIST"
+L 04/09/2020 - 20:48:41: "Rubimaister<2><STEAM_0:0:538627351><TERRORIST>" attacked "Payvon<1><STEAM_0:1:539551953><CT>" with "awp" (damage "106") (damage_armor "2") (health "-6") (armor "98")
+L 04/09/2020 - 20:48:41: "Rubimaister<2><STEAM_0:0:538627351><TERRORIST>" killed "Payvon<1><STEAM_0:1:539551953><CT>" with "awp"
+L 04/09/2020 - 20:48:43: "patypa<5><STEAM_0:1:541812855><>" entered the game
+L 04/09/2020 - 20:48:47: "patypa<5><STEAM_0:1:541812855><>" joined team "TERRORIST"
+L 04/09/2020 - 20:48:51: "Mcd.<4><STEAM_0:1:538382878><CT>" attacked "Laski<3><STEAM_0:0:53940642><TERRORIST>" with "awp" (damage "107") (damage_armor "2") (health "-7") (armor "98")
+L 04/09/2020 - 20:48:51: "Mcd.<4><STEAM_0:1:538382878><CT>" killed "Laski<3><STEAM_0:0:53940642><TERRORIST>" with "awp"
+L 04/09/2020 - 20:48:54: "Rocho<6><STEAM_0:1:86787335><TERRORIST>" attacked "Mcd.<4><STEAM_0:1:538382878><CT>" with "awp" (damage "108") (damage_armor "2") (health "-8") (armor "98")
+L 04/09/2020 - 20:48:54: "Rocho<6><STEAM_0:1:86787335><TERRORIST>" killed "Mcd.<4><STEAM_0:1:538382878><CT>" with "awp"
+L 04/09/2020 - 20:48:54: Team "TERRORIST" triggered "Terrorists_Win" (CT "1") (T "1")
+L 04/09/2020 - 20:48:54: World triggered "Round_End"
+L 04/09/2020 - 20:49:01: World triggered "Round_Start"
+L 04/09/2020 - 20:49:14: "Rocho<6><STEAM_0:1:86787335><TERRORIST>" attacked "Payvon<1><STEAM_0:1:539551953><CT>" with "knife" (damage "55") (damage_armor "5") (health "45") (armor "95")
+L 04/09/2020 - 20:49:14: "Payvon<1><STEAM_0:1:539551953><CT>" attacked "Rocho<6><STEAM_0:1:86787335><TERRORIST>" with "knife" (damage "55") (damage_armor "5") (health "45") (armor "95")
+L 04/09/2020 - 20:49:15: "triple_de_miga<7><STEAM_0:0:479244024><TERRORIST>" attacked "Payvon<1><STEAM_0:1:539551953><CT>" with "awp" (damage "110") (damage_armor "2") (health "-65") (armor "93")
+L 04/09/2020 - 20:49:15: "triple_de_miga<7><STEAM_0:0:479244024><TERRORIST>" killed "Payvon<1><STEAM_0:1:539551953><CT>" with "awp"
+L 04/09/2020 - 20:49:16: "Mcd.<4><STEAM_0:1:538382878><CT>" attacked "triple_de_miga<7><STEAM_0:0:479244024><TERRORIST>" with "awp" (damage "132") (damage_armor "2") (health "-32") (armor "98")
+L 04/09/2020 - 20:49:16: "Mcd.<4><STEAM_0:1:538382878><CT>" killed "triple_de_miga<7><STEAM_0:0:479244024><TERRORIST>" with "awp"
+L 04/09/2020 - 20:49:22: "triple_de_miga<7><STEAM_0:0:479244024><TERRORIST>" disconnected
+L 04/09/2020 - 20:49:23: "Mcd.<4><STEAM_0:1:538382878><CT>" attacked "Laski<3><STEAM_0:0:53940642><TERRORIST>" with "knife" (damage "55") (damage_armor "5") (health "45") (armor "95")
+L 04/09/2020 - 20:49:23: "Laski<3><STEAM_0:0:53940642><TERRORIST>" attacked "Mcd.<4><STEAM_0:1:538382878><CT>" with "knife" (damage "12") (damage_armor "2") (health "88") (armor "98")
+L 04/09/2020 - 20:49:24: "Laski<3><STEAM_0:0:53940642><TERRORIST>" attacked "Mcd.<4><STEAM_0:1:538382878><CT>" with "knife" (damage "55") (damage_armor "4") (health "33") (armor "94")
+L 04/09/2020 - 20:49:24: "Mcd.<4><STEAM_0:1:538382878><CT>" attacked "Laski<3><STEAM_0:0:53940642><TERRORIST>" with "knife" (damage "12") (damage_armor "1") (health "33") (armor "94")
+L 04/09/2020 - 20:49:28: "Laski<3><STEAM_0:0:53940642><TERRORIST>" attacked "Mcd.<4><STEAM_0:1:538382878><CT>" with "knife" (damage "12") (damage_armor "2") (health "21") (armor "92")
+L 04/09/2020 - 20:49:28: "Mcd.<4><STEAM_0:1:538382878><CT>" attacked "Rubimaister<2><STEAM_0:0:538627351><TERRORIST>" with "knife" (damage "55") (damage_armor "5") (health "45") (armor "95")
+L 04/09/2020 - 20:49:29: "Rubimaister<2><STEAM_0:0:538627351><TERRORIST>" attacked "Mcd.<4><STEAM_0:1:538382878><CT>" with "knife" (damage "221") (damage_armor "19") (health "-200") (armor "73")
+L 04/09/2020 - 20:49:29: "Rubimaister<2><STEAM_0:0:538627351><TERRORIST>" killed "Mcd.<4><STEAM_0:1:538382878><CT>" with "knife"
+L 04/09/2020 - 20:49:29: Team "TERRORIST" triggered "Terrorists_Win" (CT "1") (T "2")
+L 04/09/2020 - 20:49:29: World triggered "Round_End"
+L 04/09/2020 - 20:49:34: "Rocho<6><STEAM_0:1:86787335><TERRORIST>" joined team "CT" (auto)
+L 04/09/2020 - 20:49:34: "Payvon<1><STEAM_0:1:539551953><CT>" say "todo cuchi"
+L 04/09/2020 - 20:49:36: World triggered "Round_Start"
+L 04/09/2020 - 20:49:53: "Laski<3><STEAM_0:0:53940642><TERRORIST>" attacked "Mcd.<4><STEAM_0:1:538382878><CT>" with "knife" (damage "12") (damage_armor "2") (health "88") (armor "98")
+L 04/09/2020 - 20:49:53: "Laski<3><STEAM_0:0:53940642><TERRORIST>" attacked "Mcd.<4><STEAM_0:1:538382878><CT>" with "knife" (damage "12") (damage_armor "1") (health "76") (armor "97")
+L 04/09/2020 - 20:49:54: "Mcd.<4><STEAM_0:1:538382878><CT>" attacked "Laski<3><STEAM_0:0:53940642><TERRORIST>" with "knife" (damage "55") (damage_armor "5") (health "22") (armor "95")
+L 04/09/2020 - 20:49:54: "patypa<5><STEAM_0:1:541812855><TERRORIST>" attacked "Rocho<6><STEAM_0:1:86787335><CT>" with "knife" (damage "12") (damage_armor "2") (health "88") (armor "98")
+L 04/09/2020 - 20:49:55: "patypa<5><STEAM_0:1:541812855><TERRORIST>" attacked "Rocho<6><STEAM_0:1:86787335><CT>" with "knife" (damage "12") (damage_armor "1") (health "76") (armor "97")
+L 04/09/2020 - 20:49:56: "Rocho<6><STEAM_0:1:86787335><CT>" attacked "patypa<5><STEAM_0:1:541812855><TERRORIST>" with "knife" (damage "69") (damage_armor "7") (health "31") (armor "93")
+L 04/09/2020 - 20:49:56: "patypa<5><STEAM_0:1:541812855><TERRORIST>" attacked "Rocho<6><STEAM_0:1:86787335><CT>" with "knife" (damage "12") (damage_armor "1") (health "64") (armor "96")
+L 04/09/2020 - 20:49:56: "patypa<5><STEAM_0:1:541812855><TERRORIST>" attacked "Rocho<6><STEAM_0:1:86787335><CT>" with "knife" (damage "51") (damage_armor "4") (health "13") (armor "92")
+L 04/09/2020 - 20:49:56: "Rubimaister<2><STEAM_0:0:538627351><TERRORIST>" attacked "Mcd.<4><STEAM_0:1:538382878><CT>" with "awp" (damage "108") (damage_armor "1") (health "-32") (armor "96")
+L 04/09/2020 - 20:49:56: "Rubimaister<2><STEAM_0:0:538627351><TERRORIST>" killed "Mcd.<4><STEAM_0:1:538382878><CT>" with "awp"
+L 04/09/2020 - 20:49:57: "Rocho<6><STEAM_0:1:86787335><CT>" attacked "patypa<5><STEAM_0:1:541812855><TERRORIST>" with "knife" (damage "55") (damage_armor "4") (health "-24") (armor "89")
+L 04/09/2020 - 20:49:57: "Rocho<6><STEAM_0:1:86787335><CT>" killed "patypa<5><STEAM_0:1:541812855><TERRORIST>" with "knife"
+L 04/09/2020 - 20:49:57: "Payvon<1><STEAM_0:1:539551953><CT>" attacked "Rubimaister<2><STEAM_0:0:538627351><TERRORIST>" with "awp" (damage "109") (damage_armor "2") (health "-9") (armor "98")
+L 04/09/2020 - 20:49:57: "Payvon<1><STEAM_0:1:539551953><CT>" killed "Rubimaister<2><STEAM_0:0:538627351><TERRORIST>" with "awp"
+L 04/09/2020 - 20:50:00: "Laski<3><STEAM_0:0:53940642><TERRORIST>" attacked "Rocho<6><STEAM_0:1:86787335><CT>" with "awp" (damage "109") (damage_armor "2") (health "-96") (armor "90")
+L 04/09/2020 - 20:50:00: "Laski<3><STEAM_0:0:53940642><TERRORIST>" killed "Rocho<6><STEAM_0:1:86787335><CT>" with "awp"
+L 04/09/2020 - 20:50:33: "Laski<3><STEAM_0:0:53940642><TERRORIST>" attacked "Payvon<1><STEAM_0:1:539551953><CT>" with "knife" (damage "12") (damage_armor "2") (health "88") (armor "98")
+L 04/09/2020 - 20:50:33: "Payvon<1><STEAM_0:1:539551953><CT>" attacked "Laski<3><STEAM_0:0:53940642><TERRORIST>" with "knife" (damage "221") (damage_armor "20") (health "-199") (armor "75")
+L 04/09/2020 - 20:50:33: "Payvon<1><STEAM_0:1:539551953><CT>" killed "Laski<3><STEAM_0:0:53940642><TERRORIST>" with "knife"
+L 04/09/2020 - 20:50:33: Team "CT" triggered "CTs_Win" (CT "2") (T "2")
+L 04/09/2020 - 20:50:33: World triggered "Round_End"
+L 04/09/2020 - 20:50:40: "Laski<3><STEAM_0:0:53940642><TERRORIST>" say "jajaj"
+L 04/09/2020 - 20:50:40: World triggered "Round_Start"
+L 04/09/2020 - 20:50:41: "patypa<5><STEAM_0:1:541812855><TERRORIST>" say_team "BUennaaa rambo"
+L 04/09/2020 - 20:50:54: "Rocho<6><STEAM_0:1:86787335><CT>" attacked "Laski<3><STEAM_0:0:53940642><TERRORIST>" with "awp" (damage "107") (damage_armor "2") (health "-7") (armor "98")
+L 04/09/2020 - 20:50:54: "Rocho<6><STEAM_0:1:86787335><CT>" killed "Laski<3><STEAM_0:0:53940642><TERRORIST>" with "awp"
+L 04/09/2020 - 20:50:59: "Mcd.<4><STEAM_0:1:538382878><CT>" attacked "Rubimaister<2><STEAM_0:0:538627351><TERRORIST>" with "awp" (damage "106") (damage_armor "2") (health "-6") (armor "98")
+L 04/09/2020 - 20:50:59: "Mcd.<4><STEAM_0:1:538382878><CT>" killed "Rubimaister<2><STEAM_0:0:538627351><TERRORIST>" with "awp"
+L 04/09/2020 - 20:51:03: "patypa<5><STEAM_0:1:541812855><TERRORIST>" attacked "Rocho<6><STEAM_0:1:86787335><CT>" with "awp" (damage "109") (damage_armor "2") (health "-9") (armor "98")
+L 04/09/2020 - 20:51:03: "patypa<5><STEAM_0:1:541812855><TERRORIST>" killed "Rocho<6><STEAM_0:1:86787335><CT>" with "awp"
+L 04/09/2020 - 20:51:08: "Mcd.<4><STEAM_0:1:538382878><CT>" attacked "patypa<5><STEAM_0:1:541812855><TERRORIST>" with "awp" (damage "109") (damage_armor "2") (health "-9") (armor "98")
+L 04/09/2020 - 20:51:08: "Mcd.<4><STEAM_0:1:538382878><CT>" killed "patypa<5><STEAM_0:1:541812855><TERRORIST>" with "awp"
+L 04/09/2020 - 20:51:08: Team "CT" triggered "CTs_Win" (CT "3") (T "2")
+L 04/09/2020 - 20:51:08: World triggered "Round_End"
+L 04/09/2020 - 20:51:15: World triggered "Round_Start"
+L 04/09/2020 - 20:51:17: "Rocho<6><STEAM_0:1:86787335><CT>" attacked "patypa<5><STEAM_0:1:541812855><TERRORIST>" with "awp" (damage "81") (damage_armor "0") (health "19") (armor "100")
+L 04/09/2020 - 20:51:17: "patypa<5><STEAM_0:1:541812855><TERRORIST>" attacked "Rocho<6><STEAM_0:1:86787335><CT>" with "awp" (damage "81") (damage_armor "0") (health "19") (armor "100")
+L 04/09/2020 - 20:51:20: "Rocho<6><STEAM_0:1:86787335><CT>" attacked "Rubimaister<2><STEAM_0:0:538627351><TERRORIST>" with "awp" (damage "106") (damage_armor "2") (health "-6") (armor "98")
+L 04/09/2020 - 20:51:20: "Rocho<6><STEAM_0:1:86787335><CT>" killed "Rubimaister<2><STEAM_0:0:538627351><TERRORIST>" with "awp"
+L 04/09/2020 - 20:51:21: "Laski<3><STEAM_0:0:53940642><TERRORIST>" attacked "Rocho<6><STEAM_0:1:86787335><CT>" with "awp" (damage "31") (damage_armor "1") (health "-12") (armor "99")
+L 04/09/2020 - 20:51:21: "Laski<3><STEAM_0:0:53940642><TERRORIST>" killed "Rocho<6><STEAM_0:1:86787335><CT>" with "awp"
+L 04/09/2020 - 20:51:32: "Payvon<1><STEAM_0:1:539551953><CT>" attacked "patypa<5><STEAM_0:1:541812855><TERRORIST>" with "knife" (damage "165") (damage_armor "15") (health "-146") (armor "85")
+L 04/09/2020 - 20:51:32: "Payvon<1><STEAM_0:1:539551953><CT>" killed "patypa<5><STEAM_0:1:541812855><TERRORIST>" with "knife"
+L 04/09/2020 - 20:51:36: "Laski<3><STEAM_0:0:53940642><TERRORIST>" attacked "Payvon<1><STEAM_0:1:539551953><CT>" with "awp" (damage "111") (damage_armor "2") (health "-11") (armor "98")
+L 04/09/2020 - 20:51:36: "Laski<3><STEAM_0:0:53940642><TERRORIST>" killed "Payvon<1><STEAM_0:1:539551953><CT>" with "awp"
+L 04/09/2020 - 20:51:57: "Mcd.<4><STEAM_0:1:538382878><CT>" attacked "Laski<3><STEAM_0:0:53940642><TERRORIST>" with "awp" (damage "425") (damage_armor "6") (health "-325") (armor "94")
+L 04/09/2020 - 20:51:57: "Mcd.<4><STEAM_0:1:538382878><CT>" killed "Laski<3><STEAM_0:0:53940642><TERRORIST>" with "awp"
+L 04/09/2020 - 20:51:57: Team "CT" triggered "CTs_Win" (CT "4") (T "2")
+L 04/09/2020 - 20:51:57: World triggered "Round_End"
+L 04/09/2020 - 20:52:03: "Payvon<1><STEAM_0:1:539551953><CT>" say "dos veces la misma no jajajaj"
+L 04/09/2020 - 20:52:04: World triggered "Round_Start"
+L 04/09/2020 - 20:52:06: "Mcd.<4><STEAM_0:1:538382878><CT>" attacked "Laski<3><STEAM_0:0:53940642><TERRORIST>" with "awp" (damage "106") (damage_armor "2") (health "-6") (armor "98")
+L 04/09/2020 - 20:52:06: "Mcd.<4><STEAM_0:1:538382878><CT>" killed "Laski<3><STEAM_0:0:53940642><TERRORIST>" with "awp"
+L 04/09/2020 - 20:52:12: "Mcd.<4><STEAM_0:1:538382878><CT>" attacked "Rubimaister<2><STEAM_0:0:538627351><TERRORIST>" with "awp" (damage "106") (damage_armor "2") (health "-6") (armor "98")
+L 04/09/2020 - 20:52:12: "Mcd.<4><STEAM_0:1:538382878><CT>" killed "Rubimaister<2><STEAM_0:0:538627351><TERRORIST>" with "awp"
+L 04/09/2020 - 20:52:16: "Rocho<6><STEAM_0:1:86787335><CT>" attacked "patypa<5><STEAM_0:1:541812855><TERRORIST>" with "awp" (damage "107") (damage_armor "2") (health "-7") (armor "98")
+L 04/09/2020 - 20:52:16: "Rocho<6><STEAM_0:1:86787335><CT>" killed "patypa<5><STEAM_0:1:541812855><TERRORIST>" with "awp"
+L 04/09/2020 - 20:52:16: Team "CT" triggered "CTs_Win" (CT "5") (T "2")
+L 04/09/2020 - 20:52:16: World triggered "Round_End"
+L 04/09/2020 - 20:52:23: World triggered "Round_Start"
+L 04/09/2020 - 20:52:27: "Rocho<6><STEAM_0:1:86787335><CT>" attacked "patypa<5><STEAM_0:1:541812855><TERRORIST>" with "awp" (damage "106") (damage_armor "2") (health "-6") (armor "98")
+L 04/09/2020 - 20:52:27: "Rocho<6><STEAM_0:1:86787335><CT>" killed "patypa<5><STEAM_0:1:541812855><TERRORIST>" with "awp"
+L 04/09/2020 - 20:52:31: "Rubimaister<2><STEAM_0:0:538627351><TERRORIST>" attacked "Rocho<6><STEAM_0:1:86787335><CT>" with "awp" (damage "109") (damage_armor "2") (health "-9") (armor "98")
+L 04/09/2020 - 20:52:31: "Rubimaister<2><STEAM_0:0:538627351><TERRORIST>" killed "Rocho<6><STEAM_0:1:86787335><CT>" with "awp"
+L 04/09/2020 - 20:52:38: "Mcd.<4><STEAM_0:1:538382878><CT>" attacked "Rubimaister<2><STEAM_0:0:538627351><TERRORIST>" with "awp" (damage "440") (damage_armor "6") (health "-340") (armor "94")
+L 04/09/2020 - 20:52:38: "Mcd.<4><STEAM_0:1:538382878><CT>" killed "Rubimaister<2><STEAM_0:0:538627351><TERRORIST>" with "awp"
+L 04/09/2020 - 20:52:52: "Laski<3><STEAM_0:0:53940642><TERRORIST>" attacked "Payvon<1><STEAM_0:1:539551953><CT>" with "awp" (damage "31") (damage_armor "1") (health "69") (armor "99")
+L 04/09/2020 - 20:52:54: "Mcd.<4><STEAM_0:1:538382878><CT>" attacked "Laski<3><STEAM_0:0:53940642><TERRORIST>" with "awp" (damage "106") (damage_armor "2") (health "-6") (armor "98")
+L 04/09/2020 - 20:52:54: "Mcd.<4><STEAM_0:1:538382878><CT>" killed "Laski<3><STEAM_0:0:53940642><TERRORIST>" with "awp"
+L 04/09/2020 - 20:52:54: Team "CT" triggered "CTs_Win" (CT "6") (T "2")
+L 04/09/2020 - 20:52:54: World triggered "Round_End"
+L 04/09/2020 - 20:52:56: "Laski<3><STEAM_0:0:53940642><TERRORIST>" say "lpm" (dead)
+L 04/09/2020 - 20:53:01: World triggered "Round_Start"
+L 04/09/2020 - 20:53:05: "Mcd.<4><STEAM_0:1:538382878><CT>" attacked "patypa<5><STEAM_0:1:541812855><TERRORIST>" with "awp" (damage "106") (damage_armor "2") (health "-6") (armor "98")
+L 04/09/2020 - 20:53:05: "Mcd.<4><STEAM_0:1:538382878><CT>" killed "patypa<5><STEAM_0:1:541812855><TERRORIST>" with "awp"
+L 04/09/2020 - 20:53:09: "Mcd.<4><STEAM_0:1:538382878><CT>" attacked "Rubimaister<2><STEAM_0:0:538627351><TERRORIST>" with "awp" (damage "106") (damage_armor "2") (health "-6") (armor "98")
+L 04/09/2020 - 20:53:09: "Mcd.<4><STEAM_0:1:538382878><CT>" killed "Rubimaister<2><STEAM_0:0:538627351><TERRORIST>" with "awp"
+L 04/09/2020 - 20:53:10: "Laski<3><STEAM_0:0:53940642><TERRORIST>" attacked "Rocho<6><STEAM_0:1:86787335><CT>" with "awp" (damage "106") (damage_armor "2") (health "-6") (armor "98")
+L 04/09/2020 - 20:53:10: "Laski<3><STEAM_0:0:53940642><TERRORIST>" killed "Rocho<6><STEAM_0:1:86787335><CT>" with "awp"
+L 04/09/2020 - 20:53:11: "Payvon<1><STEAM_0:1:539551953><CT>" attacked "Laski<3><STEAM_0:0:53940642><TERRORIST>" with "awp" (damage "109") (damage_armor "2") (health "-9") (armor "98")
+L 04/09/2020 - 20:53:11: "Payvon<1><STEAM_0:1:539551953><CT>" killed "Laski<3><STEAM_0:0:53940642><TERRORIST>" with "awp"
+L 04/09/2020 - 20:53:11: Team "CT" triggered "CTs_Win" (CT "7") (T "2")
+L 04/09/2020 - 20:53:11: World triggered "Round_End"
+L 04/09/2020 - 20:53:18: World triggered "Round_Start"
+L 04/09/2020 - 20:53:20: "Mcd.<4><STEAM_0:1:538382878><CT>" attacked "Laski<3><STEAM_0:0:53940642><TERRORIST>" with "awp" (damage "106") (damage_armor "2") (health "-6") (armor "98")
+L 04/09/2020 - 20:53:20: "Mcd.<4><STEAM_0:1:538382878><CT>" killed "Laski<3><STEAM_0:0:53940642><TERRORIST>" with "awp"
+L 04/09/2020 - 20:53:26: "Mcd.<4><STEAM_0:1:538382878><CT>" attacked "Rubimaister<2><STEAM_0:0:538627351><TERRORIST>" with "awp" (damage "106") (damage_armor "2") (health "-6") (armor "98")
+L 04/09/2020 - 20:53:26: "Mcd.<4><STEAM_0:1:538382878><CT>" killed "Rubimaister<2><STEAM_0:0:538627351><TERRORIST>" with "awp"
+L 04/09/2020 - 20:53:42: "patypa<5><STEAM_0:1:541812855><TERRORIST>" attacked "Payvon<1><STEAM_0:1:539551953><CT>" with "awp" (damage "111") (damage_armor "2") (health "-11") (armor "98")
+L 04/09/2020 - 20:53:42: "patypa<5><STEAM_0:1:541812855><TERRORIST>" killed "Payvon<1><STEAM_0:1:539551953><CT>" with "awp"
+L 04/09/2020 - 20:54:07: "Laski<3><STEAM_0:0:53940642><TERRORIST>" say "hermoso" (dead)
+L 04/09/2020 - 20:54:15: "Rocho<6><STEAM_0:1:86787335><CT>" attacked "patypa<5><STEAM_0:1:541812855><TERRORIST>" with "knife" (damage "55") (damage_armor "5") (health "45") (armor "95")
+L 04/09/2020 - 20:54:16: "patypa<5><STEAM_0:1:541812855><TERRORIST>" attacked "Rocho<6><STEAM_0:1:86787335><CT>" with "knife" (damage "11") (damage_armor "0") (health "89") (armor "100")
+L 04/09/2020 - 20:54:16: "patypa<5><STEAM_0:1:541812855><TERRORIST>" attacked "Rocho<6><STEAM_0:1:86787335><CT>" with "knife" (damage "12") (damage_armor "2") (health "77") (armor "98")
+L 04/09/2020 - 20:54:24: "Rocho<6><STEAM_0:1:86787335><CT>" attacked "patypa<5><STEAM_0:1:541812855><TERRORIST>" with "knife" (damage "55") (damage_armor "5") (health "-10") (armor "90")
+L 04/09/2020 - 20:54:24: "Rocho<6><STEAM_0:1:86787335><CT>" killed "patypa<5><STEAM_0:1:541812855><TERRORIST>" with "knife"
+L 04/09/2020 - 20:54:24: Team "CT" triggered "CTs_Win" (CT "8") (T "2")
+L 04/09/2020 - 20:54:24: World triggered "Round_End"
+L 04/09/2020 - 20:54:27: "Rubimaister<2><STEAM_0:0:538627351><TERRORIST>" say "jajaja" (dead)
+L 04/09/2020 - 20:54:30: "Payvon<1><STEAM_0:1:539551953><CT>" say "cobarde"
+L 04/09/2020 - 20:54:31: World triggered "Round_Start"
+L 04/09/2020 - 20:54:39: "Mcd.<4><STEAM_0:1:538382878><CT>" attacked "patypa<5><STEAM_0:1:541812855><TERRORIST>" with "awp" (damage "425") (damage_armor "6") (health "-325") (armor "94")
+L 04/09/2020 - 20:54:39: "Mcd.<4><STEAM_0:1:538382878><CT>" killed "patypa<5><STEAM_0:1:541812855><TERRORIST>" with "awp"
+L 04/09/2020 - 20:54:41: "Señor Bungle<8><STEAM_0:0:67514662><>" connected, address "201.216.223.122:54665"
+L 04/09/2020 - 20:54:42: "Señor Bungle<8><STEAM_0:0:67514662><>" STEAM USERID validated
+L 04/09/2020 - 20:54:44: "Rocho<6><STEAM_0:1:86787335><CT>" attacked "Laski<3><STEAM_0:0:53940642><TERRORIST>" with "awp" (damage "429") (damage_armor "6") (health "-329") (armor "94")
+L 04/09/2020 - 20:54:44: "Rocho<6><STEAM_0:1:86787335><CT>" killed "Laski<3><STEAM_0:0:53940642><TERRORIST>" with "awp"
+L 04/09/2020 - 20:54:49: "Payvon<1><STEAM_0:1:539551953><CT>" attacked "Rubimaister<2><STEAM_0:0:538627351><TERRORIST>" with "awp" (damage "107") (damage_armor "2") (health "-7") (armor "98")
+L 04/09/2020 - 20:54:49: "Payvon<1><STEAM_0:1:539551953><CT>" killed "Rubimaister<2><STEAM_0:0:538627351><TERRORIST>" with "awp"
+L 04/09/2020 - 20:54:49: Team "CT" triggered "CTs_Win" (CT "9") (T "2")
+L 04/09/2020 - 20:54:49: World triggered "Round_End"
+L 04/09/2020 - 20:54:56: World triggered "Round_Start"
+L 04/09/2020 - 20:54:57: "Laski<3><STEAM_0:0:53940642><TERRORIST>" attacked "Rocho<6><STEAM_0:1:86787335><CT>" with "awp" (damage "106") (damage_armor "2") (health "-6") (armor "98")
+L 04/09/2020 - 20:54:57: "Laski<3><STEAM_0:0:53940642><TERRORIST>" killed "Rocho<6><STEAM_0:1:86787335><CT>" with "awp"
+L 04/09/2020 - 20:54:58: "Mcd.<4><STEAM_0:1:538382878><CT>" attacked "Laski<3><STEAM_0:0:53940642><TERRORIST>" with "awp" (damage "132") (damage_armor "2") (health "-32") (armor "98")
+L 04/09/2020 - 20:54:58: "Mcd.<4><STEAM_0:1:538382878><CT>" killed "Laski<3><STEAM_0:0:53940642><TERRORIST>" with "awp"
+L 04/09/2020 - 20:55:00: "Mcd.<4><STEAM_0:1:538382878><CT>" attacked "Rubimaister<2><STEAM_0:0:538627351><TERRORIST>" with "awp" (damage "107") (damage_armor "2") (health "-7") (armor "98")
+L 04/09/2020 - 20:55:00: "Mcd.<4><STEAM_0:1:538382878><CT>" killed "Rubimaister<2><STEAM_0:0:538627351><TERRORIST>" with "awp"
+L 04/09/2020 - 20:55:15: "Payvon<1><STEAM_0:1:539551953><CT>" attacked "patypa<5><STEAM_0:1:541812855><TERRORIST>" with "awp" (damage "84") (damage_armor "0") (health "16") (armor "100")
+L 04/09/2020 - 20:55:20: "Payvon<1><STEAM_0:1:539551953><CT>" attacked "patypa<5><STEAM_0:1:541812855><TERRORIST>" with "awp" (damage "111") (damage_armor "2") (health "-95") (armor "98")
+L 04/09/2020 - 20:55:20: "Payvon<1><STEAM_0:1:539551953><CT>" killed "patypa<5><STEAM_0:1:541812855><TERRORIST>" with "awp"
+L 04/09/2020 - 20:55:20: Team "CT" triggered "CTs_Win" (CT "10") (T "2")
+L 04/09/2020 - 20:55:20: World triggered "Round_End"
+L 04/09/2020 - 20:55:27: World triggered "Round_Start"
+L 04/09/2020 - 20:55:36: "Laski<3><STEAM_0:0:53940642><TERRORIST>" attacked "Payvon<1><STEAM_0:1:539551953><CT>" with "awp" (damage "111") (damage_armor "2") (health "-11") (armor "98")
+L 04/09/2020 - 20:55:36: "Laski<3><STEAM_0:0:53940642><TERRORIST>" killed "Payvon<1><STEAM_0:1:539551953><CT>" with "awp"
+L 04/09/2020 - 20:55:38: "Mcd.<4><STEAM_0:1:538382878><CT>" attacked "patypa<5><STEAM_0:1:541812855><TERRORIST>" with "awp" (damage "111") (damage_armor "2") (health "-11") (armor "98")
+L 04/09/2020 - 20:55:38: "Mcd.<4><STEAM_0:1:538382878><CT>" killed "patypa<5><STEAM_0:1:541812855><TERRORIST>" with "awp"
+L 04/09/2020 - 20:55:43: "Mcd.<4><STEAM_0:1:538382878><CT>" attacked "Rubimaister<2><STEAM_0:0:538627351><TERRORIST>" with "awp" (damage "108") (damage_armor "2") (health "-8") (armor "98")
+L 04/09/2020 - 20:55:43: "Mcd.<4><STEAM_0:1:538382878><CT>" killed "Rubimaister<2><STEAM_0:0:538627351><TERRORIST>" with "awp"
+L 04/09/2020 - 20:55:50: "Mcd.<4><STEAM_0:1:538382878><CT>" attacked "Laski<3><STEAM_0:0:53940642><TERRORIST>" with "knife" (damage "55") (damage_armor "5") (health "45") (armor "95")
+L 04/09/2020 - 20:55:53: "Señor Bungle<8><STEAM_0:0:67514662><>" entered the game
+L 04/09/2020 - 20:55:54: "Mcd.<4><STEAM_0:1:538382878><CT>" attacked "Laski<3><STEAM_0:0:53940642><TERRORIST>" with "knife" (damage "55") (damage_armor "5") (health "-10") (armor "90")
+L 04/09/2020 - 20:55:54: "Mcd.<4><STEAM_0:1:538382878><CT>" killed "Laski<3><STEAM_0:0:53940642><TERRORIST>" with "knife"
+L 04/09/2020 - 20:55:54: Team "CT" triggered "CTs_Win" (CT "11") (T "2")
+L 04/09/2020 - 20:55:54: World triggered "Round_End"
+L 04/09/2020 - 20:55:55: "patypa<5><STEAM_0:1:541812855><TERRORIST>" say_team "no se habian visto jajajaa" (dead)
+L 04/09/2020 - 20:55:59: "Señor Bungle<8><STEAM_0:0:67514662><>" joined team "CT"
+L 04/09/2020 - 20:55:59: "Laski<3><STEAM_0:0:53940642><TERRORIST>" say "jajaj" (dead)
+L 04/09/2020 - 20:56:01: World triggered "Round_Start"
+L 04/09/2020 - 20:56:03: "Mcd.<4><STEAM_0:1:538382878><CT>" attacked "Rubimaister<2><STEAM_0:0:538627351><TERRORIST>" with "awp" (damage "52") (damage_armor "1") (health "48") (armor "99")
+L 04/09/2020 - 20:56:06: "Rubimaister<2><STEAM_0:0:538627351><TERRORIST>" attacked "Rocho<6><STEAM_0:1:86787335><CT>" with "awp" (damage "210") (damage_armor "3") (health "-110") (armor "97")
+L 04/09/2020 - 20:56:06: "Rubimaister<2><STEAM_0:0:538627351><TERRORIST>" killed "Rocho<6><STEAM_0:1:86787335><CT>" with "awp"
+L 04/09/2020 - 20:56:11: "Rubimaister<2><STEAM_0:0:538627351><TERRORIST>" attacked "Señor Bungle<8><STEAM_0:0:67514662><CT>" with "awp" (damage "52") (damage_armor "1") (health "48") (armor "99")
+L 04/09/2020 - 20:56:17: "Laski<3><STEAM_0:0:53940642><TERRORIST>" attacked "Señor Bungle<8><STEAM_0:0:67514662><CT>" with "awp" (damage "31") (damage_armor "1") (health "17") (armor "98")
+L 04/09/2020 - 20:56:24: "patypa<5><STEAM_0:1:541812855><TERRORIST>" attacked "Mcd.<4><STEAM_0:1:538382878><CT>" with "awp" (damage "109") (damage_armor "2") (health "-9") (armor "98")
+L 04/09/2020 - 20:56:24: "patypa<5><STEAM_0:1:541812855><TERRORIST>" killed "Mcd.<4><STEAM_0:1:538382878><CT>" with "awp"
+L 04/09/2020 - 20:56:26: "Laski<3><STEAM_0:0:53940642><TERRORIST>" attacked "Señor Bungle<8><STEAM_0:0:67514662><CT>" with "awp" (damage "210") (damage_armor "2") (health "-193") (armor "96")
+L 04/09/2020 - 20:56:26: "Laski<3><STEAM_0:0:53940642><TERRORIST>" killed "Señor Bungle<8><STEAM_0:0:67514662><CT>" with "awp"
+L 04/09/2020 - 20:56:26: "Payvon<1><STEAM_0:1:539551953><CT>" attacked "Rubimaister<2><STEAM_0:0:538627351><TERRORIST>" with "awp" (damage "432") (damage_armor "6") (health "-384") (armor "93")
+L 04/09/2020 - 20:56:26: "Payvon<1><STEAM_0:1:539551953><CT>" killed "Rubimaister<2><STEAM_0:0:538627351><TERRORIST>" with "awp"
+L 04/09/2020 - 20:56:32: "Payvon<1><STEAM_0:1:539551953><CT>" attacked "Laski<3><STEAM_0:0:53940642><TERRORIST>" with "awp" (damage "108") (damage_armor "2") (health "-8") (armor "98")
+L 04/09/2020 - 20:56:32: "Payvon<1><STEAM_0:1:539551953><CT>" killed "Laski<3><STEAM_0:0:53940642><TERRORIST>" with "awp"
+L 04/09/2020 - 20:56:36: "Mcd.<4><STEAM_0:1:538382878><CT>" say "bungle tt" (dead)
+L 04/09/2020 - 20:56:42: "Payvon<1><STEAM_0:1:539551953><CT>" attacked "patypa<5><STEAM_0:1:541812855><TERRORIST>" with "awp" (damage "136") (damage_armor "2") (health "-36") (armor "98")
+L 04/09/2020 - 20:56:42: "Payvon<1><STEAM_0:1:539551953><CT>" killed "patypa<5><STEAM_0:1:541812855><TERRORIST>" with "awp"
+L 04/09/2020 - 20:56:42: Team "CT" triggered "CTs_Win" (CT "12") (T "2")
+L 04/09/2020 - 20:56:42: World triggered "Round_End"
+L 04/09/2020 - 20:56:43: "Mcd.<4><STEAM_0:1:538382878><CT>" say "pasate" (dead)
+L 04/09/2020 - 20:56:45: "Laski<3><STEAM_0:0:53940642><TERRORIST>" say "estamos en discroddd" (dead)
+L 04/09/2020 - 20:56:49: World triggered "Round_Start"
+L 04/09/2020 - 20:56:49: "Laski<3><STEAM_0:0:53940642><TERRORIST>" say "si quieren venir a hablar"
+L 04/09/2020 - 20:56:52: "Laski<3><STEAM_0:0:53940642><TERRORIST>" say "discord"
+L 04/09/2020 - 20:56:53: "Rocho<6><STEAM_0:1:86787335><CT>" say "yendo"
+L 04/09/2020 - 20:57:01: "Mcd.<4><STEAM_0:1:538382878><CT>" attacked "patypa<5><STEAM_0:1:541812855><TERRORIST>" with "awp" (damage "109") (damage_armor "2") (health "-9") (armor "98")
+L 04/09/2020 - 20:57:01: "Mcd.<4><STEAM_0:1:538382878><CT>" killed "patypa<5><STEAM_0:1:541812855><TERRORIST>" with "awp"
+L 04/09/2020 - 20:57:03: "Señor Bungle<8><STEAM_0:0:67514662><CT>" attacked "Rubimaister<2><STEAM_0:0:538627351><TERRORIST>" with "awp" (damage "110") (damage_armor "2") (health "-10") (armor "98")
+L 04/09/2020 - 20:57:03: "Señor Bungle<8><STEAM_0:0:67514662><CT>" killed "Rubimaister<2><STEAM_0:0:538627351><TERRORIST>" with "awp"
+L 04/09/2020 - 20:57:09: "Laski<3><STEAM_0:0:53940642><TERRORIST>" attacked "Señor Bungle<8><STEAM_0:0:67514662><CT>" with "awp" (damage "432") (damage_armor "6") (health "-332") (armor "94")
+L 04/09/2020 - 20:57:09: "Laski<3><STEAM_0:0:53940642><TERRORIST>" killed "Señor Bungle<8><STEAM_0:0:67514662><CT>" with "awp"
+L 04/09/2020 - 20:57:10: "Rocho<6><STEAM_0:1:86787335><CT>" attacked "Laski<3><STEAM_0:0:53940642><TERRORIST>" with "awp" (damage "109") (damage_armor "2") (health "-9") (armor "98")
+L 04/09/2020 - 20:57:10: "Rocho<6><STEAM_0:1:86787335><CT>" killed "Laski<3><STEAM_0:0:53940642><TERRORIST>" with "awp"
+L 04/09/2020 - 20:57:10: Team "CT" triggered "CTs_Win" (CT "13") (T "2")
+L 04/09/2020 - 20:57:10: World triggered "Round_End"
+L 04/09/2020 - 20:57:17: World triggered "Round_Start"
+L 04/09/2020 - 20:57:21: "Laski<3><STEAM_0:0:53940642><TERRORIST>" attacked "Mcd.<4><STEAM_0:1:538382878><CT>" with "awp" (damage "425") (damage_armor "6") (health "-325") (armor "94")
+L 04/09/2020 - 20:57:21: "Laski<3><STEAM_0:0:53940642><TERRORIST>" killed "Mcd.<4><STEAM_0:1:538382878><CT>" with "awp"
+L 04/09/2020 - 20:57:23: "Rocho<6><STEAM_0:1:86787335><CT>" attacked "Laski<3><STEAM_0:0:53940642><TERRORIST>" with "awp" (damage "107") (damage_armor "2") (health "-7") (armor "98")
+L 04/09/2020 - 20:57:23: "Rocho<6><STEAM_0:1:86787335><CT>" killed "Laski<3><STEAM_0:0:53940642><TERRORIST>" with "awp"
+L 04/09/2020 - 20:57:25: "Payvon<1><STEAM_0:1:539551953><CT>" attacked "patypa<5><STEAM_0:1:541812855><TERRORIST>" with "awp" (damage "107") (damage_armor "2") (health "-7") (armor "98")
+L 04/09/2020 - 20:57:25: "Payvon<1><STEAM_0:1:539551953><CT>" killed "patypa<5><STEAM_0:1:541812855><TERRORIST>" with "awp"
+L 04/09/2020 - 20:57:34: "Rocho<6><STEAM_0:1:86787335><CT>" attacked "Rubimaister<2><STEAM_0:0:538627351><TERRORIST>" with "awp" (damage "436") (damage_armor "6") (health "-336") (armor "94")
+L 04/09/2020 - 20:57:34: "Rocho<6><STEAM_0:1:86787335><CT>" killed "Rubimaister<2><STEAM_0:0:538627351><TERRORIST>" with "awp"
+L 04/09/2020 - 20:57:34: Team "CT" triggered "CTs_Win" (CT "14") (T "2")
+L 04/09/2020 - 20:57:34: World triggered "Round_End"
+L 04/09/2020 - 20:57:41: World triggered "Round_Start"
+L 04/09/2020 - 20:57:42: "patypa<5><STEAM_0:1:541812855><TERRORIST>" attacked "Payvon<1><STEAM_0:1:539551953><CT>" with "awp" (damage "425") (damage_armor "6") (health "-325") (armor "94")
+L 04/09/2020 - 20:57:42: "patypa<5><STEAM_0:1:541812855><TERRORIST>" killed "Payvon<1><STEAM_0:1:539551953><CT>" with "awp"
+L 04/09/2020 - 20:57:42: "Payvon<1><STEAM_0:1:539551953><CT>" joined team "TERRORIST"
+L 04/09/2020 - 20:57:43: "Mcd.<4><STEAM_0:1:538382878><CT>" attacked "Laski<3><STEAM_0:0:53940642><TERRORIST>" with "awp" (damage "132") (damage_armor "2") (health "-32") (armor "98")
+L 04/09/2020 - 20:57:43: "Mcd.<4><STEAM_0:1:538382878><CT>" killed "Laski<3><STEAM_0:0:53940642><TERRORIST>" with "awp"
+L 04/09/2020 - 20:57:46: "Mcd.<4><STEAM_0:1:538382878><CT>" attacked "Rubimaister<2><STEAM_0:0:538627351><TERRORIST>" with "awp" (damage "106") (damage_armor "2") (health "-6") (armor "98")
+L 04/09/2020 - 20:57:46: "Mcd.<4><STEAM_0:1:538382878><CT>" killed "Rubimaister<2><STEAM_0:0:538627351><TERRORIST>" with "awp"
+L 04/09/2020 - 20:57:49: "patypa<5><STEAM_0:1:541812855><TERRORIST>" attacked "Señor Bungle<8><STEAM_0:0:67514662><CT>" with "awp" (damage "111") (damage_armor "2") (health "-11") (armor "98")
+L 04/09/2020 - 20:57:49: "patypa<5><STEAM_0:1:541812855><TERRORIST>" killed "Señor Bungle<8><STEAM_0:0:67514662><CT>" with "awp"
+L 04/09/2020 - 20:57:53: "Rubimaister<2><STEAM_0:0:538627351><TERRORIST>" disconnected
+L 04/09/2020 - 20:58:09: "Mcd.<4><STEAM_0:1:538382878><CT>" attacked "patypa<5><STEAM_0:1:541812855><TERRORIST>" with "knife" (damage "55") (damage_armor "5") (health "26") (armor "95")
+L 04/09/2020 - 20:58:11: "Mcd.<4><STEAM_0:1:538382878><CT>" attacked "patypa<5><STEAM_0:1:541812855><TERRORIST>" with "knife" (damage "55") (damage_armor "5") (health "-29") (armor "90")
+L 04/09/2020 - 20:58:11: "Mcd.<4><STEAM_0:1:538382878><CT>" killed "patypa<5><STEAM_0:1:541812855><TERRORIST>" with "knife"
+L 04/09/2020 - 20:58:11: Team "CT" triggered "CTs_Win" (CT "15") (T "2")
+L 04/09/2020 - 20:58:11: World triggered "Round_End"
+L 04/09/2020 - 20:58:18: World triggered "Round_Start"
+L 04/09/2020 - 20:58:23: "Señor Bungle<8><STEAM_0:0:67514662><CT>" attacked "Payvon<1><STEAM_0:1:539551953><TERRORIST>" with "awp" (damage "132") (damage_armor "2") (health "-32") (armor "98")
+L 04/09/2020 - 20:58:23: "Señor Bungle<8><STEAM_0:0:67514662><CT>" killed "Payvon<1><STEAM_0:1:539551953><TERRORIST>" with "awp"
+L 04/09/2020 - 20:58:26: "Rocho<6><STEAM_0:1:86787335><CT>" attacked "patypa<5><STEAM_0:1:541812855><TERRORIST>" with "awp" (damage "425") (damage_armor "6") (health "-325") (armor "94")
+L 04/09/2020 - 20:58:26: "Rocho<6><STEAM_0:1:86787335><CT>" killed "patypa<5><STEAM_0:1:541812855><TERRORIST>" with "awp"
+L 04/09/2020 - 20:58:29: "Rocho<6><STEAM_0:1:86787335><CT>" attacked "Laski<3><STEAM_0:0:53940642><TERRORIST>" with "awp" (damage "436") (damage_armor "6") (health "-336") (armor "94")
+L 04/09/2020 - 20:58:29: "Rocho<6><STEAM_0:1:86787335><CT>" killed "Laski<3><STEAM_0:0:53940642><TERRORIST>" with "awp"
+L 04/09/2020 - 20:58:29: Team "CT" triggered "CTs_Win" (CT "16") (T "2")
+L 04/09/2020 - 20:58:29: World triggered "Round_End"
+L 04/09/2020 - 20:58:36: World triggered "Round_Start"
+L 04/09/2020 - 20:58:37: "Mcd.<4><STEAM_0:1:538382878><CT>" attacked "Laski<3><STEAM_0:0:53940642><TERRORIST>" with "awp" (damage "81") (damage_armor "0") (health "19") (armor "100")
+L 04/09/2020 - 20:58:37: "Mcd.<4><STEAM_0:1:538382878><CT>" attacked "patypa<5><STEAM_0:1:541812855><TERRORIST>" with "awp" (damage "97") (damage_armor "2") (health "3") (armor "98")
+L 04/09/2020 - 20:58:38: "Señor Bungle<8><STEAM_0:0:67514662><CT>" attacked "patypa<5><STEAM_0:1:541812855><TERRORIST>" with "awp" (damage "97") (damage_armor "1") (health "-94") (armor "97")
+L 04/09/2020 - 20:58:38: "Señor Bungle<8><STEAM_0:0:67514662><CT>" killed "patypa<5><STEAM_0:1:541812855><TERRORIST>" with "awp"
+L 04/09/2020 - 20:58:47: "Señor Bungle<8><STEAM_0:0:67514662><CT>" attacked "Payvon<1><STEAM_0:1:539551953><TERRORIST>" with "awp" (damage "111") (damage_armor "2") (health "-11") (armor "98")
+L 04/09/2020 - 20:58:47: "Señor Bungle<8><STEAM_0:0:67514662><CT>" killed "Payvon<1><STEAM_0:1:539551953><TERRORIST>" with "awp"
+L 04/09/2020 - 20:58:57: "Señor Bungle<8><STEAM_0:0:67514662><CT>" attacked "Laski<3><STEAM_0:0:53940642><TERRORIST>" with "awp" (damage "111") (damage_armor "2") (health "-92") (armor "98")
+L 04/09/2020 - 20:58:57: "Señor Bungle<8><STEAM_0:0:67514662><CT>" killed "Laski<3><STEAM_0:0:53940642><TERRORIST>" with "awp"
+L 04/09/2020 - 20:58:57: Team "CT" triggered "CTs_Win" (CT "17") (T "2")
+L 04/09/2020 - 20:58:57: World triggered "Round_End"
+L 04/09/2020 - 20:59:04: World triggered "Round_Start"
+L 04/09/2020 - 20:59:06: "Laski<3><STEAM_0:0:53940642><TERRORIST>" attacked "Señor Bungle<8><STEAM_0:0:67514662><CT>" with "awp" (damage "425") (damage_armor "6") (health "-325") (armor "94")
+L 04/09/2020 - 20:59:06: "Laski<3><STEAM_0:0:53940642><TERRORIST>" killed "Señor Bungle<8><STEAM_0:0:67514662><CT>" with "awp"
+L 04/09/2020 - 20:59:11: "Rocho<6><STEAM_0:1:86787335><CT>" attacked "patypa<5><STEAM_0:1:541812855><TERRORIST>" with "awp" (damage "425") (damage_armor "6") (health "-325") (armor "94")
+L 04/09/2020 - 20:59:11: "Rocho<6><STEAM_0:1:86787335><CT>" killed "patypa<5><STEAM_0:1:541812855><TERRORIST>" with "awp"
+L 04/09/2020 - 20:59:11: "Mcd.<4><STEAM_0:1:538382878><CT>" attacked "Laski<3><STEAM_0:0:53940642><TERRORIST>" with "awp" (damage "106") (damage_armor "2") (health "-6") (armor "98")
+L 04/09/2020 - 20:59:11: "Mcd.<4><STEAM_0:1:538382878><CT>" killed "Laski<3><STEAM_0:0:53940642><TERRORIST>" with "awp"
+L 04/09/2020 - 20:59:20: "Rocho<6><STEAM_0:1:86787335><CT>" attacked "Payvon<1><STEAM_0:1:539551953><TERRORIST>" with "awp" (damage "106") (damage_armor "2") (health "-6") (armor "98")
+L 04/09/2020 - 20:59:20: "Rocho<6><STEAM_0:1:86787335><CT>" killed "Payvon<1><STEAM_0:1:539551953><TERRORIST>" with "awp"
+L 04/09/2020 - 20:59:20: Team "CT" triggered "CTs_Win" (CT "18") (T "2")
+L 04/09/2020 - 20:59:20: World triggered "Round_End"
+L 04/09/2020 - 20:59:27: World triggered "Round_Start"
+L 04/09/2020 - 20:59:30: "Rocho<6><STEAM_0:1:86787335><CT>" attacked "Payvon<1><STEAM_0:1:539551953><TERRORIST>" with "awp" (damage "52") (damage_armor "1") (health "48") (armor "99")
+L 04/09/2020 - 20:59:37: "patypa<5><STEAM_0:1:541812855><TERRORIST>" attacked "Señor Bungle<8><STEAM_0:0:67514662><CT>" with "awp" (damage "84") (damage_armor "0") (health "16") (armor "100")
+L 04/09/2020 - 20:59:37: "Rocho<6><STEAM_0:1:86787335><CT>" attacked "Payvon<1><STEAM_0:1:539551953><TERRORIST>" with "awp" (damage "107") (damage_armor "2") (health "-59") (armor "97")
+L 04/09/2020 - 20:59:37: "Rocho<6><STEAM_0:1:86787335><CT>" killed "Payvon<1><STEAM_0:1:539551953><TERRORIST>" with "awp"
+L 04/09/2020 - 20:59:39: "Rocho<6><STEAM_0:1:86787335><CT>" attacked "Laski<3><STEAM_0:0:53940642><TERRORIST>" with "awp" (damage "106") (damage_armor "2") (health "-6") (armor "98")
+L 04/09/2020 - 20:59:39: "Rocho<6><STEAM_0:1:86787335><CT>" killed "Laski<3><STEAM_0:0:53940642><TERRORIST>" with "awp"
+L 04/09/2020 - 20:59:43: "Señor Bungle<8><STEAM_0:0:67514662><CT>" attacked "patypa<5><STEAM_0:1:541812855><TERRORIST>" with "awp" (damage "108") (damage_armor "2") (health "-8") (armor "98")
+L 04/09/2020 - 20:59:43: "Señor Bungle<8><STEAM_0:0:67514662><CT>" killed "patypa<5><STEAM_0:1:541812855><TERRORIST>" with "awp"
+L 04/09/2020 - 20:59:43: Team "CT" triggered "CTs_Win" (CT "19") (T "2")
+L 04/09/2020 - 20:59:43: World triggered "Round_End"
+L 04/09/2020 - 20:59:50: World triggered "Round_Start"
+L 04/09/2020 - 20:59:53: "Payvon<1><STEAM_0:1:539551953><TERRORIST>" attacked "Mcd.<4><STEAM_0:1:538382878><CT>" with "awp" (damage "106") (damage_armor "2") (health "-6") (armor "98")
+L 04/09/2020 - 20:59:53: "Payvon<1><STEAM_0:1:539551953><TERRORIST>" killed "Mcd.<4><STEAM_0:1:538382878><CT>" with "awp"
+L 04/09/2020 - 20:59:53: "Rocho<6><STEAM_0:1:86787335><CT>" attacked "Payvon<1><STEAM_0:1:539551953><TERRORIST>" with "awp" (damage "106") (damage_armor "2") (health "-6") (armor "98")
+L 04/09/2020 - 20:59:53: "Rocho<6><STEAM_0:1:86787335><CT>" killed "Payvon<1><STEAM_0:1:539551953><TERRORIST>" with "awp"
+L 04/09/2020 - 21:00:00: "Laski<3><STEAM_0:0:53940642><TERRORIST>" attacked "Señor Bungle<8><STEAM_0:0:67514662><CT>" with "awp" (damage "106") (damage_armor "2") (health "-6") (armor "98")
+L 04/09/2020 - 21:00:00: "Laski<3><STEAM_0:0:53940642><TERRORIST>" killed "Señor Bungle<8><STEAM_0:0:67514662><CT>" with "awp"
+L 04/09/2020 - 21:00:05: "Rocho<6><STEAM_0:1:86787335><CT>" attacked "Laski<3><STEAM_0:0:53940642><TERRORIST>" with "awp" (damage "107") (damage_armor "2") (health "-7") (armor "98")
+L 04/09/2020 - 21:00:05: "Rocho<6><STEAM_0:1:86787335><CT>" killed "Laski<3><STEAM_0:0:53940642><TERRORIST>" with "awp"
+L 04/09/2020 - 21:00:36: "Rocho<6><STEAM_0:1:86787335><CT>" attacked "patypa<5><STEAM_0:1:541812855><TERRORIST>" with "knife" (damage "55") (damage_armor "5") (health "45") (armor "95")
+L 04/09/2020 - 21:00:36: "patypa<5><STEAM_0:1:541812855><TERRORIST>" attacked "Rocho<6><STEAM_0:1:86787335><CT>" with "knife" (damage "12") (damage_armor "2") (health "88") (armor "98")
+L 04/09/2020 - 21:00:38: "Rocho<6><STEAM_0:1:86787335><CT>" attacked "patypa<5><STEAM_0:1:541812855><TERRORIST>" with "knife" (damage "55") (damage_armor "5") (health "-10") (armor "90")
+L 04/09/2020 - 21:00:38: "Rocho<6><STEAM_0:1:86787335><CT>" killed "patypa<5><STEAM_0:1:541812855><TERRORIST>" with "knife"
+L 04/09/2020 - 21:00:38: Team "CT" triggered "CTs_Win" (CT "20") (T "2")
+L 04/09/2020 - 21:00:38: World triggered "Round_End"
+L 04/09/2020 - 21:00:45: World triggered "Round_Start"
+L 04/09/2020 - 21:00:50: "Señor Bungle<8><STEAM_0:0:67514662><CT>" attacked "Laski<3><STEAM_0:0:53940642><TERRORIST>" with "awp" (damage "106") (damage_armor "2") (health "-6") (armor "98")
+L 04/09/2020 - 21:00:50: "Señor Bungle<8><STEAM_0:0:67514662><CT>" killed "Laski<3><STEAM_0:0:53940642><TERRORIST>" with "awp"
+L 04/09/2020 - 21:01:03: "Mcd.<4><STEAM_0:1:538382878><CT>" attacked "Payvon<1><STEAM_0:1:539551953><TERRORIST>" with "awp" (damage "109") (damage_armor "2") (health "-9") (armor "98")
+L 04/09/2020 - 21:01:03: "Mcd.<4><STEAM_0:1:538382878><CT>" killed "Payvon<1><STEAM_0:1:539551953><TERRORIST>" with "awp"
+L 04/09/2020 - 21:01:14: "Rocho<6><STEAM_0:1:86787335><CT>" attacked "patypa<5><STEAM_0:1:541812855><TERRORIST>" with "knife" (damage "55") (damage_armor "5") (health "45") (armor "95")
+L 04/09/2020 - 21:01:15: "Rocho<6><STEAM_0:1:86787335><CT>" attacked "patypa<5><STEAM_0:1:541812855><TERRORIST>" with "knife" (damage "55") (damage_armor "5") (health "-10") (armor "90")
+L 04/09/2020 - 21:01:15: "Rocho<6><STEAM_0:1:86787335><CT>" killed "patypa<5><STEAM_0:1:541812855><TERRORIST>" with "knife"
+L 04/09/2020 - 21:01:15: Team "CT" triggered "CTs_Win" (CT "21") (T "2")
+L 04/09/2020 - 21:01:15: World triggered "Round_End"
+L 04/09/2020 - 21:01:22: World triggered "Round_Start"
+L 04/09/2020 - 21:01:31: "Laski<3><STEAM_0:0:53940642><TERRORIST>" attacked "Señor Bungle<8><STEAM_0:0:67514662><CT>" with "awp" (damage "106") (damage_armor "2") (health "-6") (armor "98")
+L 04/09/2020 - 21:01:31: "Laski<3><STEAM_0:0:53940642><TERRORIST>" killed "Señor Bungle<8><STEAM_0:0:67514662><CT>" with "awp"
+L 04/09/2020 - 21:01:34: "Rocho<6><STEAM_0:1:86787335><CT>" attacked "Laski<3><STEAM_0:0:53940642><TERRORIST>" with "awp" (damage "106") (damage_armor "2") (health "-6") (armor "98")
+L 04/09/2020 - 21:01:34: "Rocho<6><STEAM_0:1:86787335><CT>" killed "Laski<3><STEAM_0:0:53940642><TERRORIST>" with "awp"
+L 04/09/2020 - 21:01:44: "Payvon<1><STEAM_0:1:539551953><TERRORIST>" attacked "Rocho<6><STEAM_0:1:86787335><CT>" with "knife" (damage "55") (damage_armor "5") (health "45") (armor "95")
+L 04/09/2020 - 21:01:44: "Rocho<6><STEAM_0:1:86787335><CT>" attacked "Payvon<1><STEAM_0:1:539551953><TERRORIST>" with "knife" (damage "55") (damage_armor "5") (health "45") (armor "95")
+L 04/09/2020 - 21:01:45: "Payvon<1><STEAM_0:1:539551953><TERRORIST>" attacked "Rocho<6><STEAM_0:1:86787335><CT>" with "knife" (damage "55") (damage_armor "5") (health "-10") (armor "90")
+L 04/09/2020 - 21:01:45: "Payvon<1><STEAM_0:1:539551953><TERRORIST>" killed "Rocho<6><STEAM_0:1:86787335><CT>" with "knife"
+L 04/09/2020 - 21:01:51: "Mcd.<4><STEAM_0:1:538382878><CT>" attacked "patypa<5><STEAM_0:1:541812855><TERRORIST>" with "awp" (damage "110") (damage_armor "2") (health "-10") (armor "98")
+L 04/09/2020 - 21:01:51: "Mcd.<4><STEAM_0:1:538382878><CT>" killed "patypa<5><STEAM_0:1:541812855><TERRORIST>" with "awp"
+L 04/09/2020 - 21:02:08: "Mcd.<4><STEAM_0:1:538382878><CT>" attacked "Payvon<1><STEAM_0:1:539551953><TERRORIST>" with "knife" (damage "55") (damage_armor "5") (health "-10") (armor "90")
+L 04/09/2020 - 21:02:08: "Mcd.<4><STEAM_0:1:538382878><CT>" killed "Payvon<1><STEAM_0:1:539551953><TERRORIST>" with "knife"
+L 04/09/2020 - 21:02:08: Team "CT" triggered "CTs_Win" (CT "22") (T "2")
+L 04/09/2020 - 21:02:08: World triggered "Round_End"
+L 04/09/2020 - 21:02:13: "Payvon<1><STEAM_0:1:539551953><TERRORIST>" say "chau queridos"
+L 04/09/2020 - 21:02:14: "bizcOCHO<9><STEAM_0:0:41798119><>" connected, address "181.44.60.11:8260"
+L 04/09/2020 - 21:02:14: "bizcOCHO<9><STEAM_0:0:41798119><>" STEAM USERID validated
+L 04/09/2020 - 21:02:15: World triggered "Round_Start"
+L 04/09/2020 - 21:02:16: "Payvon<1><STEAM_0:1:539551953><TERRORIST>" disconnected
+L 04/09/2020 - 21:02:17: "Mcd.<4><STEAM_0:1:538382878><CT>" attacked "Laski<3><STEAM_0:0:53940642><TERRORIST>" with "awp" (damage "106") (damage_armor "2") (health "-6") (armor "98")
+L 04/09/2020 - 21:02:17: "Mcd.<4><STEAM_0:1:538382878><CT>" killed "Laski<3><STEAM_0:0:53940642><TERRORIST>" with "awp"
+L 04/09/2020 - 21:02:17: "Rocho<6><STEAM_0:1:86787335><CT>" say "adioos!"
+L 04/09/2020 - 21:02:33: "Señor Bungle<8><STEAM_0:0:67514662><CT>" attacked "patypa<5><STEAM_0:1:541812855><TERRORIST>" with "awp" (damage "110") (damage_armor "2") (health "-10") (armor "98")
+L 04/09/2020 - 21:02:33: "Señor Bungle<8><STEAM_0:0:67514662><CT>" killed "patypa<5><STEAM_0:1:541812855><TERRORIST>" with "awp"
+L 04/09/2020 - 21:02:33: Team "CT" triggered "CTs_Win" (CT "23") (T "2")
+L 04/09/2020 - 21:02:33: World triggered "Round_End"
+L 04/09/2020 - 21:02:34: "El Bromas<10><STEAM_0:1:538649250><>" connected, address "181.46.138.10:47307"
+L 04/09/2020 - 21:02:35: "El Bromas<10><STEAM_0:1:538649250><>" STEAM USERID validated
+L 04/09/2020 - 21:02:40: World triggered "Round_Start"
+L 04/09/2020 - 21:02:43: "Rocho<6><STEAM_0:1:86787335><CT>" attacked "Laski<3><STEAM_0:0:53940642><TERRORIST>" with "awp" (damage "65") (damage_armor "1") (health "35") (armor "99")
+L 04/09/2020 - 21:02:46: "Rocho<6><STEAM_0:1:86787335><CT>" attacked "patypa<5><STEAM_0:1:541812855><TERRORIST>" with "awp" (damage "106") (damage_armor "2") (health "-6") (armor "98")
+L 04/09/2020 - 21:02:46: "Rocho<6><STEAM_0:1:86787335><CT>" killed "patypa<5><STEAM_0:1:541812855><TERRORIST>" with "awp"
+L 04/09/2020 - 21:02:50: "El Bromas<10><STEAM_0:1:538649250><>" entered the game
+L 04/09/2020 - 21:02:50: "Rocho<6><STEAM_0:1:86787335><CT>" attacked "Laski<3><STEAM_0:0:53940642><TERRORIST>" with "awp" (damage "106") (damage_armor "2") (health "-71") (armor "97")
+L 04/09/2020 - 21:02:50: "Rocho<6><STEAM_0:1:86787335><CT>" killed "Laski<3><STEAM_0:0:53940642><TERRORIST>" with "awp"
+L 04/09/2020 - 21:02:50: Team "CT" triggered "CTs_Win" (CT "24") (T "2")
+L 04/09/2020 - 21:02:50: World triggered "Round_End"
+L 04/09/2020 - 21:02:57: World triggered "Round_Start"
+L 04/09/2020 - 21:03:00: "El Bromas<10><STEAM_0:1:538649250><>" joined team "TERRORIST"
+L 04/09/2020 - 21:03:04: "Rocho<6><STEAM_0:1:86787335><CT>" attacked "El Bromas<10><STEAM_0:1:538649250><TERRORIST>" with "awp" (damage "107") (damage_armor "2") (health "-7") (armor "98")
+L 04/09/2020 - 21:03:04: "Rocho<6><STEAM_0:1:86787335><CT>" killed "El Bromas<10><STEAM_0:1:538649250><TERRORIST>" with "awp"
+L 04/09/2020 - 21:03:05: "Mcd.<4><STEAM_0:1:538382878><CT>" attacked "Laski<3><STEAM_0:0:53940642><TERRORIST>" with "awp" (damage "107") (damage_armor "2") (health "-7") (armor "98")
+L 04/09/2020 - 21:03:05: "Mcd.<4><STEAM_0:1:538382878><CT>" killed "Laski<3><STEAM_0:0:53940642><TERRORIST>" with "awp"
+L 04/09/2020 - 21:03:07: "Rocho<6><STEAM_0:1:86787335><CT>" attacked "patypa<5><STEAM_0:1:541812855><TERRORIST>" with "awp" (damage "436") (damage_armor "6") (health "-336") (armor "94")
+L 04/09/2020 - 21:03:07: "Rocho<6><STEAM_0:1:86787335><CT>" killed "patypa<5><STEAM_0:1:541812855><TERRORIST>" with "awp"
+L 04/09/2020 - 21:03:07: Team "CT" triggered "CTs_Win" (CT "25") (T "2")
+L 04/09/2020 - 21:03:07: World triggered "Round_End"
+L 04/09/2020 - 21:03:14: World triggered "Round_Start"
+L 04/09/2020 - 21:03:17: "El Bromas<10><STEAM_0:1:538649250><TERRORIST>" attacked "Rocho<6><STEAM_0:1:86787335><CT>" with "awp" (damage "106") (damage_armor "2") (health "-6") (armor "98")
+L 04/09/2020 - 21:03:17: "El Bromas<10><STEAM_0:1:538649250><TERRORIST>" killed "Rocho<6><STEAM_0:1:86787335><CT>" with "awp"
+L 04/09/2020 - 21:03:23: "Laski<3><STEAM_0:0:53940642><TERRORIST>" attacked "Señor Bungle<8><STEAM_0:0:67514662><CT>" with "awp" (damage "106") (damage_armor "2") (health "-6") (armor "98")
+L 04/09/2020 - 21:03:23: "Laski<3><STEAM_0:0:53940642><TERRORIST>" killed "Señor Bungle<8><STEAM_0:0:67514662><CT>" with "awp"
+L 04/09/2020 - 21:03:30: "Mcd.<4><STEAM_0:1:538382878><CT>" attacked "El Bromas<10><STEAM_0:1:538649250><TERRORIST>" with "awp" (damage "107") (damage_armor "2") (health "-7") (armor "98")
+L 04/09/2020 - 21:03:30: "Mcd.<4><STEAM_0:1:538382878><CT>" killed "El Bromas<10><STEAM_0:1:538649250><TERRORIST>" with "awp"
+L 04/09/2020 - 21:03:36: "Laski<3><STEAM_0:0:53940642><TERRORIST>" attacked "Mcd.<4><STEAM_0:1:538382878><CT>" with "awp" (damage "106") (damage_armor "2") (health "-6") (armor "98")
+L 04/09/2020 - 21:03:36: "Laski<3><STEAM_0:0:53940642><TERRORIST>" killed "Mcd.<4><STEAM_0:1:538382878><CT>" with "awp"
+L 04/09/2020 - 21:03:36: Team "TERRORIST" triggered "Terrorists_Win" (CT "25") (T "3")
+L 04/09/2020 - 21:03:36: World triggered "Round_End"
+L 04/09/2020 - 21:03:43: World triggered "Round_Start"
+L 04/09/2020 - 21:03:47: "El Bromas<10><STEAM_0:1:538649250><TERRORIST>" attacked "Señor Bungle<8><STEAM_0:0:67514662><CT>" with "awp" (damage "106") (damage_armor "2") (health "-6") (armor "98")
+L 04/09/2020 - 21:03:47: "El Bromas<10><STEAM_0:1:538649250><TERRORIST>" killed "Señor Bungle<8><STEAM_0:0:67514662><CT>" with "awp"
+L 04/09/2020 - 21:03:49: "Mcd.<4><STEAM_0:1:538382878><CT>" attacked "Laski<3><STEAM_0:0:53940642><TERRORIST>" with "awp" (damage "425") (damage_armor "6") (health "-325") (armor "94")
+L 04/09/2020 - 21:03:49: "Mcd.<4><STEAM_0:1:538382878><CT>" killed "Laski<3><STEAM_0:0:53940642><TERRORIST>" with "awp"
+L 04/09/2020 - 21:03:51: "triple_de_miga<11><STEAM_0:0:479244024><>" connected, address "131.225.37.9:27005"
+L 04/09/2020 - 21:03:51: "triple_de_miga<11><STEAM_0:0:479244024><>" STEAM USERID validated
+L 04/09/2020 - 21:03:58: "triple_de_miga<11><STEAM_0:0:479244024><>" entered the game
+L 04/09/2020 - 21:04:01: "triple_de_miga<11><STEAM_0:0:479244024><>" joined team "TERRORIST"
+L 04/09/2020 - 21:04:02: "Mcd.<4><STEAM_0:1:538382878><CT>" attacked "triple_de_miga<11><STEAM_0:0:479244024><TERRORIST>" with "awp" (damage "110") (damage_armor "0") (health "-10") (armor "0")
+L 04/09/2020 - 21:04:02: "Mcd.<4><STEAM_0:1:538382878><CT>" killed "triple_de_miga<11><STEAM_0:0:479244024><TERRORIST>" with "awp"
+L 04/09/2020 - 21:04:13: "Rocho<6><STEAM_0:1:86787335><CT>" attacked "El Bromas<10><STEAM_0:1:538649250><TERRORIST>" with "awp" (damage "109") (damage_armor "2") (health "-9") (armor "98")
+L 04/09/2020 - 21:04:13: "Rocho<6><STEAM_0:1:86787335><CT>" killed "El Bromas<10><STEAM_0:1:538649250><TERRORIST>" with "awp"
+L 04/09/2020 - 21:04:19: "Rocho<6><STEAM_0:1:86787335><CT>" attacked "patypa<5><STEAM_0:1:541812855><TERRORIST>" with "awp" (damage "109") (damage_armor "2") (health "-9") (armor "98")
+L 04/09/2020 - 21:04:19: "Rocho<6><STEAM_0:1:86787335><CT>" killed "patypa<5><STEAM_0:1:541812855><TERRORIST>" with "awp"
+L 04/09/2020 - 21:04:19: Team "CT" triggered "CTs_Win" (CT "26") (T "3")
+L 04/09/2020 - 21:04:19: World triggered "Round_End"
+L 04/09/2020 - 21:04:26: World triggered "Round_Start"
+L 04/09/2020 - 21:04:28: "Señor Bungle<8><STEAM_0:0:67514662><CT>" attacked "El Bromas<10><STEAM_0:1:538649250><TERRORIST>" with "awp" (damage "132") (damage_armor "2") (health "-32") (armor "98")
+L 04/09/2020 - 21:04:28: "Señor Bungle<8><STEAM_0:0:67514662><CT>" killed "El Bromas<10><STEAM_0:1:538649250><TERRORIST>" with "awp"
+L 04/09/2020 - 21:04:30: "Señor Bungle<8><STEAM_0:0:67514662><CT>" attacked "triple_de_miga<11><STEAM_0:0:479244024><TERRORIST>" with "awp" (damage "106") (damage_armor "2") (health "-6") (armor "98")
+L 04/09/2020 - 21:04:30: "Señor Bungle<8><STEAM_0:0:67514662><CT>" killed "triple_de_miga<11><STEAM_0:0:479244024><TERRORIST>" with "awp"
+L 04/09/2020 - 21:04:34: "Laski<3><STEAM_0:0:53940642><TERRORIST>" attacked "Mcd.<4><STEAM_0:1:538382878><CT>" with "awp" (damage "425") (damage_armor "6") (health "-325") (armor "94")
+L 04/09/2020 - 21:04:34: "Laski<3><STEAM_0:0:53940642><TERRORIST>" killed "Mcd.<4><STEAM_0:1:538382878><CT>" with "awp"
+L 04/09/2020 - 21:04:35: "patypa<5><STEAM_0:1:541812855><TERRORIST>" attacked "Señor Bungle<8><STEAM_0:0:67514662><CT>" with "awp" (damage "436") (damage_armor "6") (health "-336") (armor "94")
+L 04/09/2020 - 21:04:35: "patypa<5><STEAM_0:1:541812855><TERRORIST>" killed "Señor Bungle<8><STEAM_0:0:67514662><CT>" with "awp"
+L 04/09/2020 - 21:05:04: "Laski<3><STEAM_0:0:53940642><TERRORIST>" attacked "Rocho<6><STEAM_0:1:86787335><CT>" with "awp" (damage "107") (damage_armor "2") (health "-7") (armor "98")
+L 04/09/2020 - 21:05:04: "Laski<3><STEAM_0:0:53940642><TERRORIST>" killed "Rocho<6><STEAM_0:1:86787335><CT>" with "awp"
+L 04/09/2020 - 21:05:04: Team "TERRORIST" triggered "Terrorists_Win" (CT "26") (T "4")
+L 04/09/2020 - 21:05:04: World triggered "Round_End"
+L 04/09/2020 - 21:05:11: World triggered "Round_Start"
+L 04/09/2020 - 21:05:12: "Mcd.<4><STEAM_0:1:538382878><CT>" attacked "El Bromas<10><STEAM_0:1:538649250><TERRORIST>" with "awp" (damage "425") (damage_armor "6") (health "-325") (armor "94")
+L 04/09/2020 - 21:05:12: "Mcd.<4><STEAM_0:1:538382878><CT>" killed "El Bromas<10><STEAM_0:1:538649250><TERRORIST>" with "awp"
+L 04/09/2020 - 21:05:15: "Mcd.<4><STEAM_0:1:538382878><CT>" attacked "Laski<3><STEAM_0:0:53940642><TERRORIST>" with "awp" (damage "51") (damage_armor "1") (health "49") (armor "99")
+L 04/09/2020 - 21:05:15: "Rocho<6><STEAM_0:1:86787335><CT>" attacked "Laski<3><STEAM_0:0:53940642><TERRORIST>" with "awp" (damage "106") (damage_armor "2") (health "-57") (armor "97")
+L 04/09/2020 - 21:05:15: "Rocho<6><STEAM_0:1:86787335><CT>" killed "Laski<3><STEAM_0:0:53940642><TERRORIST>" with "awp"
+L 04/09/2020 - 21:05:19: "Mcd.<4><STEAM_0:1:538382878><CT>" attacked "triple_de_miga<11><STEAM_0:0:479244024><TERRORIST>" with "awp" (damage "107") (damage_armor "2") (health "-7") (armor "98")
+L 04/09/2020 - 21:05:19: "Mcd.<4><STEAM_0:1:538382878><CT>" killed "triple_de_miga<11><STEAM_0:0:479244024><TERRORIST>" with "awp"
+L 04/09/2020 - 21:05:38: "bizcOCHO<9><STEAM_0:0:41798119><>" entered the game
+L 04/09/2020 - 21:05:43: "bizcOCHO<9><STEAM_0:0:41798119><>" joined team "CT"
+L 04/09/2020 - 21:05:55: "triple_de_miga<11><STEAM_0:0:479244024><TERRORIST>" say "itaalyyyyy" (dead)
+L 04/09/2020 - 21:06:00: "patypa<5><STEAM_0:1:541812855><TERRORIST>" attacked "Mcd.<4><STEAM_0:1:538382878><CT>" with "awp" (damage "111") (damage_armor "2") (health "-11") (armor "98")
+L 04/09/2020 - 21:06:00: "patypa<5><STEAM_0:1:541812855><TERRORIST>" killed "Mcd.<4><STEAM_0:1:538382878><CT>" with "awp"
+L 04/09/2020 - 21:06:00: Server cvar "amx_nextmap" = "cs_italy"
+L 04/09/2020 - 21:06:01: "Señor Bungle<8><STEAM_0:0:67514662><CT>" attacked "patypa<5><STEAM_0:1:541812855><TERRORIST>" with "knife" (damage "12") (damage_armor "2") (health "88") (armor "98")
+L 04/09/2020 - 21:06:01: "Señor Bungle<8><STEAM_0:0:67514662><CT>" attacked "patypa<5><STEAM_0:1:541812855><TERRORIST>" with "knife" (damage "12") (damage_armor "1") (health "76") (armor "97")
+L 04/09/2020 - 21:06:01: "Señor Bungle<8><STEAM_0:0:67514662><CT>" attacked "patypa<5><STEAM_0:1:541812855><TERRORIST>" with "knife" (damage "12") (damage_armor "1") (health "64") (armor "96")
+L 04/09/2020 - 21:06:02: "Señor Bungle<8><STEAM_0:0:67514662><CT>" attacked "patypa<5><STEAM_0:1:541812855><TERRORIST>" with "knife" (damage "12") (damage_armor "1") (health "52") (armor "95")
+L 04/09/2020 - 21:06:02: "Señor Bungle<8><STEAM_0:0:67514662><CT>" attacked "patypa<5><STEAM_0:1:541812855><TERRORIST>" with "knife" (damage "12") (damage_armor "1") (health "40") (armor "94")
+L 04/09/2020 - 21:06:03: "Señor Bungle<8><STEAM_0:0:67514662><CT>" attacked "patypa<5><STEAM_0:1:541812855><TERRORIST>" with "knife" (damage "12") (damage_armor "1") (health "28") (armor "93")
+L 04/09/2020 - 21:06:03: "Señor Bungle<8><STEAM_0:0:67514662><CT>" attacked "patypa<5><STEAM_0:1:541812855><TERRORIST>" with "knife" (damage "12") (damage_armor "1") (health "16") (armor "92")
+L 04/09/2020 - 21:06:04: "Señor Bungle<8><STEAM_0:0:67514662><CT>" attacked "patypa<5><STEAM_0:1:541812855><TERRORIST>" with "knife" (damage "12") (damage_armor "1") (health "4") (armor "91")
+L 04/09/2020 - 21:06:04: "patypa<5><STEAM_0:1:541812855><TERRORIST>" attacked "Señor Bungle<8><STEAM_0:0:67514662><CT>" with "awp" (damage "111") (damage_armor "2") (health "-11") (armor "98")
+L 04/09/2020 - 21:06:04: "patypa<5><STEAM_0:1:541812855><TERRORIST>" killed "Señor Bungle<8><STEAM_0:0:67514662><CT>" with "awp"
+L 04/09/2020 - 21:06:08: "Mcd.<4><STEAM_0:1:538382878><CT>" say_team ".." (dead)
+L 04/09/2020 - 21:06:12: "bizcOCHO<9><STEAM_0:0:41798119><CT>" say_team "vamos muchachooos" (dead)
+L 04/09/2020 - 21:06:15: "Rocho<6><STEAM_0:1:86787335><CT>" attacked "patypa<5><STEAM_0:1:541812855><TERRORIST>" with "awp" (damage "138") (damage_armor "2") (health "-134") (armor "89")
+L 04/09/2020 - 21:06:15: "Rocho<6><STEAM_0:1:86787335><CT>" killed "patypa<5><STEAM_0:1:541812855><TERRORIST>" with "awp"
+L 04/09/2020 - 21:06:15: Team "CT" triggered "CTs_Win" (CT "27") (T "4")
+L 04/09/2020 - 21:06:15: World triggered "Round_End"
+L 04/09/2020 - 21:06:22: World triggered "Round_Start"
+L 04/09/2020 - 21:06:22: "triple_de_miga<11><STEAM_0:0:479244024><TERRORIST>" say "/timeleft"
+L 04/09/2020 - 21:06:24: "patypa<5><STEAM_0:1:541812855><TERRORIST>" disconnected
+L 04/09/2020 - 21:06:24: "El Bromas<10><STEAM_0:1:538649250><TERRORIST>" attacked "Señor Bungle<8><STEAM_0:0:67514662><CT>" with "awp" (damage "106") (damage_armor "2") (health "-6") (armor "98")
+L 04/09/2020 - 21:06:24: "El Bromas<10><STEAM_0:1:538649250><TERRORIST>" killed "Señor Bungle<8><STEAM_0:0:67514662><CT>" with "awp"
+L 04/09/2020 - 21:06:25: "Rocho<6><STEAM_0:1:86787335><CT>" say "timeleft"
+L 04/09/2020 - 21:06:30: "El Bromas<10><STEAM_0:1:538649250><TERRORIST>" attacked "Mcd.<4><STEAM_0:1:538382878><CT>" with "awp" (damage "106") (damage_armor "2") (health "-6") (armor "98")
+L 04/09/2020 - 21:06:30: "El Bromas<10><STEAM_0:1:538649250><TERRORIST>" killed "Mcd.<4><STEAM_0:1:538382878><CT>" with "awp"
+L 04/09/2020 - 21:06:33: "triple_de_miga<11><STEAM_0:0:479244024><TERRORIST>" attacked "Rocho<6><STEAM_0:1:86787335><CT>" with "awp" (damage "107") (damage_armor "2") (health "-7") (armor "98")
+L 04/09/2020 - 21:06:33: "triple_de_miga<11><STEAM_0:0:479244024><TERRORIST>" killed "Rocho<6><STEAM_0:1:86787335><CT>" with "awp"
+L 04/09/2020 - 21:06:57: "bizcOCHO<9><STEAM_0:0:41798119><CT>" attacked "triple_de_miga<11><STEAM_0:0:479244024><TERRORIST>" with "awp" (damage "109") (damage_armor "2") (health "-9") (armor "98")
+L 04/09/2020 - 21:06:57: "bizcOCHO<9><STEAM_0:0:41798119><CT>" killed "triple_de_miga<11><STEAM_0:0:479244024><TERRORIST>" with "awp"
+L 04/09/2020 - 21:06:58: "El Bromas<10><STEAM_0:1:538649250><TERRORIST>" attacked "bizcOCHO<9><STEAM_0:0:41798119><CT>" with "awp" (damage "110") (damage_armor "2") (health "-10") (armor "98")
+L 04/09/2020 - 21:06:58: "El Bromas<10><STEAM_0:1:538649250><TERRORIST>" killed "bizcOCHO<9><STEAM_0:0:41798119><CT>" with "awp"
+L 04/09/2020 - 21:06:58: Team "TERRORIST" triggered "Terrorists_Win" (CT "27") (T "5")
+L 04/09/2020 - 21:06:58: World triggered "Round_End"
+L 04/09/2020 - 21:07:02: "Laski<3><STEAM_0:0:53940642><TERRORIST>" say "vengan a discorrrd"
+L 04/09/2020 - 21:07:05: World triggered "Round_Start"
+L 04/09/2020 - 21:07:09: "Señor Bungle<8><STEAM_0:0:67514662><CT>" attacked "Laski<3><STEAM_0:0:53940642><TERRORIST>" with "awp" (damage "132") (damage_armor "2") (health "-32") (armor "98")
+L 04/09/2020 - 21:07:09: "Señor Bungle<8><STEAM_0:0:67514662><CT>" killed "Laski<3><STEAM_0:0:53940642><TERRORIST>" with "awp"
+L 04/09/2020 - 21:07:11: "triple_de_miga<11><STEAM_0:0:479244024><TERRORIST>" attacked "bizcOCHO<9><STEAM_0:0:41798119><CT>" with "awp" (damage "106") (damage_armor "2") (health "-6") (armor "98")
+L 04/09/2020 - 21:07:11: "triple_de_miga<11><STEAM_0:0:479244024><TERRORIST>" killed "bizcOCHO<9><STEAM_0:0:41798119><CT>" with "awp"
+L 04/09/2020 - 21:07:12: "Mcd.<4><STEAM_0:1:538382878><CT>" attacked "triple_de_miga<11><STEAM_0:0:479244024><TERRORIST>" with "awp" (damage "106") (damage_armor "2") (health "-6") (armor "98")
+L 04/09/2020 - 21:07:12: "Mcd.<4><STEAM_0:1:538382878><CT>" killed "triple_de_miga<11><STEAM_0:0:479244024><TERRORIST>" with "awp"
+L 04/09/2020 - 21:07:15: "Señor Bungle<8><STEAM_0:0:67514662><CT>" attacked "El Bromas<10><STEAM_0:1:538649250><TERRORIST>" with "awp" (damage "106") (damage_armor "2") (health "-6") (armor "98")
+L 04/09/2020 - 21:07:15: "Señor Bungle<8><STEAM_0:0:67514662><CT>" killed "El Bromas<10><STEAM_0:1:538649250><TERRORIST>" with "awp"
+L 04/09/2020 - 21:07:15: Team "CT" triggered "CTs_Win" (CT "28") (T "5")
+L 04/09/2020 - 21:07:15: World triggered "Round_End"
+L 04/09/2020 - 21:07:22: World triggered "Round_Start"
+L 04/09/2020 - 21:07:27: "triple_de_miga<11><STEAM_0:0:479244024><TERRORIST>" attacked "bizcOCHO<9><STEAM_0:0:41798119><CT>" with "awp" (damage "106") (damage_armor "2") (health "-6") (armor "98")
+L 04/09/2020 - 21:07:27: "triple_de_miga<11><STEAM_0:0:479244024><TERRORIST>" killed "bizcOCHO<9><STEAM_0:0:41798119><CT>" with "awp"
+L 04/09/2020 - 21:07:28: "El Bromas<10><STEAM_0:1:538649250><TERRORIST>" attacked "Señor Bungle<8><STEAM_0:0:67514662><CT>" with "awp" (damage "429") (damage_armor "6") (health "-329") (armor "94")
+L 04/09/2020 - 21:07:28: "El Bromas<10><STEAM_0:1:538649250><TERRORIST>" killed "Señor Bungle<8><STEAM_0:0:67514662><CT>" with "awp"
+L 04/09/2020 - 21:07:31: "El Bromas<10><STEAM_0:1:538649250><TERRORIST>" attacked "Rocho<6><STEAM_0:1:86787335><CT>" with "awp" (damage "81") (damage_armor "0") (health "19") (armor "100")
+L 04/09/2020 - 21:07:37: "Rocho<6><STEAM_0:1:86787335><CT>" attacked "El Bromas<10><STEAM_0:1:538649250><TERRORIST>" with "awp" (damage "107") (damage_armor "2") (health "-7") (armor "98")
+L 04/09/2020 - 21:07:37: "Rocho<6><STEAM_0:1:86787335><CT>" killed "El Bromas<10><STEAM_0:1:538649250><TERRORIST>" with "awp"
+L 04/09/2020 - 21:07:39: "Mcd.<4><STEAM_0:1:538382878><CT>" attacked "triple_de_miga<11><STEAM_0:0:479244024><TERRORIST>" with "awp" (damage "106") (damage_armor "2") (health "-6") (armor "98")
+L 04/09/2020 - 21:07:39: "Mcd.<4><STEAM_0:1:538382878><CT>" killed "triple_de_miga<11><STEAM_0:0:479244024><TERRORIST>" with "awp"
+L 04/09/2020 - 21:07:41: "Mcd.<4><STEAM_0:1:538382878><CT>" attacked "Laski<3><STEAM_0:0:53940642><TERRORIST>" with "awp" (damage "52") (damage_armor "1") (health "48") (armor "99")
+L 04/09/2020 - 21:07:46: Team "CT" scored "28" with "4" players
+L 04/09/2020 - 21:07:46: Team "TERRORIST" scored "5" with "3" players
+L 04/09/2020 - 21:07:46: Server cvar "mp_chattime" = "7"
+L 04/09/2020 - 21:07:51: Server cvar "mp_chattime" = "5"
+L 04/09/2020 - 21:07:51: [META] ini: Begin re-reading plugins list: /opt/hlds/cstrike/addons/metamod/plugins.ini
+L 04/09/2020 - 21:07:51: [META] ini: Read plugin config for: AMX Mod X
+L 04/09/2020 - 21:07:51: [META] ini: Read plugin config for: dproto_EF
+L 04/09/2020 - 21:07:51: [META] ini: Finished reading plugins list: /opt/hlds/cstrike/addons/metamod/plugins.ini; Found 2 plugins
+L 04/09/2020 - 21:07:51: [META] dll: Updating plugins...
+L 04/09/2020 - 21:07:51: [META] dll: Finished updating 5 plugins; kept 1, loaded 0, unloaded 0, reloaded 0, delayed 0
+L 04/09/2020 - 21:07:51: Log file closed

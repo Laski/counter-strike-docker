@@ -29,7 +29,7 @@ class MatchInProgress:
     """
     A match is a sequence of rounds happening in a given map.
     This represents a match that hasn't ended yet.
-    It's useful to construct MatchReport objects while parsing a log file.
+    It's useful to construct MatchReports while parsing a log file.
     """
 
     def __init__(self):
@@ -124,7 +124,7 @@ class MatchReport:
         return (event for round in self.get_rounds() for event in round.get_events())
 
 
-class RoundReport(object):
+class RoundReport:
     def __init__(self, start_time, end_time, events):
         self._start_time = start_time
         self._end_time = end_time
@@ -138,3 +138,12 @@ class RoundReport(object):
 
     def get_events(self):
         return self._events
+
+
+class MatchReportFactory:
+    def from_event_list(self, events):
+        match = MatchInProgress()
+        for event in events:
+            event.impact_match(match)
+        assert match.has_ended()
+        return match.get_match_report()

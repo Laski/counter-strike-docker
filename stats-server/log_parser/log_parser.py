@@ -1,9 +1,11 @@
 import datetime
+import logging
 import re
 from typing import List
 
+from entity import GameEntity
 from event import Event
-from match import MatchInProgress
+from match import MatchReportFactory
 
 
 class UnhandledLine(Exception):
@@ -14,9 +16,12 @@ class EventFactory(object):
     def get_regex_event_mapping(self):
         return {event_type.REGEX: event_type for event_type in Event.__subclasses__()}
 
+    def get_regex_game_entity_mapping(self):
+        return {event_type.REGEX: event_type for event_type in GameEntity.__subclasses__()}
+
     def from_log_line(self, line):
         for regex, event_type in self.get_regex_event_mapping().items():
-            regex_match = re.search(regex, line)
+            regex_match = regex.search(line)
             if regex_match:
                 timestamp = self._get_timestamp_from_line(line)
                 event_data = self._get_data_from(regex_match)
@@ -31,16 +36,21 @@ class EventFactory(object):
 
     def _get_data_from(self, match):
         # convert the match object into a dictionary with the key/values of the matched groups
-        return {key: match[key] for key in match.re.groupindex}
+        data = {}
+        for key in match.re.groupindex:
+            value = match[key]
+            data[key] = self._cast_to_correct_type(value)
+        return data
 
-
-class MatchReportFactory(object):
-    def from_event_list(self, events):
-        match = MatchInProgress()
-        for event in events:
-            event.impact_match(match)
-        assert match.has_ended()
-        return match.get_match_report()
+    def _cast_to_correct_type(self, value):
+        for regex, game_entity_type in self.get_regex_game_entity_mapping().items():
+            regex_match = regex.search(value)
+            if regex_match:
+                entity_data = self._get_data_from(regex_match)
+                entity = game_entity_type(**entity_data)
+                return entity
+        # no regex match found
+        return value
 
 
 class LogParser:
@@ -74,6 +84,7 @@ class LogParser:
                 event = self._parse_line(line)
                 events.append(event)
             except UnhandledLine:
+                logging.debug(f"Ignoring line: {line}")
                 continue
         return events
 

@@ -32,7 +32,7 @@ class Event(ABC):
 
 
 class MapLoadingEvent(Event):
-    REGEX = re.compile(r'Loading map \"(?P<map_name>.*)\"\n')
+    REGEX = re.compile(r'Loading map \"(?P<map_name>.*)\"')
 
     def __init__(self, timestamp, map_name: str):
         super().__init__(timestamp)
@@ -47,7 +47,7 @@ class MapLoadingEvent(Event):
 
 
 class RoundStartEvent(Event):
-    REGEX = re.compile(r'World triggered "Round_Start"\n')
+    REGEX = re.compile(r'World triggered "Round_Start"')
 
     def impact_match(self, match):
         match.start_new_round()
@@ -55,7 +55,7 @@ class RoundStartEvent(Event):
 
 
 class RoundEndEvent(Event):
-    REGEX = re.compile(r'World triggered "Round_End"\n')
+    REGEX = re.compile(r'World triggered "Round_End"')
 
     def impact_match(self, match):
         match.record_round_event(self)
@@ -64,8 +64,8 @@ class RoundEndEvent(Event):
 
 class AttackEvent(Event):
     REGEX = re.compile(
-        r'"(?P<attacker>.+)" attacked "(?P<victim>.+)" with "(?P<weapon>.+)" \(damage "(?P<damage>\d+)"\) '
-        r'\(damage_armor "(?P<damage_armor>\d+)"\) \(health "(?P<health>.+)"\) \(armor "(?P<armor>.+)"\)\n'
+        r'"(?P<attacker>.+)" attacked "(?P<victim>.+)" (?P<weapon>with "\w+") \(damage "(?P<damage>\d+)"\) '
+        r'\(damage_armor "(?P<damage_armor>\d+)"\) \(health "(?P<health>-?\d+)"\) \(armor "(?P<armor>-?\d+)"\)'
     )
 
     def __init__(self, timestamp, attacker, victim, weapon, damage, damage_armor, health, armor):
@@ -84,6 +84,9 @@ class AttackEvent(Event):
     def get_attacker(self):
         return self._attacker
 
+    def get_weapon(self):
+        return self._weapon
+
     def impact_match(self, match: MatchInProgress):
         match.impact_current_round_with(self)
 
@@ -93,7 +96,7 @@ class AttackEvent(Event):
 
 class KillEvent(Event):
     REGEX = re.compile(
-        r'"(?P<attacker>.+)" killed "(?P<victim>.+)" with "(?P<weapon>.+)"\n'
+        r'"(?P<attacker>.+)" killed "(?P<victim>.+)" (?P<weapon>with "\w+")'
     )
 
     def __init__(self, timestamp, attacker, victim, weapon):
@@ -126,3 +129,12 @@ class MatchEndEvent(Event):
     def impact_match(self, match):
         match.record_match_event(self)
         match.end()
+
+
+class ServerEvent(Event):
+    REGEX = re.compile(
+        r'Server'
+    )
+
+    def impact_match(self, match):
+        pass  # ignore

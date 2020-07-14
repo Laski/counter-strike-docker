@@ -1,5 +1,6 @@
 import re
 from abc import ABC
+from typing import Optional, Pattern
 
 
 class GameEntity(ABC):
@@ -9,7 +10,9 @@ class GameEntity(ABC):
     For example, player and weapons are game entities.
     """
 
-    REGEX = None  # Useful to know how to construct the entity from a logline
+    REGEX: Optional[
+        Pattern[str]
+    ] = None  # Useful to know how to construct the entity from a logline
 
 
 class Player(GameEntity):

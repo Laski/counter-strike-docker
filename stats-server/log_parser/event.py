@@ -1,7 +1,11 @@
 import re
 from abc import ABC
+from typing import Optional, Pattern, TYPE_CHECKING
 
-from match import MatchInProgress, RoundInProgress
+if TYPE_CHECKING:
+    from match import MatchInProgress, RoundInProgress
+    from entity import Player
+    from report import PlayerStats
 
 
 class Event(ABC):
@@ -11,7 +15,7 @@ class Event(ABC):
     An event knows how to impact an MatchInProgress and change its state.
     """
 
-    REGEX = None  # Useful to know how to construct the event from a logline
+    REGEX: Optional[Pattern[str]] = None  # Useful to know how to construct the event from a logline
 
     # I know coupling an event with its string representation in a logfile sounds wrong.
     # But it's useful to have it near the __init__, and seems better than duplicating the event hierarchy elsewhere.
@@ -23,13 +27,13 @@ class Event(ABC):
     def get_timestamp(self):
         return self._timestamp
 
-    def impact_match(self, match: MatchInProgress):
+    def impact_match(self, match: 'MatchInProgress'):
         raise NotImplementedError("Subclass responsibility")
 
-    def impact_round(self, round: RoundInProgress):
+    def impact_round(self, round: 'RoundInProgress'):
         raise NotImplementedError("This event does not know how to impact a round")
 
-    def impact_player_stats(self, player: "Player", stats: "PlayerStats"):
+    def impact_player_stats(self, player: 'Player', stats: 'PlayerStats'):
         pass  # subclass may override this
 
     def is_attack(self):
@@ -49,7 +53,7 @@ class MapLoadingEvent(Event):
     def get_map_name(self) -> str:
         return self._map_name
 
-    def impact_match(self, match: MatchInProgress):
+    def impact_match(self, match: 'MatchInProgress'):
         match.set_map_name(self.get_map_name())
         match.record_match_event(self)
 
@@ -57,7 +61,7 @@ class MapLoadingEvent(Event):
 class RoundStartEvent(Event):
     REGEX = re.compile(r'World triggered "Round_Start"')
 
-    def impact_match(self, match: MatchInProgress):
+    def impact_match(self, match: 'MatchInProgress'):
         match.start_new_round()
         match.record_round_event(self)
 
@@ -65,7 +69,7 @@ class RoundStartEvent(Event):
 class RoundEndEvent(Event):
     REGEX = re.compile(r'World triggered "Round_End"|World triggered "Restart_Round_')
 
-    def impact_match(self, match: MatchInProgress):
+    def impact_match(self, match: 'MatchInProgress'):
         match.record_round_event(self)
         match.end_current_round()
 
@@ -77,7 +81,7 @@ class AttackEvent(Event):
     )
 
     def __init__(
-        self, timestamp, attacker, victim, weapon, damage, damage_armor, health, armor
+            self, timestamp, attacker, victim, weapon, damage, damage_armor, health, armor
     ):
         super().__init__(timestamp)
         self._attacker = attacker
@@ -100,13 +104,13 @@ class AttackEvent(Event):
     def get_victim(self):
         return self._victim
 
-    def impact_match(self, match: MatchInProgress):
+    def impact_match(self, match: 'MatchInProgress'):
         match.impact_current_round_with(self)
 
-    def impact_round(self, round: RoundInProgress):
+    def impact_round(self, round: 'RoundInProgress'):
         round.record_event(self)
 
-    def impact_player_stats(self, player: "Player", stats: "PlayerStats"):
+    def impact_player_stats(self, player: 'Player', stats: 'PlayerStats'):
         if player == self._attacker:
             stats.damage_inflicted += self._damage
             stats.damage_inflicted_by_weapon[self._weapon] += self._damage
@@ -134,13 +138,13 @@ class KillEvent(Event):
     def get_attacker(self):
         return self._attacker
 
-    def impact_match(self, match: MatchInProgress):
+    def impact_match(self, match: 'MatchInProgress'):
         match.impact_current_round_with(self)
 
-    def impact_round(self, round: RoundInProgress):
+    def impact_round(self, round: 'RoundInProgress'):
         round.record_event(self)
 
-    def impact_player_stats(self, player: "Player", stats: "PlayerStats"):
+    def impact_player_stats(self, player: 'Player', stats: 'PlayerStats'):
         if player == self._attacker:
             stats.kills += 1
         if player == self._victim:
@@ -150,7 +154,7 @@ class KillEvent(Event):
 class MatchStartedEvent(Event):
     REGEX = re.compile(r'World triggered "Game_Commencing"')
 
-    def impact_match(self, match: MatchInProgress):
+    def impact_match(self, match: 'MatchInProgress'):
         match.record_match_event(self)
         match.start()
 
@@ -158,7 +162,7 @@ class MatchStartedEvent(Event):
 class MatchEndEvent(Event):
     REGEX = re.compile(r'Team "CT" scored|Log file closed')
 
-    def impact_match(self, match: MatchInProgress):
+    def impact_match(self, match: 'MatchInProgress'):
         match.record_match_event(self)
         match.end()
 
@@ -171,7 +175,7 @@ class PlayerJoinsTeamEvent(Event):
         self._player = player
         self._team = team
 
-    def impact_match(self, match: MatchInProgress):
+    def impact_match(self, match: 'MatchInProgress'):
         match.record_match_event(self)
         match.add_player_to_team(self._team, self._player)
 
@@ -183,7 +187,7 @@ class PlayerDisconnectsEvent(Event):
         super().__init__(timestamp)
         self._player = player
 
-    def impact_match(self, match: MatchInProgress):
+    def impact_match(self, match: 'MatchInProgress'):
         match.record_match_event(self)
         match.remove_player_if_present(self._player)
 
@@ -195,15 +199,15 @@ class TeamWinEvent(Event):
         super().__init__(timestamp)
         self._team = team
 
-    def impact_match(self, match: MatchInProgress):
+    def impact_match(self, match: 'MatchInProgress'):
         match.impact_current_round_with(self)
 
-    def impact_round(self, round: RoundInProgress):
+    def impact_round(self, round: 'RoundInProgress'):
         round.set_winner_team(self._team)
 
 
 class ServerEvent(Event):
     REGEX = re.compile(r"Server")
 
-    def impact_match(self, match: MatchInProgress):
+    def impact_match(self, match: 'MatchInProgress'):
         pass  # ignore

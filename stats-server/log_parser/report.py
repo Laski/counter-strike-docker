@@ -5,7 +5,8 @@ from typing import Dict, List, Optional, Tuple
 
 from frozendict import frozendict
 
-from entity import CT_team, Player, Team, Terrorist_team
+from entity import CT_team, Player, Team, Terrorist_team, Weapon
+from event import Event
 
 
 @dataclass
@@ -24,14 +25,14 @@ class RoundReport:
         self,
         start_time: datetime.datetime,
         end_time: datetime.datetime,
-        events: List["Event"],
+        events: List[Event],
         team_composition: Dict[Team, List[Player]],
         winner_team: Optional[Team],
     ):
         self._start_time = start_time
         self._end_time = end_time
         # copy and freeze the mutable objects
-        self._events = tuple(events)
+        self._events: Tuple[Event, ...] = tuple(events)
         self._team_composition = frozendict(
             {team: tuple(players) for team, players in team_composition.items()}
         )
@@ -43,13 +44,13 @@ class RoundReport:
     def get_end_time(self) -> datetime.datetime:
         return self._end_time
 
-    def get_events(self) -> Tuple["Event"]:
+    def get_events(self) -> Tuple[Event, ...]:
         return self._events
 
-    def get_ct_team_composition(self) -> Tuple[Player]:
+    def get_ct_team_composition(self) -> Tuple[Player, ...]:
         return self._team_composition[CT_team]
 
-    def get_terrorist_team_composition(self) -> Tuple[Player]:
+    def get_terrorist_team_composition(self) -> Tuple[Player, ...]:
         return self._team_composition[Terrorist_team]
 
     def get_winner_team(self) -> Optional[Team]:

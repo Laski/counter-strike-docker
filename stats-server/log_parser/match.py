@@ -2,12 +2,13 @@ import logging
 from typing import Dict, List
 
 from entity import CT_team, Player, Team, Terrorist_team
+from event import Event
 from report import MatchReport, RoundReport
 
 
 class RoundInProgress:
     def __init__(self, team_composition: Dict[Team, List[Player]]):
-        self._events = []
+        self._events: List[Event] = []
         self._ended = False
         self._team_composition = team_composition
         self._winner_team = None
@@ -18,7 +19,7 @@ class RoundInProgress:
     def end(self):
         self._ended = True
 
-    def record_event(self, event: "Event"):
+    def record_event(self, event: Event):
         self._events.append(event)
 
     def set_winner_team(self, team):
@@ -42,7 +43,6 @@ class RoundInProgress:
 class MatchInProgress:
     """
     A match is a sequence of rounds happening in a given map.
-    This represents a match that hasn't ended yet.
     It's useful to construct MatchReports while parsing a log file.
     """
 
@@ -74,7 +74,7 @@ class MatchInProgress:
         round_report = self._ongoing_round.get_round_report()
         self._ended_round_reports.append(round_report)
 
-    def impact_current_round_with(self, event: "Event"):
+    def impact_current_round_with(self, event: Event):
         event.impact_round(self._ongoing_round)
 
     def start(self):

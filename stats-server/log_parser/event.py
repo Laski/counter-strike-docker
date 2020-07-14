@@ -1,11 +1,13 @@
 import re
 from abc import ABC
+from datetime import datetime
 from typing import Optional, Pattern, TYPE_CHECKING
 
+from log_parser.entity import Player, Team, Weapon
+
 if TYPE_CHECKING:
-    from match import MatchInProgress, RoundInProgress
-    from entity import Player
-    from report import PlayerStats
+    from log_parser.match import MatchInProgress, RoundInProgress
+    from log_parser.report import PlayerStats
 
 
 class Event(ABC):
@@ -21,10 +23,10 @@ class Event(ABC):
     # But it's useful to have it near the __init__, and seems better than duplicating the event hierarchy elsewhere.
     # The logic that translates a logfile into a sequence of events is in the log_parser module (as it should).
 
-    def __init__(self, timestamp):
+    def __init__(self, timestamp: datetime) -> None:
         self._timestamp = timestamp
 
-    def get_timestamp(self):
+    def get_timestamp(self) -> datetime:
         return self._timestamp
 
     def impact_match(self, match: 'MatchInProgress'):
@@ -81,8 +83,9 @@ class AttackEvent(Event):
     )
 
     def __init__(
-            self, timestamp, attacker, victim, weapon, damage, damage_armor, health, armor
-    ):
+            self, timestamp: datetime, attacker: Player, victim: Player, weapon: Weapon, damage: int, damage_armor: int,
+            health: int, armor: int
+    ) -> None:
         super().__init__(timestamp)
         self._attacker = attacker
         self._victim = victim
@@ -95,10 +98,10 @@ class AttackEvent(Event):
     def is_attack(self):
         return True
 
-    def get_attacker(self):
+    def get_attacker(self) -> Player:
         return self._attacker
 
-    def get_weapon(self):
+    def get_weapon(self) -> Weapon:
         return self._weapon
 
     def get_victim(self):
@@ -123,7 +126,7 @@ class KillEvent(Event):
         r'"(?P<attacker>.+)" killed "(?P<victim>.+)" (?P<weapon>with "\w+")'
     )
 
-    def __init__(self, timestamp, attacker, victim, weapon):
+    def __init__(self, timestamp: datetime, attacker: Player, victim: Player, weapon: Weapon) -> None:
         super().__init__(timestamp)
         self._attacker = attacker
         self._victim = victim
@@ -170,7 +173,7 @@ class MatchEndEvent(Event):
 class PlayerJoinsTeamEvent(Event):
     REGEX = re.compile(r'"(?P<player>.+)" joined (?P<team>team "[A-Z]+")')
 
-    def __init__(self, timestamp, player, team):
+    def __init__(self, timestamp: datetime, player: Player, team: Team) -> None:
         super().__init__(timestamp)
         self._player = player
         self._team = team
@@ -183,7 +186,7 @@ class PlayerJoinsTeamEvent(Event):
 class PlayerDisconnectsEvent(Event):
     REGEX = re.compile(r'"(?P<player>.+)" disconnected')
 
-    def __init__(self, timestamp, player):
+    def __init__(self, timestamp: datetime, player: Player) -> None:
         super().__init__(timestamp)
         self._player = player
 

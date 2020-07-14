@@ -2,18 +2,18 @@ import logging
 import unittest
 from abc import ABC
 from collections import defaultdict
-from typing import List, Tuple
+from typing import Dict, List, Tuple
 
-from entity import Player
-from parser import LogDirectoryParser, LogParser
-from report import MatchReport
+from log_parser.entity import Player
+from log_parser.parser import LogDirectoryParser, LogParser
+from log_parser.report import MatchReport
 
 logging.basicConfig(level=logging.DEBUG)
 
 
 class ScorerStrategy(ABC):
     def get_player_scores(
-        self, match_reports: List[MatchReport]
+            self, match_reports: List[MatchReport]
     ) -> List[Tuple[Player, int]]:
         raise NotImplementedError("SubclassResponsibility")
 
@@ -24,9 +24,9 @@ class DefaultScorer(ScorerStrategy):
     """
 
     def get_player_scores(
-        self, match_reports: List[MatchReport]
+            self, match_reports: List[MatchReport]
     ) -> List[Tuple[Player, int]]:
-        scores = defaultdict(int)
+        scores: Dict[Player, int] = defaultdict(int)
         for report in match_reports:
             stats_by_player = report.get_all_player_stats()
             for player, stats in stats_by_player.items():

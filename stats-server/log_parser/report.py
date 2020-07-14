@@ -1,12 +1,12 @@
 import datetime
 from collections import defaultdict
 from dataclasses import dataclass, field
-from typing import Dict, List, Optional, Tuple
+from typing import Dict, Iterator, List, Optional, Tuple
 
 from frozendict import frozendict
 
-from entity import CT_team, Player, Team, Terrorist_team, Weapon
-from event import Event
+from log_parser.entity import CT_team, Player, Team, Terrorist_team, Weapon
+from log_parser.event import Event
 
 
 @dataclass
@@ -15,19 +15,19 @@ class PlayerStats:
     damage_received: int = 0
     kills: int = 0
     deaths: int = 0
-    damage_inflicted_by_weapon: Dict["Weapon", int] = field(
+    damage_inflicted_by_weapon: Dict['Weapon', int] = field(
         default_factory=lambda: defaultdict(int)
     )
 
 
 class RoundReport:
     def __init__(
-        self,
-        start_time: datetime.datetime,
-        end_time: datetime.datetime,
-        events: List[Event],
-        team_composition: Dict[Team, List[Player]],
-        winner_team: Optional[Team],
+            self,
+            start_time: datetime.datetime,
+            end_time: datetime.datetime,
+            events: List[Event],
+            team_composition: Dict[Team, List[Player]],
+            winner_team: Optional[Team],
     ):
         self._start_time = start_time
         self._end_time = end_time
@@ -56,7 +56,7 @@ class RoundReport:
     def get_winner_team(self) -> Optional[Team]:
         return self._winner_team
 
-    def get_all_players(self):
+    def get_all_players(self) -> Iterator:
         return (
             player for players in self._team_composition.values() for player in players
         )
@@ -112,12 +112,12 @@ class MatchReport:
         end_time = last_event.get_timestamp()
         return end_time
 
-    def get_rounds_by_winner_team(self):
-        rounds_by_winner_team = {CT_team: [], Terrorist_team: []}
+    def get_rounds_by_winner_team(self) -> Dict[Team, List[RoundReport]]:
+        rounds_by_winner_team: Dict[Team, List[RoundReport]] = {CT_team: [], Terrorist_team: []}
         for round_report in self.get_round_reports():
             winner_team = round_report.get_winner_team()
             if winner_team:
-                rounds_by_winner_team[winner_team].append(round)
+                rounds_by_winner_team[winner_team].append(round_report)
         return rounds_by_winner_team
 
     def get_scores(self):

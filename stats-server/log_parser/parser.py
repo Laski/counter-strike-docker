@@ -2,11 +2,13 @@ import datetime
 import logging
 import re
 from pathlib import Path
-from typing import List
+from re import Match
+from typing import Any, Dict, List, Pattern, Union
 
-from entity import GameEntity
-from event import Event
-from match import MatchReportFactory
+from log_parser.entity import GameEntity
+from log_parser.event import Event
+from log_parser.match import MatchReportFactory
+from log_parser.report import MatchReport, RoundReport
 
 
 class UnhandledLine(Exception):
@@ -24,17 +26,17 @@ class LogParser:
         return cls(lines)
 
     @classmethod
-    def from_filename(cls, filename):
+    def from_filename(cls, filename: Union[str, Path]) -> 'LogParser':
         lines = cls._get_lines(filename)
         return cls(lines)
 
     @classmethod
-    def _get_lines(cls, logfile):
+    def _get_lines(cls, logfile: Union[str, Path]) -> List[str]:
         with open(logfile, "r") as file:
             lines = file.readlines()
         return lines
 
-    def __init__(self, lines):
+    def __init__(self, lines: List[str]) -> None:
         self._lines = lines
 
     def get_events(self) -> List[Event]:
@@ -59,7 +61,7 @@ class LogParser:
         match_report = match_report_factory.completed_match_report(events)
         return match_report
 
-    def get_round_reports(self):
+    def get_round_reports(self) -> List[RoundReport]:
         match_report_factory = MatchReportFactory()
         events = self.get_events()
         round_reports = match_report_factory.incomplete_match_round_reports(events)
@@ -71,10 +73,10 @@ class LogDirectoryParser:
     Parser of an entire directory of logs
     """
 
-    def __init__(self, path):
+    def __init__(self, path: str) -> None:
         self._path = Path(path)
 
-    def get_all_match_reports(self):
+    def get_all_match_reports(self) -> List['MatchReport']:
         reports = []
         for file in self._path.iterdir():
             logging.info(f"Parsing {file}")
@@ -89,15 +91,15 @@ class EventFactory:
     Parser of a single log line
     """
 
-    def get_regex_event_mapping(self):
-        return {event_type.REGEX: event_type for event_type in Event.__subclasses__()}
+    def get_regex_event_mapping(self) -> Dict[Pattern[str], type]:
+        return {event_type.REGEX: event_type for event_type in Event.__subclasses__() if event_type.REGEX}
 
-    def get_regex_game_entity_mapping(self):
+    def get_regex_game_entity_mapping(self) -> Dict[Pattern[str], type]:
         return {
-            event_type.REGEX: event_type for event_type in GameEntity.__subclasses__()
+            event_type.REGEX: event_type for event_type in GameEntity.__subclasses__() if event_type.REGEX
         }
 
-    def from_log_line(self, line):
+    def from_log_line(self, line: str) -> Event:
         for regex, event_type in self.get_regex_event_mapping().items():
             regex_match = regex.search(line)
             if regex_match:
@@ -107,14 +109,16 @@ class EventFactory:
                 return event
         raise UnhandledLine(line)
 
-    def _get_timestamp_from_line(self, line):
-        timestamp_str = re.search(
-            r"L (\d{2}\/\d{2}\/\d{4} - \d{2}:\d{2}:\d{2}):", line
-        ).group(1)
-        timestamp = datetime.datetime.strptime(timestamp_str, "%m/%d/%Y - %H:%M:%S")
-        return timestamp
+    def _get_timestamp_from_line(self, line: str) -> datetime.datetime:
+        possible_timestamp = re.search(r"L (\d{2}\/\d{2}\/\d{4} - \d{2}:\d{2}:\d{2}):", line)
+        if possible_timestamp:
+            timestamp_str = possible_timestamp.group(1)
+            timestamp = datetime.datetime.strptime(timestamp_str, "%m/%d/%Y - %H:%M:%S")
+            return timestamp
+        else:
+            raise Exception("No timestamp found in line")
 
-    def _get_data_from(self, match):
+    def _get_data_from(self, match: Match) -> Dict[str, Any]:
         # convert the match object into a dictionary with the key/values of the matched groups
         data = {}
         for key in match.re.groupindex:
@@ -122,7 +126,7 @@ class EventFactory:
             data[key] = self._cast_to_correct_type(value)
         return data
 
-    def _cast_to_correct_type(self, value):
+    def _cast_to_correct_type(self, value: str) -> Union[int, str]:
         for regex, game_entity_type in self.get_regex_game_entity_mapping().items():
             regex_match = regex.search(value)
             if regex_match:

@@ -2,8 +2,8 @@ import datetime
 import logging
 import unittest
 
-from entity import CT_team, Player, Terrorist_team, Weapon
-from parser import LogDirectoryParser, LogParser
+from log_parser.entity import CT_team, Player, Terrorist_team, Weapon
+from log_parser.parser import LogParser
 
 logging.basicConfig(level=logging.DEBUG)
 
@@ -65,7 +65,7 @@ class LogParserTests(unittest.TestCase):
         first_kill = match_report.get_first_kill()
         assert first_kill.get_attacker().get_nickname() == "Mcd."
 
-    def test_can_identify_users_even_if_they_change_nicknames(self):
+    def test_can_identify_users_even_if_they_change_nicknames(self) -> None:
         # given a user changed nickname in the middle of a match
         logtext = """
         L 06/24/2020 - 03:57:58: "estoy jugando un poco mejor<3><STEAM_0:1:538855093><CT>" attacked "Rocho<34><STEAM_0:1:86787335><TERRORIST>" with "mp5navy" (damage "13") (damage_armor "7") (health "29") (armor "70")
@@ -78,7 +78,7 @@ class LogParserTests(unittest.TestCase):
         first_attack, second_attack = events
         assert first_attack.get_attacker() == second_attack.get_attacker()
 
-    def test_can_identify_weapons(self):
+    def test_can_identify_weapons(self) -> None:
         # given a log line with weapon data
         logtext = """
         L 06/24/2020 - 03:57:58: "estoy jugando un poco mejor<3><STEAM_0:1:538855093><CT>" attacked "Rocho<34><STEAM_0:1:86787335><TERRORIST>" with "mp5navy" (damage "13") (damage_armor "7") (health "29") (armor "70")
@@ -101,7 +101,7 @@ class LogParserTests(unittest.TestCase):
         assert len(second_round_report.get_ct_team_composition()) == 2
         assert len(second_round_report.get_terrorist_team_composition()) == 2
 
-    def test_disconnected_players_leave_its_team(self):
+    def test_disconnected_players_leave_its_team(self) -> None:
         # given a log line with a player that disconnects
         logtext = """
         L 04/09/2020 - 20:47:39: "Rubimaister<2><STEAM_0:0:538627351><>" joined team "TERRORIST"
@@ -121,7 +121,7 @@ class LogParserTests(unittest.TestCase):
         assert len(first_round_report.get_ct_team_composition()) == 2
         assert len(first_round_report.get_terrorist_team_composition()) == 2
 
-    def test_spectators_are_ignored(self):
+    def test_spectators_are_ignored(self) -> None:
         # given a log line with a player that becomes spectator
         logtext = """
         L 04/09/2020 - 20:47:39: "Rubimaister<2><STEAM_0:0:538627351><>" joined team "TERRORIST"
@@ -151,7 +151,7 @@ class LogParserTests(unittest.TestCase):
         assert match_report.get_team_score(CT_team) == 28
         assert match_report.get_team_score(Terrorist_team) == 5
 
-    def test_can_know_a_player_round_stats(self):
+    def test_can_know_a_player_round_stats(self) -> None:
         # given a log where a player inflicted damage and killed an opponent
         logtext = """
         L 04/09/2020 - 20:48:29: World triggered "Round_Start"

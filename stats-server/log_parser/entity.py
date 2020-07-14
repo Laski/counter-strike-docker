@@ -1,6 +1,6 @@
 import re
 from abc import ABC
-from typing import Optional, Pattern
+from typing import Any, Optional, Pattern
 
 
 class GameEntity(ABC):
@@ -20,11 +20,11 @@ class Player(GameEntity):
         r"(?P<nickname>.*)<\d+><STEAM_0:[0-1]:(?P<steam_id>\d+)><[A-Z]*>"
     )
 
-    def __init__(self, nickname, steam_id):
+    def __init__(self, nickname: str, steam_id: int) -> None:
         self._nickname = nickname
         self._steam_id = steam_id
 
-    def __eq__(self, other):
+    def __eq__(self, other: object) -> bool:
         # players are identified by their Steam ID
         return isinstance(other, Player) and other._steam_id == self._steam_id
 
@@ -42,16 +42,16 @@ class Player(GameEntity):
 class Weapon(GameEntity):
     REGEX = re.compile(r'with "(?P<name>\w+)"')
 
-    def __init__(self, name):
+    def __init__(self, name: str) -> None:
         self._name = name
 
-    def get_name(self):
+    def get_name(self) -> str:
         return self._name
 
-    def __eq__(self, other):
+    def __eq__(self, other: object) -> bool:
         return isinstance(other, Weapon) and other.get_name() == self.get_name()
 
-    def __hash__(self):
+    def __hash__(self) -> int:
         return hash(self.get_name())
 
     def __repr__(self):
@@ -61,16 +61,16 @@ class Weapon(GameEntity):
 class Team(GameEntity):
     REGEX = re.compile(r'[Tt]eam "(?P<name>CT|TERRORIST|SPECTATOR)"')
 
-    def __init__(self, name):
+    def __init__(self, name: str) -> None:
         self._name = name
 
-    def get_name(self):
+    def get_name(self) -> str:
         return self._name
 
-    def __eq__(self, other):
+    def __eq__(self, other: object) -> bool:
         return isinstance(other, Team) and other.get_name() == self.get_name()
 
-    def __hash__(self):
+    def __hash__(self) -> int:
         return hash(self.get_name())
 
     def __repr__(self):

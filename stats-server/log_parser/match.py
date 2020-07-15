@@ -11,18 +11,18 @@ class RoundInProgress:
         self._events: List[Event] = []
         self._ended = False
         self._team_composition = team_composition
-        self._winner_team = None
+        self._winner_team: Optional[Team] = None
 
-    def has_ended(self):
+    def has_ended(self) -> bool:
         return self._ended
 
     def end(self) -> None:
         self._ended = True
 
-    def record_event(self, event: Event):
+    def record_event(self, event: Event) -> None:
         self._events.append(event)
 
-    def set_winner_team(self, team):
+    def set_winner_team(self, team: Team) -> None:
         self._winner_team = team
 
     def get_round_report(self) -> RoundReport:
@@ -50,12 +50,15 @@ class MatchInProgress:
         self._map_name = ""
         self._match_events: List[Event] = []
         self._ended_round_reports: List[RoundReport] = []
-        self._team_composition: Dict[Team, List[Player]] = {CT_team: [], Terrorist_team: []}
+        self._team_composition: Dict[Team, List[Player]] = {
+            CT_team: [],
+            Terrorist_team: [],
+        }
         self._ongoing_round: Optional[RoundInProgress] = None
         self._started = False
         self._ended = False
 
-    def set_map_name(self, map_name):
+    def set_map_name(self, map_name: str) -> None:
         self._map_name = map_name
 
     def record_match_event(self, event: Event) -> None:
@@ -80,19 +83,17 @@ class MatchInProgress:
         assert self._ongoing_round
         event.impact_round(self._ongoing_round)
 
-    def start(self):
+    def start(self) -> None:
         self._started = True
 
-    def end(self):
+    def end(self) -> None:
         self._ended = True
 
-    def get_match_report(self):
+    def get_match_report(self) -> MatchReport:
         assert self._ended or not self._started
 
         report = MatchReport(
-            match_events=self._match_events,
-            map_name=self._map_name,
-            rounds=self._ended_round_reports,
+            match_events=self._match_events, map_name=self._map_name, rounds=self._ended_round_reports,
         )
         return report
 
@@ -112,7 +113,7 @@ class MatchInProgress:
 
 
 class MatchReportFactory:
-    def completed_match_report(self, events):
+    def completed_match_report(self, events: List[Event]) -> MatchReport:
         match = MatchInProgress()
         for event in events:
             logging.debug(f"Resolving event: {event}")

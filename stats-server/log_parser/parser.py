@@ -1,5 +1,6 @@
 import datetime
 import logging
+import pickle
 import re
 from pathlib import Path
 from re import Match
@@ -21,7 +22,7 @@ class LogParser:
     """
 
     @classmethod
-    def from_raw_text(cls, text):
+    def from_raw_text(cls, text: str) -> 'LogParser':
         lines = text.split("\n")
         return cls(lines)
 
@@ -50,12 +51,12 @@ class LogParser:
                 continue
         return events
 
-    def _parse_line(self, line) -> Event:
+    def _parse_line(self, line: str) -> Event:
         event_factory = EventFactory()
         event = event_factory.from_log_line(line)
         return event
 
-    def get_match_report(self):
+    def get_match_report(self) -> MatchReport:
         match_report_factory = MatchReportFactory()
         events = self.get_events()
         match_report = match_report_factory.completed_match_report(events)
@@ -74,16 +75,42 @@ class LogDirectoryParser:
     """
 
     def __init__(self, path: str) -> None:
-        self._path = Path(path)
+        self._logs_path = Path(path)
+        self._reports_paths = self._logs_path.parent / 'reports'
+        if not self._reports_paths.exists():
+            self._reports_paths.mkdir()
 
     def get_all_match_reports(self) -> List['MatchReport']:
         reports = []
-        for file in self._path.iterdir():
-            logging.info(f"Parsing {file}")
-            parser = LogParser.from_filename(file)
-            report = parser.get_match_report()
+        for log_path in self._logs_path.iterdir():
+            report = self.load_or_parse(log_path)
             reports.append(report)
         return reports
+
+    def load_or_parse(self, log_path):
+        match_report_path = self._reports_paths / log_path.name.replace('.log', '.pickle')
+        if match_report_path.exists():
+            report = self.load_from_file(match_report_path)
+        else:
+            report = self.parse_from_log(log_path)
+            self.save_to_file(match_report_path, report)
+        return report
+
+    def save_to_file(self, match_report_path, report):
+        with open(match_report_path, 'wb') as match_report_file:
+            pickle.dump(report, match_report_file)
+
+    def parse_from_log(self, log_path):
+        logging.debug(f"Parsing {log_path}")
+        parser = LogParser.from_filename(log_path)
+        report = parser.get_match_report()
+        return report
+
+    def load_from_file(self, match_report_path):
+        logging.debug(f"Loading report from {match_report_path}")
+        with open(match_report_path, 'rb') as match_report_file:
+            match_report = pickle.load(match_report_file)
+        return match_report
 
 
 class EventFactory:
@@ -95,9 +122,7 @@ class EventFactory:
         return {event_type.REGEX: event_type for event_type in Event.__subclasses__() if event_type.REGEX}
 
     def get_regex_game_entity_mapping(self) -> Dict[Pattern[str], type]:
-        return {
-            event_type.REGEX: event_type for event_type in GameEntity.__subclasses__() if event_type.REGEX
-        }
+        return {event_type.REGEX: event_type for event_type in GameEntity.__subclasses__() if event_type.REGEX}
 
     def from_log_line(self, line: str) -> Event:
         for regex, event_type in self.get_regex_event_mapping().items():

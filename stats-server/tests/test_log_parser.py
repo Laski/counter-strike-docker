@@ -25,9 +25,7 @@ class LogParserTests(unittest.TestCase):
         parser = LogParser.from_filename(filename)
         match_report = parser.get_match_report()
         # then the resulting match report knows it start and end time
-        assert match_report.get_start_time() == datetime.datetime(
-            2020, 4, 9, 20, 47, 30
-        )
+        assert match_report.get_start_time() == datetime.datetime(2020, 4, 9, 20, 47, 30)
         assert match_report.get_end_time() == datetime.datetime(2020, 4, 9, 21, 7, 51)
 
     def test_can_get_a_round_start_and_end(self):
@@ -38,12 +36,8 @@ class LogParserTests(unittest.TestCase):
         match_report = parser.get_match_report()
         first_round_report = match_report.get_round_reports()[0]
         # then the first round report knows the start and end of the first round
-        assert first_round_report.get_start_time() == datetime.datetime(
-            2020, 4, 9, 20, 47, 34
-        )
-        assert first_round_report.get_end_time() == datetime.datetime(
-            2020, 4, 9, 20, 47, 43
-        )
+        assert first_round_report.get_start_time() == datetime.datetime(2020, 4, 9, 20, 47, 34)
+        assert first_round_report.get_end_time() == datetime.datetime(2020, 4, 9, 20, 47, 43)
 
     def test_can_get_a_round_first_attack(self):
         # given a log file

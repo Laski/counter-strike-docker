@@ -1,6 +1,6 @@
 import re
 from abc import ABC
-from typing import Any, Optional, Pattern
+from typing import Optional, Pattern
 
 
 class GameEntity(ABC):
@@ -10,15 +10,11 @@ class GameEntity(ABC):
     For example, player and weapons are game entities.
     """
 
-    REGEX: Optional[
-        Pattern[str]
-    ] = None  # Useful to know how to construct the entity from a logline
+    REGEX: Optional[Pattern[str]] = None  # Useful to know how to construct the entity from a logline
 
 
 class Player(GameEntity):
-    REGEX = re.compile(
-        r"(?P<nickname>.*)<\d+><STEAM_0:[0-1]:(?P<steam_id>\d+)><[A-Z]*>"
-    )
+    REGEX = re.compile(r"(?P<nickname>.*)<\d+><STEAM_0:[0-1]:(?P<steam_id>\d+)><[A-Z]*>")
 
     def __init__(self, nickname: str, steam_id: int) -> None:
         self._nickname = nickname
@@ -28,15 +24,15 @@ class Player(GameEntity):
         # players are identified by their Steam ID
         return isinstance(other, Player) and other._steam_id == self._steam_id
 
-    def __hash__(self):
+    def __hash__(self) -> int:
         # needed because we redefined __eq__
         return hash(self._steam_id)
 
-    def get_nickname(self):
+    def get_nickname(self) -> str:
         return self._nickname
 
-    def __repr__(self):
-        return self.get_nickname()
+    def __repr__(self) -> str:
+        return str(self.get_nickname())
 
 
 class Weapon(GameEntity):
@@ -54,8 +50,8 @@ class Weapon(GameEntity):
     def __hash__(self) -> int:
         return hash(self.get_name())
 
-    def __repr__(self):
-        return self.get_name()
+    def __repr__(self) -> str:
+        return str(self.get_name())
 
 
 class Team(GameEntity):
@@ -73,8 +69,8 @@ class Team(GameEntity):
     def __hash__(self) -> int:
         return hash(self.get_name())
 
-    def __repr__(self):
-        return self.get_name()
+    def __repr__(self) -> str:
+        return str(self.get_name())
 
 
 CT_team = Team("CT")

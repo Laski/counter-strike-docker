@@ -17,17 +17,24 @@ class PlayerStats:
     deaths: int = 0
     rounds_won: int = 0
     rounds_lost: int = 0
+    time_spent: datetime.timedelta = datetime.timedelta(0)
     damage_inflicted_by_weapon: Dict['Weapon', int] = field(default_factory=lambda: defaultdict(int))
+
+    def time_spent_in_hours(self) -> float:
+        return self.time_spent.total_seconds() / 3600
+
+    def total_rounds_played(self) -> int:
+        return self.rounds_won + self.rounds_lost
 
 
 class RoundReport:
     def __init__(
-        self,
-        start_time: datetime.datetime,
-        end_time: datetime.datetime,
-        events: List[Event],
-        team_composition: Dict[Team, List[Player]],
-        winner_team: Optional[Team],
+            self,
+            start_time: datetime.datetime,
+            end_time: datetime.datetime,
+            events: List[Event],
+            team_composition: Dict[Team, List[Player]],
+            winner_team: Optional[Team],
     ):
         self._start_time = start_time
         self._end_time = end_time
@@ -43,6 +50,9 @@ class RoundReport:
 
     def get_end_time(self) -> datetime.datetime:
         return self._end_time
+
+    def get_round_duration(self) -> datetime.timedelta:
+        return self._end_time - self._start_time
 
     def get_events(self) -> Tuple[Event, ...]:
         return self._events
@@ -70,8 +80,12 @@ class RoundReport:
         return stats
 
     def add_to_player_stats(self, player: Player, stats: PlayerStats) -> None:
-        for event in self.get_events():
-            event.impact_player_stats(player, stats, self)
+        if player in self.get_all_players():
+            for event in self.get_events():
+                event.impact_player_stats(player, stats, self)
+            # ignore middle-round disconnections
+            duration = self.get_round_duration()
+            stats.time_spent += duration
 
 
 class MatchReport:

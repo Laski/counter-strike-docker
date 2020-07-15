@@ -6,16 +6,24 @@ from typing import Dict, Iterable, List, Mapping, Optional, Tuple
 from log_parser.entity import Player
 from log_parser.report import MatchReport, PlayerStats
 
+PlayerTable = Dict[Player, PlayerStats]
+
 
 class ScorerStrategy(ABC):
-    def get_player_scores(self, match_reports: Iterable[MatchReport]) -> Mapping[Player, float]:
-        raise NotImplementedError("SubclassResponsibility")
 
-    def collect_stats(self, match_reports: Iterable[MatchReport]) -> Dict[Player, PlayerStats]:
-        stats_by_player: Dict[Player, PlayerStats] = defaultdict(PlayerStats)
+    def collect_stats(self, match_reports: Iterable[MatchReport]) -> PlayerTable:
+        stats_by_player: PlayerTable = defaultdict(PlayerStats)
         for report in match_reports:
             report.add_to_player_stats_table(stats_by_player)
             logging.debug(f"Stats collected for match {report}")
+        stats_by_player = self._filter(stats_by_player)
+        return stats_by_player
+
+    def get_player_scores(self, match_reports: Iterable[MatchReport]) -> Mapping[Player, float]:
+        raise NotImplementedError("SubclassResponsibility")
+
+    def _filter(self, stats_by_player: PlayerTable) -> PlayerTable:
+        # by default we do not filter
         return stats_by_player
 
 
@@ -42,9 +50,25 @@ class WinRateScorer(ScorerStrategy):
         scores: Dict[Player, float] = defaultdict(int)
         stats_by_player = self.collect_stats(match_reports)
         for player, stats in stats_by_player.items():
-            rounds_played = stats.rounds_won + stats.rounds_lost
+            rounds_played = stats.total_rounds_played()
             if rounds_played:
-                scores[player] = stats.rounds_won / rounds_played
+                rounds_won = stats.rounds_won
+                scores[player] = rounds_won / rounds_played
+        return scores
+
+    def _filter(self, stats_by_player: PlayerTable) -> PlayerTable:
+        # we need to filter here
+        return {player: stats for player, stats in stats_by_player.items() if stats.total_rounds_played() > 100}
+
+
+class TimeSpentScorer(ScorerStrategy):
+    """
+    Time spent in the server
+    """
+
+    def get_player_scores(self, match_reports: Iterable[MatchReport]) -> Mapping[Player, float]:
+        stats_by_player = self.collect_stats(match_reports)
+        scores = {player: stats.time_spent_in_hours() for player, stats in stats_by_player.items()}
         return scores
 
 

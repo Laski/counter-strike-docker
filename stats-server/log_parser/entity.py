@@ -32,7 +32,7 @@ class Player(GameEntity):
         return self._nickname
 
     def __repr__(self) -> str:
-        return str(self.get_nickname())
+        return f"{self._steam_id} ({self.get_nickname()})"
 
 
 class Weapon(GameEntity):

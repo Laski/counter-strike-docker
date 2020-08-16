@@ -52,6 +52,7 @@ fi
 echo "\"${STEAM_ID}\" \"\"  \"abcdefghijklmnopqrstu\" \"ce\"" >> "${HLDS}/cstrike/addons/amxmodx/configs/users.ini"
 echo "\"${STEAM_ID_2}\" \"\"  \"fuj\" \"ce\"" >> "${HLDS}/cstrike/addons/amxmodx/configs/users.ini"
 echo "\"${STEAM_ID_3}\" \"\"  \"fuj\" \"ce\"" >> "${HLDS}/cstrike/addons/amxmodx/configs/users.ini"
+echo "\"${STEAM_ID_4}\" \"\"  \"fuj\" \"ce\"" >> "${HLDS}/cstrike/addons/amxmodx/configs/users.ini"
 
 
 # Set Server Password

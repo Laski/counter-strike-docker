@@ -23,6 +23,7 @@ services:
       - STEAM_ID
       - STEAM_ID_2
       - STEAM_ID_3
+      - STEAM_ID_4
     ports:
       - "27015:27015/udp"
     volumes:

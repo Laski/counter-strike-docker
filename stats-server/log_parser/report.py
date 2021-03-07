@@ -6,7 +6,7 @@ from typing import Dict, Iterable, Iterator, List, Mapping, Optional, Tuple
 from frozendict import frozendict
 
 from log_parser.entity import CT_team, Player, Team, Terrorist_team, Weapon
-from log_parser.event import Event
+from log_parser.event import Event, KillEvent
 
 
 @dataclass
@@ -114,6 +114,11 @@ class MatchReport:
             if event.is_kill():
                 return event
         raise Exception("There's no kills in this game")
+
+    def get_all_kills(self) -> Iterable[KillEvent]:
+        for event in self._all_round_events():
+            if event.is_kill():
+                yield event
 
     def get_map_name(self) -> str:
         return self._map_name

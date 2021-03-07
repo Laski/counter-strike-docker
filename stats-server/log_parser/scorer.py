@@ -4,6 +4,7 @@ from collections import defaultdict
 from typing import Dict, Iterable, List, Mapping, Optional, Tuple
 
 from log_parser.entity import Player
+from log_parser.glicko2 import PlayerRating
 from log_parser.report import MatchReport, PlayerStats
 
 PlayerTable = Dict[Player, PlayerStats]
@@ -75,16 +76,23 @@ class TimeSpentScorer(ScorerStrategy):
         return scores
 
 
-class EloScorer(ScorerStrategy):
+class GlickoScorer(ScorerStrategy):
     """
     Each kill represents a match between the two involved players, with the killer as the winner.
-    Both players recieve an Elo update after each kill.
+    Both players recieve an Glicko ranking update after each kill.
     """
 
-    # def get_player_scores(
-    #     self, match_reports: Iterable[MatchReport]
-    # ) -> Mapping[Player, float]:
-    #     stats_by_player
+    def get_player_scores(self, match_reports: Iterable[MatchReport]) -> Mapping[Player, Tuple[float]]:
+        rankings = defaultdict(PlayerRating)
+        for match in match_reports:
+            for kill in match.get_all_kills():
+                attacker = kill.get_attacker()
+                victim = kill.get_victim()
+                attacker_ranking = rankings[attacker]
+                victim_ranking = rankings[victim]
+                logging.debug(f"Updating ranking of {attacker}[{attacker_ranking}] vs {victim}[{victim_ranking}]")
+                attacker_ranking.register_win(victim_ranking)
+        return {player: ranking.to_tuple() for player, ranking in rankings.items()}
 
 
 class MatchStatsExtractor:

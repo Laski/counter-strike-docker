@@ -3,7 +3,7 @@ import unittest
 
 from log_parser.entity import Player
 from log_parser.parser import LogDirectoryParser, LogParser
-from log_parser.scorer import DefaultScorer, MatchStatsExtractor, TimeSpentScorer, WinRateScorer
+from log_parser.scorer import DefaultScorer, GlickoScorer, MatchStatsExtractor, TimeSpentScorer, WinRateScorer
 
 logging.basicConfig(level=logging.INFO)
 
@@ -59,6 +59,20 @@ class StatsTestCase(unittest.TestCase):
         score_table = stats.get_sorted_score_table()
         print(score_table)
         player = Player("Mono", 538208505)
+        best_player = score_table[0][0]
+        assert best_player == player
+
+    def test_can_get_glicko_ranking_per_player(self):
+        # given a list of matches
+        logs = "logs"
+        match_reports = LogDirectoryParser(logs).get_all_match_reports()
+        # when given to the stats extractor
+        scorer = GlickoScorer()
+        stats = MatchStatsExtractor(match_reports, scorer=scorer)
+        # we can know the player that has the best ranking
+        score_table = stats.get_sorted_score_table()
+        print(score_table)
+        player = Player("elsebaPA", 361759718)
         best_player = score_table[0][0]
         assert best_player == player
 

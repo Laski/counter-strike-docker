@@ -146,6 +146,9 @@ class KillEvent(Event):
     def get_attacker(self) -> Player:
         return self._attacker
 
+    def get_victim(self) -> Player:
+        return self._victim
+
     def impact_match(self, match: 'MatchInProgress') -> None:
         match.impact_current_round_with(self)
 

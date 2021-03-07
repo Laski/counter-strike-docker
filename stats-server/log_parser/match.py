@@ -7,6 +7,12 @@ from log_parser.report import MatchReport, RoundReport
 
 
 class RoundInProgress:
+    """
+    A round is what happens between player respawns.
+    A round has usually a winner team (unless it's drawn).
+    Players cannot change teams during a round.
+    """
+
     def __init__(self, team_composition: Dict[Team, List[Player]]):
         self._events: List[Event] = []
         self._ended = False
@@ -43,7 +49,8 @@ class RoundInProgress:
 class MatchInProgress:
     """
     A match is a sequence of rounds happening in a given map.
-    It's useful to construct MatchReports while parsing a log file.
+
+    This objects are useful in order to construct MatchReports while parsing a log file.
     """
 
     def __init__(self) -> None:

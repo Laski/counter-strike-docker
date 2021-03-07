@@ -1,0 +1,11 @@
+[tool.black]
+line-length = 120
+target-version = ['py38']
+skip-string-normalization = true
+force-exclude = '.*/migrations/.*'
+
+[tool.pylint.messages_control]
+disable = "C0330, C0326"
+
+[tool.pylint.format]
+max-line-length = "120"

@@ -10,6 +10,9 @@ PlayerTable = Dict[Player, PlayerStats]
 
 
 class ScorerStrategy(ABC):
+    """
+    A scorer assings numbers to players given some criteria.
+    """
 
     def collect_stats(self, match_reports: Iterable[MatchReport]) -> PlayerTable:
         stats_by_player: PlayerTable = defaultdict(PlayerStats)
@@ -57,7 +60,7 @@ class WinRateScorer(ScorerStrategy):
         return scores
 
     def _filter(self, stats_by_player: PlayerTable) -> PlayerTable:
-        # we need to filter here
+        # only players with more than 100 rounds
         return {player: stats for player, stats in stats_by_player.items() if stats.total_rounds_played() > 100}
 
 
@@ -72,8 +75,26 @@ class TimeSpentScorer(ScorerStrategy):
         return scores
 
 
+class EloScorer(ScorerStrategy):
+    """
+    Each kill represents a match between the two involved players, with the killer as the winner.
+    Both players recieve an Elo update after each kill.
+    """
+
+    # def get_player_scores(
+    #     self, match_reports: Iterable[MatchReport]
+    # ) -> Mapping[Player, float]:
+    #     stats_by_player
+
+
 class MatchStatsExtractor:
-    def __init__(self, match_reports: Iterable[MatchReport], scorer: Optional[ScorerStrategy] = None):
+    """
+    The stats extractor gets a list of scores for each player given a scoring strategy (see above).
+    """
+
+    def __init__(
+        self, match_reports: Iterable[MatchReport], scorer: Optional[ScorerStrategy] = None,
+    ):
         self._match_reports = match_reports
         self._scorer = scorer or DefaultScorer()
 

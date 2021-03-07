@@ -29,12 +29,12 @@ class PlayerStats:
 
 class RoundReport:
     def __init__(
-            self,
-            start_time: datetime.datetime,
-            end_time: datetime.datetime,
-            events: List[Event],
-            team_composition: Dict[Team, List[Player]],
-            winner_team: Optional[Team],
+        self,
+        start_time: datetime.datetime,
+        end_time: datetime.datetime,
+        events: List[Event],
+        team_composition: Dict[Team, List[Player]],
+        winner_team: Optional[Team],
     ):
         self._start_time = start_time
         self._end_time = end_time

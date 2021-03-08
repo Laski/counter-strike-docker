@@ -84,7 +84,8 @@ class GlickoScorer(ScorerStrategy):
 
     def get_player_scores(self, match_reports: Iterable[MatchReport]) -> Mapping[Player, Tuple[float]]:
         rankings = defaultdict(PlayerRating)
-        for match in match_reports:
+        valid_matches = [report for report in match_reports if len(report.get_round_reports()) >= 2]
+        for match in valid_matches:
             for kill in match.get_all_kills():
                 attacker = kill.get_attacker()
                 victim = kill.get_victim()
@@ -92,6 +93,9 @@ class GlickoScorer(ScorerStrategy):
                 victim_ranking = rankings[victim]
                 logging.debug(f"Updating ranking of {attacker}[{attacker_ranking}] vs {victim}[{victim_ranking}]")
                 attacker_ranking.register_win(victim_ranking)
+            for player in rankings.keys():
+                if player not in match.get_all_players():
+                    rankings[player].did_not_compete()  # updates variance
         return {player: ranking.to_tuple() for player, ranking in rankings.items()}
 
 

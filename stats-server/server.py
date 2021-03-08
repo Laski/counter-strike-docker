@@ -20,7 +20,13 @@ def parse_logs():
     scorer = GlickoScorer()
     stats = MatchStatsExtractor(match_reports, scorer=scorer)
     score_table = stats.get_sorted_score_table()
-    return str(score_table)
+    response = ""
+    for score in score_table:
+        player, glicko = score
+        ranking, variance = glicko
+        response += f"{player.get_nickname()}: {ranking:.2f} (± {variance*1.96:.2f}"
+        response += "<br>"
+    return response
 
 
 def create_app():

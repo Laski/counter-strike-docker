@@ -109,11 +109,8 @@ class MatchReport:
                 return event
         raise Exception("There's no blood in this game")
 
-    def get_first_kill(self) -> Event:
-        for event in self._all_round_events():
-            if event.is_kill():
-                return event
-        raise Exception("There's no kills in this game")
+    def get_first_kill(self) -> KillEvent:
+        return next(self.get_all_kills())
 
     def get_all_kills(self) -> Iterable[KillEvent]:
         for event in self._all_round_events():

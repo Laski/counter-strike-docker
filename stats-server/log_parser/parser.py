@@ -84,8 +84,12 @@ class LogDirectoryParser:
         reports = []
         log_files = (path for path in self._logs_path.iterdir() if path.name.endswith('.log'))
         for log_path in log_files:
-            report = self.load_or_parse(log_path)
-            reports.append(report)
+            try:
+                report = self.load_or_parse(log_path)
+                reports.append(report)
+            except AssertionError:
+                # probably the match is still on going
+                pass
         return reports
 
     def load_or_parse(self, log_path):

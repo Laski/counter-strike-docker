@@ -24,7 +24,7 @@ def parse_logs():
     for score in score_table:
         player, glicko = score
         ranking, variance = glicko
-        response += f"{player.get_nickname()}: {ranking:.2f} (± {variance*1.96:.2f}"
+        response += f"{player.get_nickname()}: {ranking:.2f} (± {variance*1.96:.2f})"
         response += "<br>"
     return response
 

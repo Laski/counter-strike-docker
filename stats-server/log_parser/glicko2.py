@@ -65,7 +65,7 @@ class PlayerRating:
         preRatingRD() -> None
 
         """
-        self.__rd = math.sqrt(math.pow(self.__rd, 2) + math.pow(self.vol, 2))
+        self.__rd = min(2.01476, math.sqrt(math.pow(self.__rd, 2) + math.pow(self.vol, 2)))
 
     def register_win(self, loser: 'PlayerRating') -> None:
         old_rating = self.rating

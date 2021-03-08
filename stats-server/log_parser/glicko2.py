@@ -65,7 +65,7 @@ class PlayerRating:
         preRatingRD() -> None
 
         """
-        self.__rd = min(2.01476, math.sqrt(math.pow(self.__rd, 2) + math.pow(self.vol, 2)))
+        self.__rd = min(350 / 173.7178, math.sqrt(math.pow(self.__rd, 2) + math.pow(self.vol, 2)))
 
     def register_win(self, loser: 'PlayerRating') -> None:
         old_rating = self.rating
@@ -87,7 +87,7 @@ class PlayerRating:
         self.vol = self._newVol(rating_list, RD_list, outcome_list, v)
         self._preRatingRD()
 
-        self.__rd = 1 / math.sqrt((1 / math.pow(self.__rd, 2)) + (1 / v))
+        self.__rd = min(350 / 173.7178, 1 / math.sqrt((1 / math.pow(self.__rd, 2)) + (1 / v)))
 
         tempSum = 0
         for i in range(len(rating_list)):

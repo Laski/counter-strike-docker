@@ -76,13 +76,14 @@ class LogDirectoryParser:
 
     def __init__(self, path: str) -> None:
         self._logs_path = Path(path)
-        self._reports_paths = self._logs_path.parent / 'reports'
+        self._reports_paths = self._logs_path / 'reports'
         if not self._reports_paths.exists():
             self._reports_paths.mkdir()
 
     def get_all_match_reports(self) -> List['MatchReport']:
         reports = []
-        for log_path in self._logs_path.iterdir():
+        log_files = (path for path in self._logs_path.iterdir() if path.name.endswith('.log'))
+        for log_path in log_files:
             report = self.load_or_parse(log_path)
             reports.append(report)
         return reports

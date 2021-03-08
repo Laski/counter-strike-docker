@@ -2,3 +2,4 @@
 .dockerignore
 Dockerfile
 csstats.dat  # this is bound by compose live
+logs/*

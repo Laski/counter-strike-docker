@@ -6,7 +6,8 @@ RUN mkdir /app && chown appuser -R /app
 WORKDIR /app
 ENV HOME /app
 
-RUN pip install --no-cache-dir flask waitress
+COPY --chown=appuser requirements.txt /app/
+RUN pip install --no-cache-dir -r requirements.txt
 
 COPY --chown=appuser . /app/
 EXPOSE 5000

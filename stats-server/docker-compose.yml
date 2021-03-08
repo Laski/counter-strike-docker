@@ -13,6 +13,7 @@ services:
     restart: always
     volumes:
     - ../csdata/addons/amxmodx/data/csstats.dat:/app/csstats.dat:ro
+    - ../csdata/logs:/app/logs
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=web"

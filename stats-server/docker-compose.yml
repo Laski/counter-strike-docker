@@ -13,6 +13,7 @@ services:
     restart: always
     volumes:
     - ../csdata/addons/amxmodx/data/csstats.dat:/app/csstats.dat:ro
+    - ../csdata/addons/amxmodx/data/csstats.s01.dat:/app/csstats.s01.dat:ro
     - ../csdata/logs:/app/logs
     labels:
       - "traefik.enable=true"

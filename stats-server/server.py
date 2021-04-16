@@ -13,6 +13,12 @@ def update_table():
         subprocess.call(["./read-csdata.pl", "csstats.dat"], stdout=output)
 
 
+def update_table_s01():
+    logging.debug("Regenerating table")
+    with open("stats01.html", 'w') as output:
+        subprocess.call(["./read-csdata.pl", "csstats.s01.dat"], stdout=output)
+
+
 def parse_logs():
     logging.debug("Parsing logs")
     logs_path = "logs"
@@ -40,6 +46,14 @@ def create_app():
         response.headers['Pragma'] = 'no-cache'
         return response
 
+    @app.route('/stats01.html')
+    def stats_01():
+        update_table_s01()
+        response = send_file('stats.html', cache_timeout=0)
+        response.headers['Cache-Control'] = 'no-store'
+        response.headers['Pragma'] = 'no-cache'
+        return response
+
     @app.route('/elo.html')
     def logs():
         response = make_response(parse_logs())
@@ -55,6 +69,9 @@ def create_app():
     def root():
         return app.send_static_file('index.html')
 
+    @app.route('/s01.html')
+    def s01():
+        return app.send_static_file('s01.html')
     return app
 
 

@@ -20,8 +20,11 @@ class PlayerStats:
     time_spent: datetime.timedelta = datetime.timedelta(0)
     damage_inflicted_by_weapon: Dict['Weapon', int] = field(default_factory=lambda: defaultdict(int))
 
+    def time_spent_in_seconds(self) -> float:
+        return self.time_spent.total_seconds()
+
     def time_spent_in_hours(self) -> float:
-        return self.time_spent.total_seconds() / 3600
+        return self.time_spent_in_seconds() / 3600
 
     def total_rounds_played(self) -> int:
         return self.rounds_won + self.rounds_lost

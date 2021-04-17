@@ -1,0 +1,39 @@
+<!doctype html>
+<!-- Holii -->
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <title>Laski's server CS stats</title>
+    <meta name="description" content="Stats del server de CS 1.6 de Laski">
+    <meta name="author" content="Laski">
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="/style.js"></script>
+</head>
+
+<body>
+<table id="statsTable" class="display" style="width:50%">
+    <thead>
+    <tr>
+        <th>Nick</th>
+        {% for name, explanation in stat_details %}
+            <th><span title="{{ explanation }}">{{ name }}</th>
+        {% endfor %}
+    </tr>
+    </thead>
+    <tbody>
+    {% for name, stats in score_table.items() %}
+        <tr>
+            <td>{{ name }}</td>
+            {% for stat in stats %}
+                <td>{{ stat }}</td>
+            {% endfor %}
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</body>
+</html>

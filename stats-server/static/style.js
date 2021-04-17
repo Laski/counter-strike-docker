@@ -1,8 +1,8 @@
 $(document).ready(function () {
-    $('#include').load('stats01.html', callback);
+    stylizeTable();
 });
 
-function callback() {
+function stylizeTable() {
     $('#statsTable').DataTable({
         "paging": false,
         "info": false,

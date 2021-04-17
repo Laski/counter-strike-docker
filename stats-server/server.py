@@ -32,7 +32,7 @@ def parse_logs(logs_path):
 
 def get_stats_for_season(season_logs_path):
     match_reports = parse_logs(season_logs_path)
-    scorers = [DefaultScorer(), WinRateScorer(), TotalRoundsScorer(), TimeSpentScorer(), GlickoScorer()]
+    scorers = [GlickoScorer(), DefaultScorer(), WinRateScorer(), TotalRoundsScorer(), TimeSpentScorer()]
     stats = StatsTable(match_reports, scorers)
     table = stats.get_full_table()
     stat_names = [scorer.stat_name for scorer in scorers]

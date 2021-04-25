@@ -42,12 +42,11 @@ class ScorerTestCase(unittest.TestCase):
         # when given to the stats extractor with a filter
         scorer = WinRateScorer(filter_less_than=10)
         stats = MatchReportCollection(match_reports)
-        # we can know the best player
-        score_table = stats.get_sorted_score_table(scorer)
+        # then the confidence in a player with less than the filter rounds played is zero
+        score_table = stats.get_full_player_scores(scorer)
         print(score_table)
-        player = Player("Rocho", 86787335)
-        best_player = score_table[0][0]
-        assert best_player == player
+        player = Player("El Bromas", 538649250)
+        assert score_table[player].confidence == 0
 
     def test_can_get_time_spent_in_the_server_per_player(self):
         # given a list of matches

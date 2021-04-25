@@ -20,7 +20,7 @@
     <tr>
         <th>Nick</th>
         {% for name, explanation in stat_details %}
-            <th><span title="{{ explanation }}">{{ name }}</th>
+            <th><span title="{{ explanation }}">{{ name }}</span></th>
         {% endfor %}
     </tr>
     </thead>
@@ -28,8 +28,12 @@
     {% for name, stats in score_table.items() %}
         <tr>
             <td>{{ name }}</td>
-            {% for stat in stats %}
-                <td>{{ stat }}</td>
+            {% for sortable_stat, string_stat, confidence_stat in stats %}
+                {% if confidence_stat > 0.01 %}
+                <td data-sort="{{ sortable_stat }}">{{ string_stat }}</td>
+                {% else %}
+                <td>-</td>
+                {% endif %}
             {% endfor %}
         </tr>
     {% endfor %}

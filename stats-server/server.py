@@ -5,6 +5,7 @@ from pathlib import Path
 from flask import Flask, make_response, redirect, render_template, send_from_directory, url_for
 
 from log_parser.parser import LogDirectoryParser
+from log_parser.report import MatchReportCollection
 from log_parser.scorer import (
     DefaultScorer,
     GlickoScorer,
@@ -32,14 +33,22 @@ def parse_logs(logs_path):
 
 def get_stats_for_season(season_logs_path):
     match_reports = parse_logs(season_logs_path)
-    scorers = [DefaultScorer(), WinRateScorer(), TotalRoundsScorer(), TimeSpentScorer(), GlickoScorer()]
+    total_amount_of_rounds = MatchReportCollection(match_reports).get_total_number_of_rounds()
+    filter_threshold = max(100, total_amount_of_rounds / 100)
+    scorers = [
+        GlickoScorer(filter_threshold),
+        DefaultScorer(filter_threshold),
+        WinRateScorer(filter_threshold),
+        TotalRoundsScorer(filter_threshold),
+        TimeSpentScorer(filter_threshold),
+    ]
     stats = StatsTable(match_reports, scorers)
     table = stats.get_full_table()
     stat_names = [scorer.stat_name for scorer in scorers]
     stat_details = [(scorer.stat_name, scorer.stat_explanation) for scorer in scorers]
 
     def flatten_player_row(table, player):
-        return [table[player].get(stat_name, '-') for stat_name in stat_names]
+        return [table[player].get(stat_name) for stat_name in stat_names]
 
     flat_table = {player.get_nickname(): flatten_player_row(table, player) for player in table}
     return stat_details, flat_table

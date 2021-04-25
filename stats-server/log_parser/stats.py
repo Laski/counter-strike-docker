@@ -1,11 +1,11 @@
 from collections import defaultdict
-from typing import Dict, Iterable, Mapping
+from typing import Collection, Dict, Iterable, Mapping
 
 from log_parser.entity import Player
 from log_parser.report import MatchReport, MatchReportCollection
-from log_parser.scorer import ScorerStrategy
+from log_parser.scorer import FullScore, ScorerStrategy
 
-StatsRow = Dict[str, float]
+StatsRow = Dict[str, FullScore]
 
 
 class StatsTable:
@@ -13,7 +13,7 @@ class StatsTable:
     The stats table can construct a table of stats about the players, based on many different scoring strategies.
     """
 
-    def __init__(self, match_reports: Iterable[MatchReport], scorers: Iterable[ScorerStrategy]):
+    def __init__(self, match_reports: Iterable[MatchReport], scorers: Collection[ScorerStrategy]):
         self._match_reports = MatchReportCollection(match_reports)
         self._scorers = scorers
 
@@ -23,11 +23,11 @@ class StatsTable:
         for scorer in self._scorers:
             stat_name = scorer.stat_name
             stats[stat_name] = scorer.stat_explanation
-            scores = scorer.get_stringified_player_scores(self._match_reports)
+            scores = self._match_reports.get_full_player_scores(scorer)
             for player, value in scores.items():
                 table[player][stat_name] = value
-        return table
+        filtered_table = {player: row for player, row in table.items() if len(row) == len(self._scorers)}
+        return filtered_table
 
     def get_stats_explanations(self) -> Mapping[str, str]:
         return {scorer.stat_name: scorer.stat_explanation for scorer in self._scorers}
-

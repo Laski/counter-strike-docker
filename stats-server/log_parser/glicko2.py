@@ -52,12 +52,6 @@ class PlayerRating:
         self.setRd(rd)
         self.vol = vol
 
-    def __str__(self):
-        return f"({self.rating}+/-{self.rd}"
-
-    def to_tuple(self):
-        return (self.rating, self.rd)
-
     def _preRatingRD(self):
         """Calculates and updates the player's rating deviation for the
         beginning of a rating period.
@@ -65,7 +59,7 @@ class PlayerRating:
         preRatingRD() -> None
 
         """
-        self.__rd = min(350 / 173.7178, math.sqrt(math.pow(self.__rd, 2) + math.pow(self.vol, 2)))
+        self.__rd = math.sqrt(math.pow(self.__rd, 2) + math.pow(self.vol, 2))
 
     def register_win(self, loser: 'PlayerRating') -> None:
         old_rating = self.rating
@@ -87,7 +81,7 @@ class PlayerRating:
         self.vol = self._newVol(rating_list, RD_list, outcome_list, v)
         self._preRatingRD()
 
-        self.__rd = min(350 / 173.7178, 1 / math.sqrt((1 / math.pow(self.__rd, 2)) + (1 / v)))
+        self.__rd = 1 / math.sqrt((1 / math.pow(self.__rd, 2)) + (1 / v))
 
         tempSum = 0
         for i in range(len(rating_list)):

@@ -203,6 +203,9 @@ class MatchReportCollection(BaseClass):
             logging.debug(f"Stats collected for match {report}")
         return stats_by_player
 
+    def get_total_number_of_rounds(self):
+        return sum(len(match.get_round_reports()) for match in self._match_reports)
+
     def get_sorted_score_table(self, scorer: 'ScorerStrategy') -> List[Tuple[Player, float]]:
         scores = scorer.get_player_scores(self)
         sorted_score_table = sorted(scores.items(), key=lambda kv: kv[1], reverse=True)
@@ -211,6 +214,9 @@ class MatchReportCollection(BaseClass):
     def get_best_player(self, scorer: 'ScorerStrategy') -> Tuple[Player, float]:
         score_table = self.get_sorted_score_table(scorer)
         return score_table[0]
+
+    def get_full_player_scores(self, scorer: 'ScorerStrategy') -> Mapping[Player, 'FullScore']:
+        return scorer.get_full_player_scores(self)
 
     def __iter__(self) -> Iterator[MatchReport]:
         return iter(self._match_reports)

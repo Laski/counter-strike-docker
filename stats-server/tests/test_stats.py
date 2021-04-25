@@ -20,8 +20,12 @@ class StatsTableTestCase(unittest.TestCase):
         # we can know the full scoring table
         score_table = stats.get_full_table()
         print(score_table)
-        self.assertEqual(score_table[Player('Laski', 53940642)]['Score'], '-12.00')
-        self.assertEqual(score_table[Player('Mcd.', 538382878)]['Score'], '26.00')
+        self.assertEqual(score_table[Player('Laski', 53940642)]['Score'].value, -12)
+        self.assertEqual(score_table[Player('Laski', 53940642)]['Score'].string, '-12')
+        self.assertAlmostEqual(score_table[Player('Laski', 53940642)]['Score'].confidence, 1)
+        self.assertEqual(score_table[Player('Mcd.', 538382878)]['Score'].value, 26)
+        self.assertEqual(score_table[Player('Mcd.', 538382878)]['Score'].string, '26')
+        self.assertAlmostEqual(score_table[Player('Mcd.', 538382878)]['Score'].confidence, 1)
 
     if __name__ == "__main__":
         unittest.main()

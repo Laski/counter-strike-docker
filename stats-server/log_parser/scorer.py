@@ -2,11 +2,17 @@ import datetime
 import logging
 from abc import ABC
 from collections import defaultdict
-from typing import Collection, Dict, List, Mapping, Optional, Tuple
+from typing import Collection, Dict, List, Mapping, NamedTuple, Optional, Tuple
 
 from log_parser.entity import Player
 from log_parser.glicko2 import PlayerRating
 from log_parser.report import MatchReport, MatchReportCollection, PlayerTable
+
+
+class FullScore(NamedTuple):
+    value: float
+    string: str
+    confidence: float
 
 
 class ScorerStrategy(ABC):
@@ -23,24 +29,44 @@ class ScorerStrategy(ABC):
         """
         self.filter_treshold = filter_less_than
 
-    def collect_stats(self, match_reports: MatchReportCollection) -> PlayerTable:
-        stats_by_player: PlayerTable = match_reports.collect_stats()
-        stats_by_player = self._filter(stats_by_player)
-        return stats_by_player
-
     def get_player_scores(self, match_reports: MatchReportCollection) -> Mapping[Player, float]:
         raise NotImplementedError("SubclassResponsibility")
 
     def get_stringified_player_scores(self, match_reports: MatchReportCollection) -> Mapping[Player, str]:
-        scores = self.get_player_scores(match_reports)
+        return self._stringify_scores(self.get_player_scores(match_reports))
+
+    def _stringify_scores(self, scores: Mapping[Player, float]) -> Mapping[Player, str]:
         return {player: f"{score:.2f}" for player, score in scores.items()}
 
-    def _filter(self, stats_by_player: PlayerTable) -> PlayerTable:
-        return {
-            player: stats
-            for player, stats in stats_by_player.items()
-            if stats.total_rounds_played() > self.filter_treshold
-        }
+    def get_confidence_in_player_scores(self, match_reports: MatchReportCollection) -> Mapping[Player, float]:
+        """
+        Returns a level of confidence in the score returned (a number between 0 and 1).
+        Default calculation is 1 if the number of rounds the player was involved in is more than the filter_less_than
+        parameter (and 0 otherwise).
+        Other scorers may override this value, usually with  the percentage of rounds this player was involved in.
+        """
+        stats_by_player: PlayerTable = match_reports.collect_stats()
+
+        confidence_table = {}
+        for player, stats in stats_by_player.items():
+            player_rounds = stats.total_rounds_played()
+            confidence_table[player] = 1 if player_rounds >= self.filter_treshold else 0
+        return confidence_table
+
+    def get_full_player_scores(self, match_reports: MatchReportCollection) -> Mapping[Player, FullScore]:
+        """
+        Returns, for each player, all three characteristics of the score: value, string and confidence
+        """
+        score_values = self.get_player_scores(match_reports)
+        string_values = self._stringify_scores(score_values)
+        confidence_values = self.get_confidence_in_player_scores(match_reports)
+        full_scores = {}
+        for player in score_values:
+            value = score_values[player]
+            string = string_values[player]
+            confidence = confidence_values[player]
+            full_scores[player] = FullScore(value, string, confidence)
+        return full_scores
 
 
 class DefaultScorer(ScorerStrategy):
@@ -53,11 +79,14 @@ class DefaultScorer(ScorerStrategy):
 
     def get_player_scores(self, match_reports: MatchReportCollection) -> Mapping[Player, float]:
         scores: Dict[Player, int] = defaultdict(int)
-        stats_by_player = self.collect_stats(match_reports)
+        stats_by_player: PlayerTable = match_reports.collect_stats()
         for player, stats in stats_by_player.items():
             scores[player] += stats.kills
             scores[player] -= stats.deaths
         return scores
+
+    def _stringify_scores(self, scores: Mapping[Player, float]) -> Mapping[Player, str]:
+        return {player: str(score) for player, score in scores.items()}
 
 
 class WinRateScorer(ScorerStrategy):
@@ -70,7 +99,7 @@ class WinRateScorer(ScorerStrategy):
 
     def get_player_scores(self, match_reports: MatchReportCollection) -> Mapping[Player, float]:
         scores: Dict[Player, float] = defaultdict(int)
-        stats_by_player = self.collect_stats(match_reports)
+        stats_by_player: PlayerTable = match_reports.collect_stats()
         for player, stats in stats_by_player.items():
             rounds_played = stats.total_rounds_played()
             if rounds_played:
@@ -78,8 +107,7 @@ class WinRateScorer(ScorerStrategy):
                 scores[player] = rounds_won / rounds_played
         return scores
 
-    def get_stringified_player_scores(self, match_reports: MatchReportCollection) -> Mapping[Player, str]:
-        scores = self.get_player_scores(match_reports)
+    def _stringify_scores(self, scores: Mapping[Player, float]) -> Mapping[Player, str]:
         return {player: f"{score * 100:.2f}%" for player, score in scores.items()}
 
 
@@ -92,12 +120,12 @@ class TimeSpentScorer(ScorerStrategy):
     stat_explanation = "Horas pasadas en el server"
 
     def get_player_scores(self, match_reports: MatchReportCollection) -> Mapping[Player, float]:
-        stats_by_player = self.collect_stats(match_reports)
+        stats_by_player: PlayerTable = match_reports.collect_stats()
         scores = {player: stats.time_spent_in_hours() for player, stats in stats_by_player.items()}
         return scores
 
     def get_stringified_player_scores(self, match_reports: MatchReportCollection) -> Mapping[Player, str]:
-        stats_by_player = self.collect_stats(match_reports)
+        stats_by_player: PlayerTable = match_reports.collect_stats()
 
         def stringify_timedelta(timedelta: datetime.timedelta) -> str:
             seconds = timedelta.total_seconds()
@@ -108,15 +136,23 @@ class TimeSpentScorer(ScorerStrategy):
         scores = {player: stringify_timedelta(stats.time_spent) for player, stats in stats_by_player.items()}
         return scores
 
+    def get_confidence_in_player_scores(self, match_reports: MatchReportCollection) -> Mapping[Player, float]:
+        # we always have full confidence in this value
+        return defaultdict(lambda: 1)
+
 
 class KillsScorer(ScorerStrategy):
     stat_name = "Kills"
     stat_explanation = "Kills totales del jugador"
 
     def get_player_scores(self, match_reports: MatchReportCollection) -> Mapping[Player, float]:
-        stats_by_player = self.collect_stats(match_reports)
+        stats_by_player: PlayerTable = match_reports.collect_stats()
         scores = {player: stats.kills for player, stats in stats_by_player.items()}
         return scores
+
+    def get_confidence_in_player_scores(self, match_reports: MatchReportCollection) -> Mapping[Player, float]:
+        # we always have full confidence in this value
+        return defaultdict(lambda: 1)
 
 
 class DeathsScorer(ScorerStrategy):
@@ -124,9 +160,13 @@ class DeathsScorer(ScorerStrategy):
     stat_explanation = "Deaths totales del jugador"
 
     def get_player_scores(self, match_reports: MatchReportCollection) -> Mapping[Player, float]:
-        stats_by_player = self.collect_stats(match_reports)
+        stats_by_player: PlayerTable = match_reports.collect_stats()
         scores = {player: stats.deaths for player, stats in stats_by_player.items()}
         return scores
+
+    def get_confidence_in_player_scores(self, match_reports: MatchReportCollection) -> Mapping[Player, float]:
+        # we always have full confidence in this value
+        return defaultdict(lambda: 1)
 
 
 class TotalRoundsScorer(ScorerStrategy):
@@ -134,9 +174,16 @@ class TotalRoundsScorer(ScorerStrategy):
     stat_explanation = "Cantidad de rondas terminadas"
 
     def get_player_scores(self, match_reports: MatchReportCollection) -> Mapping[Player, float]:
-        stats_by_player = self.collect_stats(match_reports)
+        stats_by_player: PlayerTable = match_reports.collect_stats()
         scores = {player: stats.total_rounds_played() for player, stats in stats_by_player.items()}
         return scores
+
+    def _stringify_scores(self, scores: Mapping[Player, float]) -> Mapping[Player, str]:
+        return {player: str(score) for player, score in scores.items()}
+
+    def get_confidence_in_player_scores(self, match_reports: MatchReportCollection) -> Mapping[Player, float]:
+        # we always have full confidence in this value
+        return defaultdict(lambda: 1)
 
 
 class GlickoScorer(ScorerStrategy):
@@ -164,13 +211,23 @@ class GlickoScorer(ScorerStrategy):
                     rankings[player].did_not_compete()  # updates variance
         return rankings
 
-    def get_player_scores(self, match_reports: MatchReportCollection) -> Mapping[Player, Tuple[float]]:
+    def get_player_scores(self, match_reports: MatchReportCollection) -> Mapping[Player, float]:
         rankings = self._calculate_rankings(match_reports)
-        return {player: ranking.to_tuple() for player, ranking in rankings.items()}
+        return {player: ranking.rating for player, ranking in rankings.items()}
 
-    def get_stringified_player_scores(self, match_reports: MatchReportCollection) -> Mapping[Player, str]:
+    def get_full_player_scores(self, match_reports: MatchReportCollection) -> Mapping[Player, FullScore]:
+        # override for performance
         rankings = self._calculate_rankings(match_reports)
-        return {player: f"{ranking.rating:.2f} (± {ranking.rd * 1.96:.2f})" for player, ranking in rankings.items()}
+        confidence_values = self.get_confidence_in_player_scores(match_reports)
+        full_scores = {}
+        for player, ranking in rankings.items():
+            value = ranking.rating
+            lower, top = value - 1.96 * ranking.rd, value + 1.96 * ranking.rd
+            string = f"[{lower:.2f}, {top:.2f}]"
+            confidence = confidence_values[player]
+            value = lower   # sorting by lower value possible makes more sense?
+            full_scores[player] = FullScore(value, string, confidence)
+        return full_scores
 
 
 class MatchStatsExtractor:

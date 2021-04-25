@@ -7,8 +7,10 @@ from flask import Flask, make_response, redirect, render_template, send_from_dir
 from log_parser.parser import LogDirectoryParser
 from log_parser.report import MatchReportCollection
 from log_parser.scorer import (
+    DeathsScorer,
     DefaultScorer,
     GlickoScorer,
+    KillsScorer,
     TimeSpentScorer,
     TotalRoundsScorer,
     WinRateScorer,
@@ -38,6 +40,8 @@ def get_stats_for_season(season_logs_path):
     scorers = [
         GlickoScorer(filter_threshold),
         DefaultScorer(filter_threshold),
+        KillsScorer(filter_threshold),
+        DeathsScorer(filter_threshold),
         WinRateScorer(filter_threshold),
         TotalRoundsScorer(filter_threshold),
         TimeSpentScorer(filter_threshold),

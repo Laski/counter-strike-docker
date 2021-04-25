@@ -32,11 +32,8 @@ class ScorerStrategy(ABC):
     def get_player_scores(self, match_reports: MatchReportCollection) -> Mapping[Player, float]:
         raise NotImplementedError("SubclassResponsibility")
 
-    def get_stringified_player_scores(self, match_reports: MatchReportCollection) -> Mapping[Player, str]:
-        return self._stringify_scores(self.get_player_scores(match_reports))
-
     def _stringify_scores(self, scores: Mapping[Player, float]) -> Mapping[Player, str]:
-        return {player: f"{score:.2f}" for player, score in scores.items()}
+        return {player: str(score) for player, score in scores.items()}
 
     def get_confidence_in_player_scores(self, match_reports: MatchReportCollection) -> Mapping[Player, float]:
         """
@@ -74,7 +71,7 @@ class DefaultScorer(ScorerStrategy):
     The default CS1.6 scoring method: kills - deaths
     """
 
-    stat_name = "Score"
+    stat_name = "Classic\u00A0score"
     stat_explanation = "kills - deaths"
 
     def get_player_scores(self, match_reports: MatchReportCollection) -> Mapping[Player, float]:
@@ -85,8 +82,9 @@ class DefaultScorer(ScorerStrategy):
             scores[player] -= stats.deaths
         return scores
 
-    def _stringify_scores(self, scores: Mapping[Player, float]) -> Mapping[Player, str]:
-        return {player: str(score) for player, score in scores.items()}
+    def get_confidence_in_player_scores(self, match_reports: MatchReportCollection) -> Mapping[Player, float]:
+        # we always have full confidence in this value
+        return defaultdict(lambda: 1)
 
 
 class WinRateScorer(ScorerStrategy):
@@ -124,16 +122,15 @@ class TimeSpentScorer(ScorerStrategy):
         scores = {player: stats.time_spent_in_hours() for player, stats in stats_by_player.items()}
         return scores
 
-    def get_stringified_player_scores(self, match_reports: MatchReportCollection) -> Mapping[Player, str]:
-        stats_by_player: PlayerTable = match_reports.collect_stats()
-
-        def stringify_timedelta(timedelta: datetime.timedelta) -> str:
+    def _stringify_scores(self, scores: Mapping[Player, float]) -> Mapping[Player, str]:
+        def _hours_to_string(hours: float) -> str:
+            timedelta = datetime.timedelta(seconds=hours * 3600)
             seconds = timedelta.total_seconds()
             m, s = divmod(seconds, 60)
             h, m = divmod(m, 60)
             return f'{h:0.0f}:{m:0.0f}:{s:0.0f}'
 
-        scores = {player: stringify_timedelta(stats.time_spent) for player, stats in stats_by_player.items()}
+        scores = {player: _hours_to_string(hours) for player, hours in scores.items()}
         return scores
 
     def get_confidence_in_player_scores(self, match_reports: MatchReportCollection) -> Mapping[Player, float]:
@@ -178,9 +175,6 @@ class TotalRoundsScorer(ScorerStrategy):
         scores = {player: stats.total_rounds_played() for player, stats in stats_by_player.items()}
         return scores
 
-    def _stringify_scores(self, scores: Mapping[Player, float]) -> Mapping[Player, str]:
-        return {player: str(score) for player, score in scores.items()}
-
     def get_confidence_in_player_scores(self, match_reports: MatchReportCollection) -> Mapping[Player, float]:
         # we always have full confidence in this value
         return defaultdict(lambda: 1)
@@ -215,17 +209,20 @@ class GlickoScorer(ScorerStrategy):
         rankings = self._calculate_rankings(match_reports)
         return {player: ranking.rating for player, ranking in rankings.items()}
 
+    def _stringify_scores(self, scores: Mapping[Player, float]) -> Mapping[Player, str]:
+        raise NotImplementedError  # this can't be done correctly here, as we need the standard deviance too. see below.
+
     def get_full_player_scores(self, match_reports: MatchReportCollection) -> Mapping[Player, FullScore]:
-        # override for performance
+        # we override the parent method because we can't calculate the strings from the final scores only.
         rankings = self._calculate_rankings(match_reports)
         confidence_values = self.get_confidence_in_player_scores(match_reports)
         full_scores = {}
         for player, ranking in rankings.items():
             value = ranking.rating
             lower, top = value - 1.96 * ranking.rd, value + 1.96 * ranking.rd
-            string = f"[{lower:.2f}, {top:.2f}]"
+            string = f"[{lower:.2f},\u00A0{top:.2f}]"  # non-breaking space
             confidence = confidence_values[player]
-            value = lower   # sorting by lower value possible makes more sense?
+            value = lower  # sorting by lower value possible makes more sense?
             full_scores[player] = FullScore(value, string, confidence)
         return full_scores
 

@@ -2,7 +2,6 @@ csstats.dat
 stats.html
 logs/*
 reports/*
-# keep one logfile for testing
-!logs/L0409001.log
+tests/logs/reports/*
 __pycache__/
 type_info.json

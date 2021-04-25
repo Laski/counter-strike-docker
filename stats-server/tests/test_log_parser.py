@@ -3,7 +3,7 @@ import logging
 import unittest
 
 from log_parser.entity import CT_team, Player, Terrorist_team, Weapon
-from log_parser.parser import LogParser
+from log_parser.parser import LogDirectoryParser, LogParser
 
 logging.basicConfig(level=logging.DEBUG)
 
@@ -11,7 +11,7 @@ logging.basicConfig(level=logging.DEBUG)
 class LogParserTests(unittest.TestCase):
     def test_can_read_the_map(self):
         # given a log file
-        filename = "logs/L0409001.log"
+        filename = "tests/logs/L0409001.log"
         # when feeded to the log parser
         parser = LogParser.from_filename(filename)
         match_report = parser.get_match_report()
@@ -20,7 +20,7 @@ class LogParserTests(unittest.TestCase):
 
     def test_can_get_a_match_start_and_end(self):
         # given a log file
-        filename = "logs/L0409001.log"
+        filename = "tests/logs/L0409001.log"
         # when feeded to the log parser
         parser = LogParser.from_filename(filename)
         match_report = parser.get_match_report()
@@ -30,7 +30,7 @@ class LogParserTests(unittest.TestCase):
 
     def test_can_get_a_round_start_and_end(self):
         # given a log file
-        filename = "logs/L0409001.log"
+        filename = "tests/logs/L0409001.log"
         # when feeded to the log parser
         parser = LogParser.from_filename(filename)
         match_report = parser.get_match_report()
@@ -41,7 +41,7 @@ class LogParserTests(unittest.TestCase):
 
     def test_can_get_a_round_first_attack(self):
         # given a log file
-        filename = "logs/L0409001.log"
+        filename = "tests/logs/L0409001.log"
         # when feeded to the log parser
         parser = LogParser.from_filename(filename)
         match_report = parser.get_match_report()
@@ -51,7 +51,7 @@ class LogParserTests(unittest.TestCase):
 
     def test_can_get_a_round_first_kill(self):
         # given a log file
-        filename = "logs/L0409001.log"
+        filename = "tests/logs/L0409001.log"
         # when feeded to the log parser
         parser = LogParser.from_filename(filename)
         match_report = parser.get_match_report()
@@ -86,7 +86,7 @@ class LogParserTests(unittest.TestCase):
 
     def test_can_know_which_players_where_in_each_team_in_a_round(self):
         # given a log file
-        filename = "logs/L0409001.log"
+        filename = "tests/logs/L0409001.log"
         # when feeded to the log parser
         parser = LogParser.from_filename(filename)
         match_report = parser.get_match_report()
@@ -137,7 +137,7 @@ class LogParserTests(unittest.TestCase):
 
     def test_can_know_the_final_match_score(self):
         # given a log file
-        filename = "logs/L0409001.log"
+        filename = "tests/logs/L0409001.log"
         # when feeded to the log parser
         parser = LogParser.from_filename(filename)
         match_report = parser.get_match_report()
@@ -171,7 +171,7 @@ class LogParserTests(unittest.TestCase):
 
     def test_can_know_a_player_match_stats(self):
         # given a log file
-        filename = "logs/L0409001.log"
+        filename = "tests/logs/L0409001.log"
         # when feeded to the log parser
         parser = LogParser.from_filename(filename)
         match_report = parser.get_match_report()
@@ -189,7 +189,7 @@ class LogParserTests(unittest.TestCase):
     @unittest.skip
     def test_can_read_the_logs_from_an_entire_directory(self):
         # given a directory with many logs
-        logs_path = "logs"
+        logs_path = "tests/logs"
         # when the log parser tries to read them all
         # then it does not fail
         LogDirectoryParser(logs_path).get_all_match_reports()

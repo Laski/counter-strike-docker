@@ -8,11 +8,11 @@ from log_parser.parser import LogDirectoryParser
 from log_parser.scorer import (
     DefaultScorer,
     GlickoScorer,
-    StatsTable,
     TimeSpentScorer,
     TotalRoundsScorer,
     WinRateScorer,
 )
+from log_parser.stats import StatsTable
 
 LOGS_PATH = "logs"
 STATS_CACHE = {}

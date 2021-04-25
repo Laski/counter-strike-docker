@@ -1,6 +1,8 @@
 import datetime
+import logging
 from collections import defaultdict
 from dataclasses import dataclass, field
+from functools import lru_cache
 from typing import Dict, Iterable, Iterator, List, Mapping, Optional, Tuple
 
 from frozendict import frozendict
@@ -172,3 +174,24 @@ class MatchReport:
 
     def _all_round_events(self) -> Iterator[Event]:
         return (event for round in self.get_round_reports() for event in round.get_events())
+
+
+PlayerTable = Dict[Player, PlayerStats]
+
+
+class MatchReportCollection:
+    """
+    A collection of ended matches.
+    Useful to precalculate some stats.
+    """
+
+    def __init__(self, match_reports: Iterable[MatchReport]) -> None:
+        self.match_reports = match_reports
+
+    @lru_cache(maxsize=None)
+    def collect_stats(self) -> PlayerTable:
+        stats_by_player: PlayerTable = defaultdict(PlayerStats)
+        for report in self.match_reports:
+            report.add_to_player_stats_table(stats_by_player)
+            logging.debug(f"Stats collected for match {report}")
+        return stats_by_player

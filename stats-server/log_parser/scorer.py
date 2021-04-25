@@ -2,13 +2,11 @@ import datetime
 import logging
 from abc import ABC
 from collections import defaultdict
-from typing import Dict, Iterable, List, Mapping, Optional, Tuple
+from typing import Dict, List, Mapping, Optional, Tuple
 
 from log_parser.entity import Player
 from log_parser.glicko2 import PlayerRating
-from log_parser.report import MatchReport, PlayerStats
-
-PlayerTable = Dict[Player, PlayerStats]
+from log_parser.report import MatchReportCollection, PlayerStats, PlayerTable
 
 
 class ScorerStrategy(ABC):
@@ -19,7 +17,13 @@ class ScorerStrategy(ABC):
     stat_name = None
     stat_explanation = None
 
-    def collect_stats(self, match_reports: Iterable[MatchReport]) -> PlayerTable:
+    def __init__(self, filter_less_than: int = 0):
+        """
+        :param filter_less_than: the amount of rounds a player must have played in order to be assigned a score
+        """
+        self.filter_treshold = filter_less_than
+
+    def collect_stats(self, match_reports: MatchReportCollection) -> PlayerTable:
         stats_by_player: PlayerTable = defaultdict(PlayerStats)
         for report in match_reports:
             report.add_to_player_stats_table(stats_by_player)
@@ -27,16 +31,16 @@ class ScorerStrategy(ABC):
         stats_by_player = self._filter(stats_by_player)
         return stats_by_player
 
-    def get_player_scores(self, match_reports: Iterable[MatchReport]) -> Mapping[Player, float]:
+    def get_player_scores(self, match_reports: MatchReportCollection) -> Mapping[Player, float]:
         raise NotImplementedError("SubclassResponsibility")
 
-    def get_stringified_player_scores(self, match_reports: Iterable[MatchReport]) -> Mapping[Player, str]:
+    def get_stringified_player_scores(self, match_reports: MatchReportCollection) -> Mapping[Player, str]:
         scores = self.get_player_scores(match_reports)
         return {player: f"{score:.2f}" for player, score in scores.items()}
 
     def _filter(self, stats_by_player: PlayerTable) -> PlayerTable:
-        # by default we do not filter
-        return stats_by_player
+        return {player: stats for player, stats in stats_by_player.items() if
+                stats.total_rounds_played() > self.filter_treshold}
 
 
 class DefaultScorer(ScorerStrategy):
@@ -47,7 +51,7 @@ class DefaultScorer(ScorerStrategy):
     stat_name = "Score"
     stat_explanation = "kills - deaths"
 
-    def get_player_scores(self, match_reports: Iterable[MatchReport]) -> Mapping[Player, float]:
+    def get_player_scores(self, match_reports: MatchReportCollection) -> Mapping[Player, float]:
         scores: Dict[Player, int] = defaultdict(int)
         stats_by_player = self.collect_stats(match_reports)
         for player, stats in stats_by_player.items():
@@ -64,7 +68,7 @@ class WinRateScorer(ScorerStrategy):
     stat_name = "Win rate"
     stat_explanation = "Porcentaje de rondas ganadas por el jugador."
 
-    def get_player_scores(self, match_reports: Iterable[MatchReport]) -> Mapping[Player, float]:
+    def get_player_scores(self, match_reports: MatchReportCollection) -> Mapping[Player, float]:
         scores: Dict[Player, float] = defaultdict(int)
         stats_by_player = self.collect_stats(match_reports)
         for player, stats in stats_by_player.items():
@@ -74,11 +78,7 @@ class WinRateScorer(ScorerStrategy):
                 scores[player] = rounds_won / rounds_played
         return scores
 
-    def _filter(self, stats_by_player: PlayerTable) -> PlayerTable:
-        # only players with more than 100 rounds
-        return {player: stats for player, stats in stats_by_player.items() if stats.total_rounds_played() > 100}
-
-    def get_stringified_player_scores(self, match_reports: Iterable[MatchReport]) -> Mapping[Player, str]:
+    def get_stringified_player_scores(self, match_reports: MatchReportCollection) -> Mapping[Player, str]:
         scores = self.get_player_scores(match_reports)
         return {player: f"{score * 100:.2f}%" for player, score in scores.items()}
 
@@ -91,12 +91,12 @@ class TimeSpentScorer(ScorerStrategy):
     stat_name = "Time spent"
     stat_explanation = "Horas pasadas en el server"
 
-    def get_player_scores(self, match_reports: Iterable[MatchReport]) -> Mapping[Player, float]:
+    def get_player_scores(self, match_reports: MatchReportCollection) -> Mapping[Player, float]:
         stats_by_player = self.collect_stats(match_reports)
         scores = {player: stats.time_spent_in_hours() for player, stats in stats_by_player.items()}
         return scores
 
-    def get_stringified_player_scores(self, match_reports: Iterable[MatchReport]) -> Mapping[Player, str]:
+    def get_stringified_player_scores(self, match_reports: MatchReportCollection) -> Mapping[Player, str]:
         stats_by_player = self.collect_stats(match_reports)
 
         def stringify_timedelta(timedelta: datetime.timedelta) -> str:
@@ -113,7 +113,7 @@ class KillsScorer(ScorerStrategy):
     stat_name = "Kills"
     stat_explanation = "Kills totales del jugador"
 
-    def get_player_scores(self, match_reports: Iterable[MatchReport]) -> Mapping[Player, float]:
+    def get_player_scores(self, match_reports: MatchReportCollection) -> Mapping[Player, float]:
         stats_by_player = self.collect_stats(match_reports)
         scores = {player: stats.kills for player, stats in stats_by_player.items()}
         return scores
@@ -123,7 +123,7 @@ class DeathsScorer(ScorerStrategy):
     stat_name = "Deaths"
     stat_explanation = "Deaths totales del jugador"
 
-    def get_player_scores(self, match_reports: Iterable[MatchReport]) -> Mapping[Player, float]:
+    def get_player_scores(self, match_reports: MatchReportCollection) -> Mapping[Player, float]:
         stats_by_player = self.collect_stats(match_reports)
         scores = {player: stats.deaths for player, stats in stats_by_player.items()}
         return scores
@@ -133,7 +133,7 @@ class TotalRoundsScorer(ScorerStrategy):
     stat_name = "Total rounds"
     stat_explanation = "Cantidad de rondas terminadas"
 
-    def get_player_scores(self, match_reports: Iterable[MatchReport]) -> Mapping[Player, float]:
+    def get_player_scores(self, match_reports: MatchReportCollection) -> Mapping[Player, float]:
         stats_by_player = self.collect_stats(match_reports)
         scores = {player: stats.total_rounds_played() for player, stats in stats_by_player.items()}
         return scores
@@ -164,17 +164,13 @@ class GlickoScorer(ScorerStrategy):
                     rankings[player].did_not_compete()  # updates variance
         return rankings
 
-    def get_player_scores(self, match_reports: Iterable[MatchReport]) -> Mapping[Player, Tuple[float]]:
+    def get_player_scores(self, match_reports: MatchReportCollection) -> Mapping[Player, Tuple[float]]:
         rankings = self._calculate_rankings(match_reports)
         return {player: ranking.to_tuple() for player, ranking in rankings.items()}
 
-    def get_stringified_player_scores(self, match_reports: Iterable[MatchReport]) -> Mapping[Player, str]:
+    def get_stringified_player_scores(self, match_reports: MatchReportCollection) -> Mapping[Player, str]:
         rankings = self._calculate_rankings(match_reports)
         return {player: f"{ranking.rating:.2f} (± {ranking.rd * 1.96:.2f})" for player, ranking in rankings.items()}
-
-    def _filter(self, stats_by_player: PlayerTable) -> PlayerTable:
-        # only players with more than 100 rounds
-        return {player: stats for player, stats in stats_by_player.items() if stats.total_rounds_played() > 100}
 
 
 class MatchStatsExtractor:
@@ -183,7 +179,7 @@ class MatchStatsExtractor:
     """
 
     def __init__(
-        self, match_reports: Iterable[MatchReport], scorer: Optional[ScorerStrategy] = None,
+        self, match_reports: MatchReportCollection, scorer: Optional[ScorerStrategy] = None,
     ):
         self._match_reports = match_reports
         self._scorer = scorer or DefaultScorer()
@@ -196,30 +192,3 @@ class MatchStatsExtractor:
     def get_best_player(self) -> Tuple[Player, float]:
         score_table = self.get_sorted_score_table()
         return score_table[0]
-
-
-StatsRow = Dict[str, float]
-
-
-class StatsTable:
-    """
-    The stats table can construct a table of stats about the players, based on many different scoring strategies.
-    """
-
-    def __init__(self, match_reports: Iterable[MatchReport], scorers: Iterable[ScorerStrategy]):
-        self._match_reports = match_reports
-        self._scorers = scorers
-
-    def get_full_table(self) -> Mapping[Player, StatsRow]:
-        table = defaultdict(dict)
-        stats = {}
-        for scorer in self._scorers:
-            stat_name = scorer.stat_name
-            stats[stat_name] = scorer.stat_explanation
-            scores = scorer.get_stringified_player_scores(self._match_reports)
-            for player, value in scores.items():
-                table[player][stat_name] = value
-        return table
-
-    def get_stats_explanations(self) -> Mapping[str, str]:
-        return {scorer.stat_name: scorer.stat_explanation for scorer in self._scorers}

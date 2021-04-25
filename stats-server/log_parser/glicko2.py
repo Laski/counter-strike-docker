@@ -59,7 +59,7 @@ class PlayerRating:
         return (self.rating, self.rd)
 
     def _preRatingRD(self):
-        """ Calculates and updates the player's rating deviation for the
+        """Calculates and updates the player's rating deviation for the
         beginning of a rating period.
 
         preRatingRD() -> None
@@ -74,7 +74,7 @@ class PlayerRating:
         loser.update_player([old_rating], [old_rating_deviation], [0])
 
     def update_player(self, rating_list, RD_list, outcome_list):
-        """ Calculates the new rating and rating deviation of the player.
+        """Calculates the new rating and rating deviation of the player.
 
         update_player(list[int], list[int], list[bool]) -> None
 
@@ -96,7 +96,7 @@ class PlayerRating:
 
     # step 5
     def _newVol(self, rating_list, RD_list, outcome_list, v):
-        """ Calculating the new volatility as per the Glicko2 system.
+        """Calculating the new volatility as per the Glicko2 system.
 
         Updated for Feb 22, 2012 revision. -Leo
 
@@ -149,7 +149,7 @@ class PlayerRating:
         return (num1 / denom1) - ((x - a) / (self._tau ** 2))
 
     def _delta(self, rating_list, RD_list, outcome_list, v):
-        """ The delta function of the Glicko2 system.
+        """The delta function of the Glicko2 system.
 
         _delta(list, list, list) -> float
 
@@ -160,7 +160,7 @@ class PlayerRating:
         return v * tempSum
 
     def _v(self, rating_list, RD_list):
-        """ The v function of the Glicko2 system.
+        """The v function of the Glicko2 system.
 
         _v(list[int], list[int]) -> float
 
@@ -172,7 +172,7 @@ class PlayerRating:
         return 1 / tempSum
 
     def _E(self, p2rating, p2RD):
-        """ The Glicko E function.
+        """The Glicko E function.
 
         _E(int) -> float
 
@@ -180,7 +180,7 @@ class PlayerRating:
         return 1 / (1 + math.exp(-1 * self._g(p2RD) * (self.__rating - p2rating)))
 
     def _g(self, RD):
-        """ The Glicko2 g(RD) function.
+        """The Glicko2 g(RD) function.
 
         _g() -> float
 
@@ -188,7 +188,7 @@ class PlayerRating:
         return 1 / math.sqrt(1 + 3 * math.pow(RD, 2) / math.pow(math.pi, 2))
 
     def did_not_compete(self):
-        """ Applies Step 6 of the algorithm. Use this for
+        """Applies Step 6 of the algorithm. Use this for
         players who did not compete in the rating period.
         did_not_compete() -> None
 

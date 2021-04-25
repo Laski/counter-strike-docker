@@ -2,11 +2,11 @@ import datetime
 import logging
 from abc import ABC
 from collections import defaultdict
-from typing import Dict, List, Mapping, Optional, Tuple
+from typing import Collection, Dict, List, Mapping, Optional, Tuple
 
 from log_parser.entity import Player
 from log_parser.glicko2 import PlayerRating
-from log_parser.report import MatchReportCollection, PlayerStats, PlayerTable
+from log_parser.report import MatchReport, MatchReportCollection, PlayerTable
 
 
 class ScorerStrategy(ABC):
@@ -24,10 +24,7 @@ class ScorerStrategy(ABC):
         self.filter_treshold = filter_less_than
 
     def collect_stats(self, match_reports: MatchReportCollection) -> PlayerTable:
-        stats_by_player: PlayerTable = defaultdict(PlayerStats)
-        for report in match_reports:
-            report.add_to_player_stats_table(stats_by_player)
-            logging.debug(f"Stats collected for match {report}")
+        stats_by_player: PlayerTable = match_reports.collect_stats()
         stats_by_player = self._filter(stats_by_player)
         return stats_by_player
 
@@ -39,8 +36,11 @@ class ScorerStrategy(ABC):
         return {player: f"{score:.2f}" for player, score in scores.items()}
 
     def _filter(self, stats_by_player: PlayerTable) -> PlayerTable:
-        return {player: stats for player, stats in stats_by_player.items() if
-                stats.total_rounds_played() > self.filter_treshold}
+        return {
+            player: stats
+            for player, stats in stats_by_player.items()
+            if stats.total_rounds_played() > self.filter_treshold
+        }
 
 
 class DefaultScorer(ScorerStrategy):
@@ -148,8 +148,8 @@ class GlickoScorer(ScorerStrategy):
     stat_name = "ELO ranking"
     stat_explanation = "Puntaje dinámico similar al ELO del ajedrez. Matar a un jugador muy por encima de tu ranking te da más puntos, morir a manos de un jugador por debajo te resta más puntos."
 
-    def _calculate_rankings(self, match_reports):
-        rankings = defaultdict(PlayerRating)
+    def _calculate_rankings(self, match_reports: MatchReportCollection) -> Mapping[Player, PlayerRating]:
+        rankings: Mapping[Player, PlayerRating] = defaultdict(PlayerRating)
         valid_matches = [report for report in match_reports if len(report.get_round_reports()) >= 2]
         for match in valid_matches:
             for kill in match.get_all_kills():
@@ -179,9 +179,11 @@ class MatchStatsExtractor:
     """
 
     def __init__(
-        self, match_reports: MatchReportCollection, scorer: Optional[ScorerStrategy] = None,
+        self,
+        match_reports: Collection[MatchReport],
+        scorer: Optional[ScorerStrategy] = None,
     ):
-        self._match_reports = match_reports
+        self._match_reports = MatchReportCollection(match_reports)
         self._scorer = scorer or DefaultScorer()
 
     def get_sorted_score_table(self) -> List[Tuple[Player, float]]:

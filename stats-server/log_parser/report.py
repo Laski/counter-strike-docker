@@ -1,9 +1,10 @@
+import collections
 import datetime
 import logging
-from collections import defaultdict
+import typing
 from dataclasses import dataclass, field
 from functools import lru_cache
-from typing import Dict, Iterable, Iterator, List, Mapping, Optional, Tuple
+from typing import Collection, Dict, Iterable, Iterator, List, Mapping, Optional, TYPE_CHECKING, Tuple
 
 from frozendict import frozendict
 
@@ -20,7 +21,7 @@ class PlayerStats:
     rounds_won: int = 0
     rounds_lost: int = 0
     time_spent: datetime.timedelta = datetime.timedelta(0)
-    damage_inflicted_by_weapon: Dict['Weapon', int] = field(default_factory=lambda: defaultdict(int))
+    damage_inflicted_by_weapon: Dict['Weapon', int] = field(default_factory=lambda: collections.defaultdict(int))
 
     def time_spent_in_seconds(self) -> float:
         return self.time_spent.total_seconds()
@@ -115,11 +116,12 @@ class MatchReport:
         raise Exception("There's no blood in this game")
 
     def get_first_kill(self) -> KillEvent:
-        return next(self.get_all_kills())
+        return next(iter(self.get_all_kills()))
 
     def get_all_kills(self) -> Iterable[KillEvent]:
         for event in self._all_round_events():
             if event.is_kill():
+                assert isinstance(event, KillEvent)
                 yield event
 
     def get_map_name(self) -> str:
@@ -178,20 +180,40 @@ class MatchReport:
 
 PlayerTable = Dict[Player, PlayerStats]
 
+if TYPE_CHECKING:
+    BaseClass = typing.Iterable[MatchReport]
+else:
+    BaseClass = collections.Iterable
 
-class MatchReportCollection:
+
+class MatchReportCollection(BaseClass):
     """
     A collection of ended matches.
-    Useful to precalculate some stats.
+    Useful to cache some stats.
     """
 
-    def __init__(self, match_reports: Iterable[MatchReport]) -> None:
-        self.match_reports = match_reports
+    def __init__(self, match_reports: Collection[MatchReport]) -> None:
+        self._match_reports = match_reports
 
     @lru_cache(maxsize=None)
     def collect_stats(self) -> PlayerTable:
-        stats_by_player: PlayerTable = defaultdict(PlayerStats)
-        for report in self.match_reports:
+        stats_by_player: PlayerTable = collections.defaultdict(PlayerStats)
+        for report in self._match_reports:
             report.add_to_player_stats_table(stats_by_player)
             logging.debug(f"Stats collected for match {report}")
         return stats_by_player
+
+    def get_sorted_score_table(self, scorer: 'ScorerStrategy') -> List[Tuple[Player, float]]:
+        scores = scorer.get_player_scores(self)
+        sorted_score_table = sorted(scores.items(), key=lambda kv: kv[1], reverse=True)
+        return sorted_score_table
+
+    def get_best_player(self, scorer: 'ScorerStrategy') -> Tuple[Player, float]:
+        score_table = self.get_sorted_score_table(scorer)
+        return score_table[0]
+
+    def __iter__(self) -> Iterator[MatchReport]:
+        return iter(self._match_reports)
+
+    def __len__(self) -> int:
+        return len(self._match_reports)

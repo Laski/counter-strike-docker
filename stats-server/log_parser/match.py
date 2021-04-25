@@ -86,7 +86,7 @@ class MatchInProgress:
         round_report = self._ongoing_round.get_round_report()
         self._ended_round_reports.append(round_report)
 
-    def impact_current_round_with(self, event: Event):
+    def impact_current_round_with(self, event: Event) -> None:
         assert self._ongoing_round
         event.impact_round(self._ongoing_round)
 
@@ -100,7 +100,9 @@ class MatchInProgress:
         assert self._ended or not self._started
 
         report = MatchReport(
-            match_events=self._match_events, map_name=self._map_name, rounds=self._ended_round_reports,
+            match_events=self._match_events,
+            map_name=self._map_name,
+            rounds=self._ended_round_reports,
         )
         return report
 

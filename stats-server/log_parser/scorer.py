@@ -215,14 +215,13 @@ class GlickoScorer(ScorerStrategy):
     def get_full_player_scores(self, match_reports: MatchReportCollection) -> Mapping[Player, FullScore]:
         # we override the parent method because we can't calculate the strings from the final scores only.
         rankings = self._calculate_rankings(match_reports)
-        confidence_values = self.get_confidence_in_player_scores(match_reports)
         full_scores = {}
         for player, ranking in rankings.items():
             value = ranking.rating
             lower, top = value - 1.96 * ranking.rd, value + 1.96 * ranking.rd
             string = f"[{lower:.2f},\u00A0{top:.2f}]"  # non-breaking space
-            confidence = confidence_values[player]
             value = lower  # sorting by lower value possible makes more sense?
+            confidence = 1  # and then confidence is already embeded in value
             full_scores[player] = FullScore(value, string, confidence)
         return full_scores
 

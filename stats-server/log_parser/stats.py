@@ -13,7 +13,7 @@ class StatsTable:
     The stats table can construct a table of stats about the players, based on many different scoring strategies.
     """
 
-    def __init__(self, match_reports: Iterable[MatchReport], scorers: Collection[ScorerStrategy]):
+    def __init__(self, match_reports: Collection[MatchReport], scorers: Collection[ScorerStrategy]):
         self._match_reports = MatchReportCollection(match_reports)
         self._scorers = scorers
 

@@ -18,7 +18,8 @@ from log_parser.scorer import (
 from log_parser.stats import StatsTable
 
 LOGS_PATH = "logs"
-STATS_CACHE = {}
+OLD_SEASONS_CACHE = {}  # indexed by season number
+CURRENT_SEASON_CACHE = {}  # indexed by amount of rounds completed
 
 
 def update_table():
@@ -74,11 +75,21 @@ def get_season_logs_path(season_id):
 
 
 def get_or_create_stats_from_previous_season(season_id):
-    if season_id in STATS_CACHE:
-        return STATS_CACHE[season_id]
+    if season_id in OLD_SEASONS_CACHE:
+        return OLD_SEASONS_CACHE[season_id]
     season_logs_path = get_season_logs_path(season_id)
-    STATS_CACHE[season_id] = get_stats_for_season(season_logs_path)
-    return get_or_create_stats_from_previous_season(season_id)
+    OLD_SEASONS_CACHE[season_id] = get_stats_for_season(season_logs_path)
+    return OLD_SEASONS_CACHE[season_id]
+
+
+def get_or_create_stats_for_current_season(season_logs_path):
+    match_reports = parse_logs(season_logs_path)
+    total_amount_of_rounds = MatchReportCollection(match_reports).get_total_number_of_rounds()
+    if total_amount_of_rounds in CURRENT_SEASON_CACHE:
+        return CURRENT_SEASON_CACHE[total_amount_of_rounds]
+    else:
+        CURRENT_SEASON_CACHE[total_amount_of_rounds] = get_stats_for_season(season_logs_path)
+        return CURRENT_SEASON_CACHE[total_amount_of_rounds]
 
 
 def create_app():
@@ -95,7 +106,7 @@ def create_app():
             stat_details, score_table = get_or_create_stats_from_previous_season(season_id)
         else:
             season_logs_path = LOGS_PATH  # latest season logs go to main logs dir
-            stat_details, score_table = get_stats_for_season(season_logs_path)
+            stat_details, score_table = get_or_create_stats_for_current_season(season_logs_path)
         response = make_response(render_template('layout.html', stat_details=stat_details, score_table=score_table))
         response.headers['Cache-Control'] = 'no-store'
         response.headers['Pragma'] = 'no-cache'

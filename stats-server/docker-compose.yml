@@ -16,7 +16,7 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=web"
-      - "traefik.http.routers.csstats.rule=Host(`stats.laski.dev`)"
+      - "traefik.http.routers.csstats.rule=Host(`stats.laski.dev`) || Host(`stats.counter.laski.dev`)"
       - "traefik.http.routers.csstats.entrypoints=https"
       - "traefik.http.routers.csstats.tls.certresolver=dnschallenge"
       - "traefik.http.services.csstats.loadbalancer.server.port=5000"
